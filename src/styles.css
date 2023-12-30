@@ -1,8 +1,11 @@
 /* Paste this inside --- styles.css --- */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
+
+
 
 @layer base {
     @font-face {
@@ -11,16 +14,16 @@
         font-weight: normal;
         font-style: normal;
     }
-
+    
     ;
-
+    
     @font-face {
         font-family: 'GT Pressura';
         src: url('./assets/fonts/GT-Pressura-Extended-Black.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
     }
-
+    
     ;
 }
 
@@ -29,3 +32,4 @@
 body {
     font-family: 'Proxima Nova', 'Arial', 'sans-serif';
 }
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";

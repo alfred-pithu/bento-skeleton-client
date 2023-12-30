@@ -4,7 +4,9 @@
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+
   theme: {
+
     screens: {
       sm: '480px',
       md: '768px',
@@ -17,7 +19,7 @@ module.exports = {
       'light-green': '#05CC79',
 
       'black': '#1c1c1c',
-      'white': '#FFFFF',
+      'white': '#FFFF',
 
       'gray-dark': '#273444',
       'gray': '#8492a6',

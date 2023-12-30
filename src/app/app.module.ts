@@ -11,25 +11,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // zorro imports
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCardModule } from 'ng-zorro-antd/card';
+
+// Components
+import { HomepageComponent } from './homepage/homepage.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomepageComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzButtonModule,
-    NzDropDownModule,
-    NzAvatarModule,
-    NzSpinModule,
+    NzIconModule,
+    NzCardModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
