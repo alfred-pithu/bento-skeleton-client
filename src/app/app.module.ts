@@ -18,6 +18,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { GetStartedBtnComponent } from './Components/get-started-btn/get-started-btn.component';
+import { ServiceCardComponent } from './Components/service-card/service-card.component';
 
 registerLocaleData(en);
 
@@ -27,6 +28,7 @@ registerLocaleData(en);
     HomepageComponent,
     NavbarComponent,
     GetStartedBtnComponent,
+    ServiceCardComponent,
   ],
   imports: [
     BrowserModule,
