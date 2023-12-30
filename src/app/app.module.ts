@@ -15,13 +15,19 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
 
 // Components
-import { HomepageComponent } from './homepage/homepage.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HomepageComponent } from './Components/homepage/homepage.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { GetStartedBtnComponent } from './Components/get-started-btn/get-started-btn.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, HomepageComponent, NavbarComponent],
+  declarations: [
+    AppComponent,
+    HomepageComponent,
+    NavbarComponent,
+    GetStartedBtnComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

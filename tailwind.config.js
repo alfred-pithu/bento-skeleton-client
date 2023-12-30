@@ -21,9 +21,9 @@ module.exports = {
       'black': '#1c1c1c',
       'white': '#FFFF',
 
-      'gray-dark': '#273444',
+      'dark-gray': '#273444',
       'gray': '#8492a6',
-      'gray-light': '#d3dce6',
+      'light-gray': '#d3dce6',
     },
     fontFamily: {
       proxima: ['Proxima Nova', 'Arial', 'sans-serif'],
