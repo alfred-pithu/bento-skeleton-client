@@ -13,6 +13,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 // Components
 import { HomepageComponent } from './Components/homepage/homepage.component';
@@ -38,6 +39,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NzIconModule,
     NzCardModule,
+    NzGridModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

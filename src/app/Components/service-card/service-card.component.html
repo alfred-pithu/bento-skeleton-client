@@ -1,20 +1,20 @@
 <div
-  (mouseenter)="mouseOverHandler()"
-  (mouseleave)="mouseOutHandler()"
-  class="hover:border-2 hover:border-black border-2 border-white w-[15rem] md:w-[15rem] lg:w-[21rem] h-[555px] rounded-lg mx-auto"
+  style="padding: 0.1rem"
+  class="border border-white rounded-2xl mx-auto w-80 ml-20 p-1 cursor-pointer"
+  onmouseenter="this.style.border = '2px solid black' "
+  onmouseleave="this.style.border = '2px solid white'"
 >
   <!-- // Top Colorful part -->
   <div
-    class="{{
-      bgColor
-    }} h-16 flex items-center justify-between px-3 rounded-t-lg"
+    [style.backgroundColor]="bgColor"
+    class="h-16 flex items-center justify-between px-3 rounded-t-xl"
   >
     <p class="text-[1rem] font-bold">Menu Management</p>
     <span class="text-lg" nz-icon nzType="arrow-right" nzTheme="outline"></span>
   </div>
 
   <!-- Image -->
-  <div>
+  <div class="">
     <img
       class="w-full h-64"
       src="https://images.ctfassets.net/sv4wepqk8nm7/53furOspiTjXcLkW50lLvn/6ff8f14036f67f6d24ae8a6bd51ac36f/Deliverect-Menu-Builder-OV.jpg?w=360&h=312&q=80&fm=webp"
@@ -23,15 +23,11 @@
   </div>
 
   <!-- Description -->
-  <div
-    class="{{
-      hovered && 'bg-light-gray text-black'
-    }} bg-black h-[190px] text-white rounded-b-lg px-5"
-  >
-    <h4 class="{{ hovered && 'text-black' }} text-white text-sm py-5 font-bold">
+  <div style="height: 180px" class="bg-black text-white rounded-b-xl px-5">
+    <h4 class="text-white text-sm py-5 font-bold">
       Streamline updates with menu management
     </h4>
-    <p class="text-sm">
+    <p class="text-sm {{ hovered && 'bg-white text-black' }}">
       Save hours by scaling your changes across channels. Snooze items, test
       menus, and find new ways to profit.
     </p>
