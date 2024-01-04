@@ -31,9 +31,11 @@
     </ng-template>
 
     <button
-      onmouseenter="this.style.backgroundColor = '#038851'"
-      onmouseleave="this.style.backgroundColor = '#05CC79'"
+      nz-button
+      nzType="primary"
+      [nzLoading]="loading"
       class="bg-light-green border-0 text-white w-full h-10 cursor-pointer"
+      (click)="handleClick()"
     >
       Login
     </button>
