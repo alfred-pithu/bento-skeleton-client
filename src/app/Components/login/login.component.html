@@ -1,0 +1,41 @@
+<section class="h-screen border border-green flex items-center justify-center">
+  <div class="flex flex-col gap-y-5 wp-25">
+    <div>
+      <h2 class="font-medium">Welcome</h2>
+      <p>Log in to continue to Bento</p>
+    </div>
+
+    <input
+      class="w-full py-2"
+      nz-input
+      placeholder="Email"
+      [(ngModel)]="email"
+      type="text"
+    />
+
+    <nz-input-group class="w-full py-2" [nzSuffix]="suffixTemplate">
+      <input
+        [type]="passwordVisible ? 'text' : 'password'"
+        nz-input
+        placeholder="Password"
+        [(ngModel)]="password"
+      />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <span
+        class="cursor-pointer"
+        nz-icon
+        [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"
+      ></span>
+    </ng-template>
+
+    <button
+      onmouseenter="this.style.backgroundColor = '#038851'"
+      onmouseleave="this.style.backgroundColor = '#05CC79'"
+      class="bg-light-green border-0 text-white w-full h-10 cursor-pointer"
+    >
+      Login
+    </button>
+  </div>
+</section>

@@ -14,12 +14,14 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 // Components
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { GetStartedBtnComponent } from './Components/get-started-btn/get-started-btn.component';
 import { ServiceCardComponent } from './Components/service-card/service-card.component';
+import { LoginComponent } from './Components/login/login.component';
 
 registerLocaleData(en);
 
@@ -30,6 +32,7 @@ registerLocaleData(en);
     NavbarComponent,
     GetStartedBtnComponent,
     ServiceCardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ registerLocaleData(en);
     NzIconModule,
     NzCardModule,
     NzGridModule,
+    NzInputModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

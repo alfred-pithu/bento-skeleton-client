@@ -1448,6 +1448,11 @@ pre {
 
 
 /* Height Classes in Pixels */
+
+/* Height Screen */
+.h-screen {
+    height: 100vh;
+}
 .h-0 {
     height: 0;
 }
