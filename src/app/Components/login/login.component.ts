@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { LoginServiceService } from '../../Services/login-service.service';
 import { ILoginData } from '../../Interfaces/LoginDataInterface';
+=======
+import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.service';
+>>>>>>> 64dc3e058bb694b256c0af4f24e2194b2de42a92
 
 @Component({
   selector: 'app-login',
@@ -8,6 +12,7 @@ import { ILoginData } from '../../Interfaces/LoginDataInterface';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+<<<<<<< HEAD
   constructor(private loginService: LoginServiceService) {}
 
   email?: string;
@@ -30,5 +35,20 @@ export class LoginComponent {
     } else {
       alert('Please Provide Email and Password');
     }
+=======
+  email: string = '';
+  password: string = '';
+
+  passwordVisible = false;
+
+  loading = false;
+
+  constructor(private api: SkeletonApiService) {}
+
+  onSubmit() {
+    this.api.login(this.email, this.password).subscribe({
+      next: () => console.log('success')
+    })
+>>>>>>> 64dc3e058bb694b256c0af4f24e2194b2de42a92
   }
 }
