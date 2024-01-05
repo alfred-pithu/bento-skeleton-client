@@ -1,4 +1,7 @@
-<section class="h-screen border border-green flex items-center justify-center">
+<div style="position: absolute" class="border w-full">
+  <app-navbar></app-navbar>
+</div>
+<section class="h-screen flex items-center justify-center">
   <div class="flex flex-col gap-y-5 wp-25">
     <div>
       <h2 class="font-medium">Welcome</h2>
@@ -10,7 +13,7 @@
       nz-input
       placeholder="Email"
       [(ngModel)]="email"
-      type="text"
+      type="email"
     />
 
     <nz-input-group class="w-full py-2" [nzSuffix]="suffixTemplate">
@@ -31,6 +34,7 @@
     </ng-template>
 
     <button
+      (click)="postData()"
       onmouseenter="this.style.backgroundColor = '#038851'"
       onmouseleave="this.style.backgroundColor = '#05CC79'"
       class="bg-light-green border-0 text-white w-full h-10 cursor-pointer"
