@@ -18,7 +18,11 @@ export class LoginComponent {
 
   onSubmit() {
     this.api.login(this.email, this.password).subscribe({
-      next: () => console.log('success')
-    })
+      next: () => console.log('success'),
+    });
   }
 }
+
+
+
+
