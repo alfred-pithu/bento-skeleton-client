@@ -18,17 +18,17 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
 // Components
-import { HomepageComponent } from './Components/homepage/homepage.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { GetStartedBtnComponent } from './Components/get-started-btn/get-started-btn.component';
 import { ServiceCardComponent } from './Components/service-card/service-card.component';
-import { LoginComponent } from './Components/login/login.component';
-import { SignupComponent } from './Components/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
 
 // Interceptors
 import { AuthInterceptor } from './interceptors/auth-interceptor/auth-interceptor.service';
 import { ErrorInterceptor } from './interceptors/error-interceptor/error-interceptor.service';
 import { TokenInterceptor } from './interceptors/token-interceptor/token-interceptor.service';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
 registerLocaleData(en);
 
@@ -40,7 +40,7 @@ registerLocaleData(en);
     GetStartedBtnComponent,
     ServiceCardComponent,
     LoginComponent,
-    SignupComponent,
+    DashboardPageComponent,
   ],
   imports: [
     BrowserModule,

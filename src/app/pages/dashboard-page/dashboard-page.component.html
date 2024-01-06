@@ -1,0 +1,4 @@
+<app-navbar></app-navbar>
+@for (service of services; track $index) {
+  <div (click)="redirectToService(service)">{{service}}</div>
+}
