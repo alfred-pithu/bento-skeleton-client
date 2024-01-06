@@ -23,6 +23,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { GetStartedBtnComponent } from './Components/get-started-btn/get-started-btn.component';
 import { ServiceCardComponent } from './Components/service-card/service-card.component';
 import { LoginComponent } from './Components/login/login.component';
+import { SignupComponent } from './Components/signup/signup.component';
 
 // Interceptors
 import { AuthInterceptor } from './interceptors/auth-interceptor/auth-interceptor.service';
@@ -39,6 +40,7 @@ registerLocaleData(en);
     GetStartedBtnComponent,
     ServiceCardComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
