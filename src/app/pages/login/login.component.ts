@@ -17,7 +17,11 @@ export class LoginComponent {
 
   loading = false;
 
-  constructor(private api: SkeletonApiService, private router: Router, private auth: AuthService) {}
+  constructor(
+    private api: SkeletonApiService,
+    private router: Router,
+    private auth: AuthService
+  ) {}
 
   onSubmit() {
     this.loading = true;
@@ -27,7 +31,7 @@ export class LoginComponent {
         this.auth.setUser(data.user);
         this.router.navigate(['dashboard']);
       },
-      error: () => this.loading = false
-    })
+      error: () => (this.loading = false),
+    });
   }
 }
