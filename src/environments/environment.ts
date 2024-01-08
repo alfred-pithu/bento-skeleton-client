@@ -1,3 +1,4 @@
 export const environment = {
-  API_URL: 'https://sak-skeleton-samiya-kazi.koyeb.app'
+  production: false,
+  API_URL: 'http://localhost:5000'
 };
