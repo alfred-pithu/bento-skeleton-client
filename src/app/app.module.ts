@@ -17,6 +17,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 
 // Components
@@ -32,6 +33,8 @@ import { ErrorInterceptor } from './interceptors/error-interceptor/error-interce
 import { TokenInterceptor } from './interceptors/token-interceptor/token-interceptor.service';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { RedirectPageComponent } from './pages/redirect-page/redirect-page.component';
+import { SplashLogoComponent } from './Components/splash-logo/splash-logo.component';
 
 // Formly
 
@@ -47,6 +50,8 @@ registerLocaleData(en);
     LoginComponent,
     SignupComponent,
     DashboardPageComponent,
+    RedirectPageComponent,
+    SplashLogoComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,8 @@ registerLocaleData(en);
     NzInputModule,
     NzButtonModule,
     NzMessageModule,
-    NzStepsModule
+    NzStepsModule,
+    NzSpinModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
