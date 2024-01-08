@@ -1,32 +1,38 @@
-<section class="wp-66 border mx-auto mt-8 px-5 py-10">
+<section class="wp-66 mx-auto mt-8 px-5 py-10">
   <nz-steps [nzCurrent]="currentStep">
     <nz-step nzTitle="Step 1"></nz-step>
     <nz-step nzTitle="Step 2"></nz-step>
     <nz-step nzTitle="Step 3"></nz-step>
   </nz-steps>
 
-  <div class="steps-content">
+  <div class="mt-16">
     <div *ngIf="currentStep === 0">
       <!-- Step 1 Content -->
-      <h2 class="mt-6 mb-3 font-bold text-green text-center">
+      <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Yourself
       </h2>
       <!--  Form for Step 1 -->
 
-      <form class="border border-gray h-56 grid grid-cols-2">
-        <div class="flex flex-col gap-y-2 mx-auto">
+      <form
+        [formGroup]="stepsForm[currentStep]"
+        class="grid grid-cols-2 gap-y-4"
+      >
+        <div class="flex flex-col mx-auto">
           <label class="font-bold">First Name *</label>
-          <input nz-input type="text" class="w-64 h-8 rounded-lg" />
+          <input required nz-input type="text" class="w-64 h-8 rounded-lg" />
         </div>
-        <div class="flex flex-col gap-y-2 mx-auto">
+
+        <div class="flex flex-col mx-auto">
           <label class="font-bold">Last Name *</label>
           <input nz-input type="text" class="w-64 h-8 rounded-lg" />
         </div>
-        <div class="flex flex-col gap-y-2 mx-auto">
+
+        <div class="flex flex-col mx-auto">
           <label class="font-bold">Email *</label>
           <input nz-input type="email" class="w-64 h-8 rounded-lg" />
         </div>
-        <div class="flex flex-col gap-y-2 mx-auto">
+
+        <div class="flex flex-col mx-auto">
           <label class="font-bold">Phone *</label>
           <input nz-input type="number" class="w-64 h-8 rounded-lg" />
         </div>

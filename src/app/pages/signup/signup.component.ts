@@ -1,20 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css',
+  styleUrls: ['./signup.component.css'],
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   currentStep = 0;
-  firstName: string = '';
-  lastName: string = '';
-  email: string = '';
-  phone: string = '';
+  stepsForm: FormGroup[] = [];
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.stepsForm = [
+      this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.required],
+      }),
+      // Add more FormGroup instances for other steps if needed
+    ];
+  }
 
   nextStep(): void {
-    if (this.currentStep < 2) {
+    if (this.currentStep < this.stepsForm.length - 1) {
       this.currentStep++;
     }
   }
