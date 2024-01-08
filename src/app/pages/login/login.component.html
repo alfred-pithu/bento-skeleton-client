@@ -31,8 +31,13 @@
         required
       />
     </nz-input-group>
+
     <ng-template #suffixTemplate>
-      <h2 class="font-medium">Welcome</h2>
+      <span
+        nz-icon
+        [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"
+      ></span>
     </ng-template>
 
     <button

@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../../interfaces/user.interface';
+import { IUser } from '../../Interfaces/user.interface';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
-  
-  user : IUser | null = null;
+  user: IUser | null = null;
 
-  constructor (private auth: AuthService) {}
-  
+  constructor(private auth: AuthService) {}
+
   ngOnInit(): void {
     this.user = this.auth.getUser();
   }
-
 }

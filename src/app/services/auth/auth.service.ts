@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { IUser } from '../../interfaces/user.interface';
+import { IUser } from '../../Interfaces/user.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor() {}
 
-  constructor() { }
+  user: IUser | null = null;
 
-  user : IUser | null = null;
-
-  getUser () {
+  getUser() {
     return this.user;
   }
 
-  setUser (user: IUser | null) {
+  setUser(user: IUser | null) {
     this.user = user;
   }
 }
