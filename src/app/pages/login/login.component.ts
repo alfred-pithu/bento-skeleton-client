@@ -27,6 +27,7 @@ export class LoginComponent {
     this.loading = true;
     this.api.login(this.email, this.password).subscribe({
       next: (data) => {
+        console.log(data);
         this.loading = false;
         this.auth.setUser(data.user);
         this.router.navigate(['dashboard']);

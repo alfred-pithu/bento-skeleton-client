@@ -23,8 +23,8 @@ export class SkeletonApiService {
     );
   }
 
-  getServicesForUser(): Observable<{ services: string[] }> {
-    return this.http.get<{ services: string[] }>(
+  getServicesForUser(): Observable<{ message: string[] }> {
+    return this.http.get<{ message: string[] }>(
       this.rootUrl + '/auth/services'
     );
   }

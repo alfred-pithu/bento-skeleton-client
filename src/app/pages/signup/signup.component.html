@@ -1,6 +1,62 @@
-<form class="mx-auto">
-  <div>
-    <label for="First Name"> First Name:</label>
-    <input type="text" name="First Name" />
+<section class="wp-66 border mx-auto mt-8 px-5 py-10">
+  <nz-steps [nzCurrent]="currentStep">
+    <nz-step nzTitle="Step 1"></nz-step>
+    <nz-step nzTitle="Step 2"></nz-step>
+    <nz-step nzTitle="Step 3"></nz-step>
+  </nz-steps>
+
+  <div class="steps-content">
+    <div *ngIf="currentStep === 0">
+      <!-- Step 1 Content -->
+      <h2 class="mt-6 mb-3 font-bold text-green text-center">
+        Tell Us About Yourself
+      </h2>
+      <!--  Form for Step 1 -->
+
+      <form class="border border-gray h-56 grid grid-cols-2">
+        <div class="flex flex-col gap-y-2 mx-auto">
+          <label class="font-bold">First Name *</label>
+          <input nz-input type="text" class="w-64 h-8 rounded-lg" />
+        </div>
+        <div class="flex flex-col gap-y-2 mx-auto">
+          <label class="font-bold">Last Name *</label>
+          <input nz-input type="text" class="w-64 h-8 rounded-lg" />
+        </div>
+        <div class="flex flex-col gap-y-2 mx-auto">
+          <label class="font-bold">Email *</label>
+          <input nz-input type="email" class="w-64 h-8 rounded-lg" />
+        </div>
+        <div class="flex flex-col gap-y-2 mx-auto">
+          <label class="font-bold">Phone *</label>
+          <input nz-input type="number" class="w-64 h-8 rounded-lg" />
+        </div>
+      </form>
+
+      <div class="flex justify-center mt-5">
+        <button
+          class="border border-green text-green"
+          nz-button
+          (click)="nextStep()"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="currentStep === 1">
+      <!-- Step 2 Content -->
+      <h2>Step 2 Content</h2>
+      <!-- Add your form fields and controls here -->
+      <button nz-button (click)="nextStep()">Next</button>
+      <button nz-button (click)="prevStep()">Previous</button>
+    </div>
+
+    <div *ngIf="currentStep === 2">
+      <!-- Step 3 Content -->
+      <h2>Step 3 Content</h2>
+      <!-- Add your form fields and controls here -->
+      <button nz-button (click)="prevStep()">Previous</button>
+      <button nz-button (click)="submitForm()">Submit</button>
+    </div>
   </div>
-</form>
+</section>

@@ -16,6 +16,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+
 
 // Components
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -29,6 +31,9 @@ import { AuthInterceptor } from './interceptors/auth-interceptor/auth-intercepto
 import { ErrorInterceptor } from './interceptors/error-interceptor/error-interceptor.service';
 import { TokenInterceptor } from './interceptors/token-interceptor/token-interceptor.service';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { SignupComponent } from './pages/signup/signup.component';
+
+// Formly
 
 registerLocaleData(en);
 
@@ -40,6 +45,7 @@ registerLocaleData(en);
     GetStartedBtnComponent,
     ServiceCardComponent,
     LoginComponent,
+    SignupComponent,
     DashboardPageComponent,
   ],
   imports: [
@@ -54,7 +60,8 @@ registerLocaleData(en);
     NzGridModule,
     NzInputModule,
     NzButtonModule,
-    NzMessageModule
+    NzMessageModule,
+    NzStepsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

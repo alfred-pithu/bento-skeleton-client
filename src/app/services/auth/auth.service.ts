@@ -7,7 +7,10 @@ import { IUser } from '../../Interfaces/user.interface';
 export class AuthService {
   constructor() {}
 
-  user: IUser | null = null;
+/*  Ekhane type define korte hobe sure hoye Leeman bhai er shathe. Set kora hocche login.ts theke. 
+ IUser is not fully correct. */
+  
+  user: any | null = null;
 
   getUser() {
     return this.user;
