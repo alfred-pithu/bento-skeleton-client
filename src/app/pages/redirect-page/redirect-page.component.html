@@ -1,0 +1,8 @@
+<div class="h-screen w-screen flex flex-col justify-center items-center">
+  <app-splash-logo></app-splash-logo>
+  @if(service) {
+    <h2 class="my-20">Taking you to {{service}}...</h2>
+  } @else {
+    <h2 class="my-20">Loading...</h2>
+  }
+</div>

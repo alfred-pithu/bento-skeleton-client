@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -8,12 +9,15 @@ import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.ser
 })
 export class DashboardPageComponent implements OnInit {
   services: string[] = [];
+  loading: boolean = false;
 
-  constructor(private api: SkeletonApiService) {}
+  constructor(private api: SkeletonApiService, private router: Router) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.api.getServicesForUser().subscribe({
       next: (data) => {
+        this.loading = false;
         console.log(data);
         this.services = data.message;
       },
@@ -21,12 +25,6 @@ export class DashboardPageComponent implements OnInit {
   }
 
   redirectToService(service: string) {
-    const lowerCasedService = service.toLowerCase();
-    this.api.getRedirectUrl(lowerCasedService).subscribe({
-      next: (data) => {
-        console.log(data.redirect);
-        window.location.href = data.redirect;
-      },
-    });
+    this.router.navigateByUrl('/redirect?service=' + service.toLowerCase());
   }
 }
