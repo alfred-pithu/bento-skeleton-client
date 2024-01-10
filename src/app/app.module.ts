@@ -35,6 +35,7 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { SignupComponent } from './pages/signup/signup.component';
 import { RedirectPageComponent } from './pages/redirect-page/redirect-page.component';
 import { SplashLogoComponent } from './Components/splash-logo/splash-logo.component';
+import { PageContainerComponent } from './pages/page-container/page-container.component';
 
 // Formly
 
@@ -52,6 +53,7 @@ registerLocaleData(en);
     DashboardPageComponent,
     RedirectPageComponent,
     SplashLogoComponent,
+    PageContainerComponent,
   ],
   imports: [
     BrowserModule,

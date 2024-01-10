@@ -1,4 +1,4 @@
-@if (!user) {
+@if (!isAuth) {
   <div
     class="h-8 border bg-black font-bold text-sm flex justify-between items-center px-8"
   >
@@ -33,13 +33,14 @@
     />
   </div>
 
-  @if (user) {
-    <p>{{user.name}}</p>
-  } @else {
-    <app-get-started-btn
-      [bgColor]="'bg-green'"
-      [hoverBgColor]="'bg-dark-green'"
-    ></app-get-started-btn>
-  }
+  <div class="flex items-center">
+    @if (user) {
+      <p class="mx-5">{{user.employeeInformation.name}}</p>
+    } 
+    @if (isAuth) {
+      <button nz-button nzType="primary" (click)="logout()"><span nz-icon nzType="logout" nzTheme="outline"></span>Logout</button>
+    }
+  </div>
+
 
 </div>
