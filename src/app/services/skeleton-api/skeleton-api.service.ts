@@ -36,4 +36,10 @@ export class SkeletonApiService {
       this.rootUrl + '/service-auth/redirect/' + service
     );
   }
+
+  getUserFromToken(): Observable<{ user: IUser}> {
+    return this.http.get<{ user: IUser }>(
+      this.rootUrl + '/service-auth/user-from-token'
+    );
+  }
 }

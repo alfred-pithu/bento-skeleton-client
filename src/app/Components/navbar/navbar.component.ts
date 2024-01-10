@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from '../../interfaces/user.interface';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent implements OnInit {
-  user: IUser | null = null;
+export class NavbarComponent {
 
-  constructor(private auth: AuthService) {}
+  @Input() isAuth! : boolean;
+  @Input() user: IUser | undefined;
 
-  ngOnInit(): void {
-    this.user = this.auth.getUser();
+  constructor (private router : Router) {}
+
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/home');
   }
+
 }

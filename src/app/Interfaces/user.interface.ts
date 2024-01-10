@@ -1,8 +1,6 @@
-// Eta change korte hobe Leeman bhai er shathe kotha bole
+import { IEmployeeInfo } from "./employeeInfo.interface";
 
 export interface IUser {
-  _id: string,
-  name: string,
-  email: string,
-  role: 'admin' | 'employee'
+  positionId: number;
+  employeeInformation: IEmployeeInfo;
 }
