@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IUser } from '../../interfaces/user.interface';
+import { IUser } from '../../Interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +7,9 @@ import { IUser } from '../../interfaces/user.interface';
 export class AuthService {
   constructor() {}
 
-/*  Ekhane type define korte hobe sure hoye Leeman bhai er shathe. Set kora hocche login.ts theke. 
+  /*  Ekhane type define korte hobe sure hoye Leeman bhai er shathe. Set kora hocche login.ts theke. 
  IUser is not fully correct. */
-  
+
   user: any | null = null;
 
   getUser() {
