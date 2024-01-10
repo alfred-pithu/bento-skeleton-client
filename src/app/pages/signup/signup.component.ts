@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SignupService } from '../../services/signup/signup.service';
+import { CountryInterface } from '../../Interfaces/Country.interface';
 
 @Component({
   selector: 'app-signup',
@@ -9,10 +11,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
   currentStep = 0;
   stepsForm: FormGroup[] = [];
+  countries: CountryInterface[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private SignupService: SignupService) {}
 
   ngOnInit(): void {
+    this.getAllCountries();
+
     this.stepsForm = [
       this.fb.group({
         firstName: ['', Validators.required],
@@ -45,6 +50,12 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  getAllCountries(): void {
+    this.SignupService.getAllCountry().subscribe((data) => {
+      console.log(data);
+      this.countries = data;
+    });
+  }
   submitForm(): void {
     // You can access all form values from this.stepsForm
     const formData = {

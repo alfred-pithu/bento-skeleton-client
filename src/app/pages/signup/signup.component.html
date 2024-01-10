@@ -112,9 +112,14 @@
             class="w-64 h-8 rounded-lg"
             nzShowSearch
             nzAllowClear
-            nzPlaceHolder="Select a person"
+            formControlName="country"
+            nzPlaceHolder="Search Country"
           >
-            <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+            <nz-option
+              *ngFor="let country of this.countries"
+              [nzLabel]="country.name"
+              [nzValue]="country.name"
+            ></nz-option>
           </nz-select>
         </div>
 
