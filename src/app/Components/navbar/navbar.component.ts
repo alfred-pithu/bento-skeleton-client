@@ -15,10 +15,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, private api: SkeletonApiService) {}
 
   logout() {
-    localStorage.clear();
-    this.isAuth = false;
-    this.user = undefined;
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/logout');
   }
 
   ngOnInit(): void {
