@@ -8,10 +8,12 @@ import { RedirectPageComponent } from './pages/redirect-page/redirect-page.compo
 import { PageContainerComponent } from './pages/page-container/page-container.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { noAuthGuard } from './guards/no-auth/no-auth.guard';
+import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
+  { path: 'logout', component: LogoutPageComponent, canActivate: [authGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [noAuthGuard] },
   { path: 'redirect', component: RedirectPageComponent },
   { path: '', component: PageContainerComponent, canActivate: [authGuard], children: [
