@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { IUser } from '../../interfaces/user.interface';
+import { IUser } from '../../Interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +36,7 @@ export class SkeletonApiService {
     );
   }
 
-  getUserFromToken(): Observable<{ user: IUser}> {
+  getUserFromToken(): Observable<{ user: IUser }> {
     return this.http.get<{ user: IUser }>(
       this.rootUrl + '/service-auth/user-from-token'
     );
