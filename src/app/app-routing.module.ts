@@ -6,13 +6,15 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { SignupComponent } from './pages/signup/signup.component';
 import { RedirectPageComponent } from './pages/redirect-page/redirect-page.component';
 import { PageContainerComponent } from './pages/page-container/page-container.component';
+import { authGuard } from './guards/auth/auth.guard';
+import { noAuthGuard } from './guards/no-auth/no-auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [noAuthGuard] },
   { path: 'redirect', component: RedirectPageComponent },
-  { path: '', component: PageContainerComponent, children: [
+  { path: '', component: PageContainerComponent, canActivate: [authGuard], children: [
     { path: 'dashboard', component: DashboardPageComponent },
     { path: '**', redirectTo: '/home'}
   ]},

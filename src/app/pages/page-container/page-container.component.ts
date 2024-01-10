@@ -1,18 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.service';
-import { IUser } from '../../Interfaces/user.interface';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-page-container',
   templateUrl: './page-container.component.html',
   styleUrl: './page-container.component.css',
 })
-export class PageContainerComponent implements OnInit {
-  constructor(private api: SkeletonApiService) {}
-
-  user: IUser | undefined;
-
-  ngOnInit(): void {
-    this.api.getUserFromToken().subscribe((data) => (this.user = data.user));
-  }
-}
+export class PageContainerComponent {}

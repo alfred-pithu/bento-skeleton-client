@@ -19,6 +19,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 
 // Components
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -71,6 +73,8 @@ registerLocaleData(en);
     NzStepsModule,
     NzSpinModule,
     NzSelectModule,
+    NzSwitchModule,
+    NzTimePickerModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

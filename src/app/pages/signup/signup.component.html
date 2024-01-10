@@ -1,4 +1,4 @@
-<section class="wp-50 mx-auto mt-8 px-5 py-10 border">
+<section class="wp-50 mx-auto mt-8 px-5 py-10">
   <nz-steps [nzCurrent]="currentStep">
     <nz-step nzTitle="About You"></nz-step>
     <nz-step nzTitle="About Your Restaurant"></nz-step>
@@ -77,7 +77,7 @@
       <!-- Form for Step 2 -->
       <form
         [formGroup]="stepsForm[currentStep]"
-        class="grid grid-cols-2 gap-y-4"
+        class="grid grid-cols-2 gap-y-8"
       >
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Restaurant Name *</label>
@@ -102,12 +102,6 @@
 
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Country *</label>
-          <!-- <input
-            nz-input
-            type="text"
-            formControlName="country"
-            class="w-64 h-8 rounded-lg"
-          /> -->
           <nz-select
             class="w-64 h-8 rounded-lg"
             nzShowSearch
@@ -132,18 +126,41 @@
             class="w-64 h-8 rounded-lg"
           />
         </div>
-        <div class="flex flex-col mx-auto">
+
+        <div class="flex flex-col mx-auto w-64">
           <label class="font-bold">Operating Time *</label>
-          <input
-            nz-input
-            type="number"
-            formControlName="monthlyOrders"
-            class="w-64 h-8 rounded-lg"
-          />
+          <div class="flex justify-center items-center gap-x-5 mt-4">
+            <nz-time-picker
+              formControlName="openingTime"
+              [nzUse12Hours]="true"
+              nzFormat="h a"
+            ></nz-time-picker>
+            <span class="font-bold">To</span>
+            <nz-time-picker
+              formControlName="closingTime"
+              [nzUse12Hours]="true"
+              nzFormat="h a"
+            ></nz-time-picker>
+          </div>
+        </div>
+
+        <div></div>
+
+        <div
+          class="flex mx-auto mt-5 w-64 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2"
+        >
+          <span class="font-bold">Enable Delivery</span>
+          <nz-switch nzSize="small" formControlName="delivery"></nz-switch>
+        </div>
+        <div
+          class="flex mx-auto mt-5 w-64 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2"
+        >
+          <span class="font-bold">Enable Pickup</span>
+          <nz-switch nzSize="small" formControlName="pickup"></nz-switch>
         </div>
       </form>
 
-      <div class="flex justify-between mt-5">
+      <div class="flex justify-between mt-20">
         <button class="border text-green" nz-button (click)="prevStep()">
           Previous
         </button>

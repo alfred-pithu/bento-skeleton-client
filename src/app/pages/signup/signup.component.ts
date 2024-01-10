@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../../services/signup/signup.service';
 import { CountryInterface } from '../../Interfaces/Country.interface';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-signup',
@@ -30,6 +31,10 @@ export class SignupComponent implements OnInit {
         location: ['', Validators.required],
         country: ['', Validators.required],
         monthlyOrders: ['', Validators.required],
+        openingTime: [null, Validators.required],
+        closingTime: [null, Validators.required],
+        delivery: [true],
+        pickup: [true],
       }),
     ];
   }
@@ -52,22 +57,28 @@ export class SignupComponent implements OnInit {
 
   getAllCountries(): void {
     this.SignupService.getAllCountry().subscribe((data) => {
-      console.log(data);
       this.countries = data;
     });
   }
   submitForm(): void {
-    // You can access all form values from this.stepsForm
+    // Format time as "h a" (e.g., "6 am")
+    const formatTime = (time: Date | null): string | null => {
+      return time ? format(time, 'h a') : null;
+    };
+
+    // Get formatted opening and closing times
+    const openingTimeFormatted = formatTime(
+      this.stepsForm[1].get('openingTime')?.value
+    );
+    const closingTimeFormatted = formatTime(
+      this.stepsForm[1].get('closingTime')?.value
+    );
     const formData = {
       ...this.stepsForm[0].value,
       ...this.stepsForm[1].value,
+      openingTime: openingTimeFormatted,
+      closingTime: closingTimeFormatted,
     };
     console.log('Form submitted!', formData);
-
-    // Here, you can send the formData to your backend
-    // For example, you can use Angular HttpClient to make an API call
-    // this.httpClient.post('your-backend-api-endpoint', formData).subscribe(response => {
-    //   console.log('Backend response:', response);
-    // });
   }
 }

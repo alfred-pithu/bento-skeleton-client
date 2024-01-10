@@ -10,7 +10,6 @@ import { IUser } from '../../Interfaces/user.interface';
 export class SkeletonApiService {
   constructor(private http: HttpClient) {}
 
-  // Move this to an environment variable later.
   rootUrl = environment.API_URL;
 
   login(
@@ -37,7 +36,7 @@ export class SkeletonApiService {
     );
   }
 
-  getUserFromToken(): Observable<{ user: IUser}> {
+  getUserFromToken(): Observable<{ user: IUser }> {
     return this.http.get<{ user: IUser }>(
       this.rootUrl + '/service-auth/user-from-token'
     );
