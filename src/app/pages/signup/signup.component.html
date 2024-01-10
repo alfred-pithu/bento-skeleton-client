@@ -1,8 +1,7 @@
 <section class="wp-66 mx-auto mt-8 px-5 py-10">
   <nz-steps [nzCurrent]="currentStep">
-    <nz-step nzTitle="Step 1"></nz-step>
-    <nz-step nzTitle="Step 2"></nz-step>
-    <nz-step nzTitle="Step 3"></nz-step>
+    <nz-step nzTitle="About You"></nz-step>
+    <nz-step nzTitle="About Your Restaurant"></nz-step>
   </nz-steps>
 
   <div class="mt-16">
@@ -11,30 +10,50 @@
       <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Yourself
       </h2>
-      <!--  Form for Step 1 -->
-
+      <!-- Form for Step 1 -->
       <form
         [formGroup]="stepsForm[currentStep]"
         class="grid grid-cols-2 gap-y-4"
       >
         <div class="flex flex-col mx-auto">
           <label class="font-bold">First Name *</label>
-          <input required nz-input type="text" class="w-64 h-8 rounded-lg" />
+          <input
+            required
+            nz-input
+            type="text"
+            formControlName="firstName"
+            class="w-64 h-8 rounded-lg"
+          />
         </div>
 
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Last Name *</label>
-          <input nz-input type="text" class="w-64 h-8 rounded-lg" />
+          <input
+            nz-input
+            type="text"
+            formControlName="lastName"
+            class="w-64 h-8 rounded-lg"
+          />
         </div>
 
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Email *</label>
-          <input nz-input type="email" class="w-64 h-8 rounded-lg" />
+          <input
+            nz-input
+            type="email"
+            formControlName="email"
+            class="w-64 h-8 rounded-lg"
+          />
         </div>
 
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Phone *</label>
-          <input nz-input type="number" class="w-64 h-8 rounded-lg" />
+          <input
+            nz-input
+            type="number"
+            formControlName="phone"
+            class="w-64 h-8 rounded-lg"
+          />
         </div>
       </form>
 
@@ -42,6 +61,7 @@
         <button
           class="border border-green text-green"
           nz-button
+          [disabled]="isNextButtonDisabled"
           (click)="nextStep()"
         >
           Next
@@ -51,18 +71,69 @@
 
     <div *ngIf="currentStep === 1">
       <!-- Step 2 Content -->
-      <h2>Step 2 Content</h2>
-      <!-- Add your form fields and controls here -->
-      <button nz-button (click)="nextStep()">Next</button>
-      <button nz-button (click)="prevStep()">Previous</button>
-    </div>
+      <h2 class="mb-10 font-bold text-green text-center">
+        Tell Us About Your Restaurant
+      </h2>
+      <!-- Form for Step 2 -->
+      <form
+        [formGroup]="stepsForm[currentStep]"
+        class="grid grid-cols-2 gap-y-4"
+      >
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold">Restaurant Name *</label>
+          <input
+            required
+            nz-input
+            type="text"
+            formControlName="restaurantName"
+            class="w-64 h-8 rounded-lg"
+          />
+        </div>
 
-    <div *ngIf="currentStep === 2">
-      <!-- Step 3 Content -->
-      <h2>Step 3 Content</h2>
-      <!-- Add your form fields and controls here -->
-      <button nz-button (click)="prevStep()">Previous</button>
-      <button nz-button (click)="submitForm()">Submit</button>
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold">Location *</label>
+          <input
+            nz-input
+            type="text"
+            formControlName="location"
+            class="w-64 h-8 rounded-lg"
+          />
+        </div>
+
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold">Country *</label>
+          <input
+            nz-input
+            type="text"
+            formControlName="country"
+            class="w-64 h-8 rounded-lg"
+          />
+        </div>
+
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold">Monthly Orders *</label>
+          <input
+            nz-input
+            type="number"
+            formControlName="monthlyOrders"
+            class="w-64 h-8 rounded-lg"
+          />
+        </div>
+      </form>
+
+      <div class="flex justify-between mt-5">
+        <button class="border text-green" nz-button (click)="prevStep()">
+          Previous
+        </button>
+        <button
+          [disabled]="isNextButtonDisabled"
+          class="border border-green text-green"
+          nz-button
+          (click)="submitForm()"
+        >
+          Submit
+        </button>
+      </div>
     </div>
   </div>
 </section>
