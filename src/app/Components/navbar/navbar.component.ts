@@ -1,8 +1,8 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from '../../interfaces/user.interface';
-import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.service';
 
 
 @Component({
@@ -10,16 +10,23 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
   @Input() isAuth! : boolean;
-  @Input() user: IUser | undefined;
+  user: IUser | undefined;
 
-  constructor (private router : Router) {}
+  constructor (private router : Router, private api: SkeletonApiService) {}
 
   logout() {
     localStorage.clear();
+    this.isAuth = false;
+    this.user = undefined;
     this.router.navigateByUrl('/home');
+  }
+
+  ngOnInit(): void {
+    if (this.isAuth)
+      this.api.getUserFromToken().subscribe(data => this.user = data.user);
   }
 
 }
