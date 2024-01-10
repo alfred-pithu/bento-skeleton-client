@@ -102,16 +102,33 @@
 
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Country *</label>
-          <input
+          <!-- <input
             nz-input
             type="text"
             formControlName="country"
             class="w-64 h-8 rounded-lg"
-          />
+          /> -->
+          <nz-select
+            class="w-64 h-8 rounded-lg"
+            nzShowSearch
+            nzAllowClear
+            nzPlaceHolder="Select a person"
+          >
+            <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+          </nz-select>
         </div>
 
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Monthly Orders *</label>
+          <input
+            nz-input
+            type="number"
+            formControlName="monthlyOrders"
+            class="w-64 h-8 rounded-lg"
+          />
+        </div>
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold">Operating Time *</label>
           <input
             nz-input
             type="number"

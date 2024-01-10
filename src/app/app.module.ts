@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,7 +18,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 // Components
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -67,7 +67,8 @@ registerLocaleData(en);
     NzButtonModule,
     NzMessageModule,
     NzStepsModule,
-    NzSpinModule
+    NzSpinModule,
+    NzSelectModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
