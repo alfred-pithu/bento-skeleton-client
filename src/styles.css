@@ -2371,6 +2371,22 @@ pre {
     row-gap: 2rem;
 }
 
+/* CSS for col-span utility classes */
+
+.col-span-1 {
+    grid-column: span 1;
+}
+
+.col-span-2 {
+    grid-column: span 2;
+}
+
+.col-span-3 {
+    grid-column: span 3;
+}
+
+/* Add more classes as needed */
+
 /* Grid Justify Content */
 .justify-start {
     justify-content: start;

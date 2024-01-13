@@ -1,3 +1,118 @@
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { SignupService } from '../../services/signup/signup.service';
+import { CountryInterface } from '../../Interfaces/Country.interface';
+import { format } from 'date-fns';
+
+@Component({
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css'],
+})
+export class SignupComponent implements OnInit {
+  currentStep = 0;
+  countries: CountryInterface[] = [];
+  orderAmounts: string[] = ['0 - 350', '350 - 750', '750 - 1250', '> 1250'];
+  clickedOrderAmount: string = '';
+  isClicked: boolean = false;
+  clickedIndex: number = 0;
+
+  constructor(private fb: FormBuilder, private SignupService: SignupService) {}
+
+  stepsForm: FormGroup[] = [];
+
+  ngOnInit(): void {
+    this.getAllCountries();
+
+    this.stepsForm = [
+      this.fb.group({
+        firstName: new FormControl('', Validators.required),
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.required],
+      }),
+      this.fb.group({
+        restaurantName: ['', Validators.required],
+        location: ['', Validators.required],
+        country: ['', Validators.required],
+        monthlyOrders: ['', Validators.required],
+        openingTime: [null, Validators.required],
+        closingTime: [null, Validators.required],
+        delivery: [true],
+        pickup: [true],
+        city: ['', Validators.required],
+      }),
+    ];
+  }
+
+  orderAmountClickHandler(amount: string, index: number) {
+    this.clickedOrderAmount = amount;
+    this.isClicked = !this.isClicked;
+    this.clickedIndex = index;
+  }
+
+  isNextButtonDisabled(): boolean {
+    const currentForm = this.stepsForm[this.currentStep];
+    return !currentForm.valid;
+  }
+
+  isSubmitDisabled(): boolean {
+    return this.stepsForm.every((form) => form.valid);
+  }
+
+  nextStep(): void {
+    if (this.currentStep < this.stepsForm.length - 1) {
+      this.currentStep++;
+    }
+  }
+
+  prevStep(): void {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+    }
+  }
+
+  getAllCountries(): void {
+    this.SignupService.getAllCountry().subscribe((data) => {
+      this.countries = data;
+    });
+  }
+  submitForm(): void {
+    // Format time as "h a" (e.g., "6 am")
+    //MAIN FOR OMI BHAI
+    const formatTime = (time: Date | null): string | null => {
+      return time ? format(time, 'h a') : null;
+    };
+
+    // Get formatted opening and closing times
+    const openingTimeFormatted = formatTime(
+      this.stepsForm[1].get('openingTime')?.value
+    );
+    const closingTimeFormatted = formatTime(
+      this.stepsForm[1].get('closingTime')?.value
+    );
+    const formData = {
+      ...this.stepsForm[0].value,
+      ...this.stepsForm[1].value,
+      openingTime: openingTimeFormatted,
+      closingTime: closingTimeFormatted,
+      clickedOrderAmount: this.clickedOrderAmount,
+    };
+    console.log('Form submitted!', formData);
+  }
+}
+
+
+
+
+// ------------------------------
+// ----------------------------------
+
 <section class="wp-50 mx-auto mt-8 px-5 py-10">
   <nz-steps [nzCurrent]="currentStep">
     <nz-step nzTitle="About You"></nz-step>
@@ -11,7 +126,10 @@
         Tell Us About Yourself
       </h2>
       <!-- Form for Step 1 -->
-      <form [formGroup]="firstForm" class="grid grid-cols-2 gap-y-4">
+      <form
+        [formGroup]="stepsForm[currentStep]"
+        class="grid grid-cols-2 gap-y-4"
+      >
         <div class="flex flex-col mx-auto">
           <label class="font-bold">First Name *</label>
           <input
@@ -72,7 +190,10 @@
         Tell Us About Your Restaurant
       </h2>
       <!-- Form for Step 2 -->
-      <form [formGroup]="secondForm" class="grid grid-cols-2 gap-y-8">
+      <form
+        [formGroup]="stepsForm[currentStep]"
+        class="grid grid-cols-2 gap-y-8"
+      >
         <div class="flex flex-col mx-auto">
           <label class="font-bold">Restaurant Name *</label>
           <input

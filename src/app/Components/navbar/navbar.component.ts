@@ -21,5 +21,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     if (this.isAuth)
       this.api.getUserFromToken().subscribe((data) => (this.user = data.user));
+
+    // Get data to see if checked in or checked out
   }
 }

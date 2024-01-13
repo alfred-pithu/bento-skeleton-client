@@ -1,25 +1,22 @@
 @if (!isAuth) {
-  <div
-    class="h-8 border bg-black font-bold text-sm flex justify-between items-center px-8"
-  >
-    <div></div>
-  
-    <h2 class="text-white text-sm font-semibold">Welcome to Bento!</h2>
-  
-    <div routerLink="/login" class="flex items-center gap-x-3 cursor-pointer">
-      <span
-        class="text-light-green font-extrabold m-0"
-        nz-icon
-        nzType="login"
-        nzTheme="outline"
-      ></span>
-      <p class="text-white login-text">Log in</p>
-    </div>
+<div
+  class="h-8 border bg-black font-bold text-sm flex justify-between items-center px-8"
+>
+  <div></div>
+
+  <h2 class="text-white text-sm font-semibold">Welcome to Bento!</h2>
+
+  <div routerLink="/login" class="flex items-center gap-x-3 cursor-pointer">
+    <span
+      class="text-light-green font-extrabold m-0"
+      nz-icon
+      nzType="login"
+      nzTheme="outline"
+    ></span>
+    <p class="text-white login-text">Log in</p>
   </div>
+</div>
 }
-
-
-
 
 <div
   class="flex justify-between items-center border border-light-gray border-l-0 border-r-0 px-4 py-2"
@@ -35,14 +32,19 @@
 
   <div class="flex items-center">
     @if (user) {
-      <p class="mx-5">{{user.employeeInformation.name}}</p>
-    } 
-    @if (isAuth) {
-      <button nz-button nzType="primary" (click)="logout()"><span nz-icon nzType="logout" nzTheme="outline"></span>Logout</button>
+    <p class="mx-5">{{ user.employeeInformation.name }}</p>
+    } @if (isAuth) {
+
+    <div class="flex justify-between gap-x-5">
+      <button nz-button class="border border-light-green font-bold">
+        Check In
+      </button>
+
+      <button nz-button nzType="primary" (click)="logout()">Logout</button>
+    </div>
+
     } @else {
-      <app-get-started-btn></app-get-started-btn>
+    <app-get-started-btn></app-get-started-btn>
     }
   </div>
-
-
 </div>
