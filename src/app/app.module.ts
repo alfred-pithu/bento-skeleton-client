@@ -21,6 +21,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+
 
 // Components
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -76,7 +79,9 @@ registerLocaleData(en);
     NzSpinModule,
     NzSelectModule,
     NzSwitchModule,
+    NzCheckboxModule,
     NzTimePickerModule,
+    NzRadioModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

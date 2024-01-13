@@ -1587,6 +1587,10 @@ pre {
     text-align: left;
 }
 
+.text-underline {
+    text-decoration: underline;
+}
+
 .text-center {
     text-align: center;
 }
