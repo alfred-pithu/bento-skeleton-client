@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.service';
-import { IUser } from '../../Interfaces/user.interface';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -23,5 +23,13 @@ export class NavbarComponent implements OnInit {
       this.api.getUserFromToken().subscribe((data) => (this.user = data.user));
 
     // Get data to see if checked in or checked out
+  }
+
+  checkIn () {
+    this.api.checkInUser().subscribe((data) => console.log(data));
+  }
+
+  checkOut () {
+    this.api.checkOutUser().subscribe((data) => console.log(data));
   }
 }
