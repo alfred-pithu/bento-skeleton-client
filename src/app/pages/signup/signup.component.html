@@ -1,13 +1,13 @@
-<section class="wp-80 mx-auto px-5 py-10">
-  <nz-steps [nzCurrent]="currentStep">
+<section class="wp-80 mx-auto px-5 pt-3">
+  <nz-steps class="wp-75 mx-auto" [nzCurrent]="currentStep">
     <nz-step nzTitle="About You"></nz-step>
     <nz-step nzTitle="About Restaurant"></nz-step>
     <nz-step nzTitle="About  Operation"></nz-step>
     <nz-step nzTitle="Banking  Information"></nz-step>
   </nz-steps>
 
-  <div class="mt-16">
-    <div *ngIf="currentStep === 0">
+  <div class="mt-8">
+    <div *ngIf="currentStep === 2">
       <!-- Step 1 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Yourself
@@ -20,71 +20,38 @@
 
       <form [formGroup]="firstForm" class="grid grid-cols-2 gap-x-10 gap-y-7">
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">First Name *</label>
-          <input
-            required
-            nz-input
-            type="text"
-            formControlName="firstName"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">First Name *</label>
+          <input required nz-input type="text" formControlName="firstName" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Last Name *</label>
-          <input
-            nz-input
-            type="text"
-            formControlName="lastName"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">Last Name *</label>
+          <input nz-input type="text" formControlName="lastName" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Email *</label>
-          <input
-            nz-input
-            type="email"
-            formControlName="email"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">Email *</label>
+          <input nz-input type="email" formControlName="email" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Your Phone *</label>
-          <input
-            nz-input
-            type="number"
-            formControlName="phone"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">Your Phone *</label>
+          <input nz-input type="number" formControlName="phone" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Your Designation *</label>
+          <label class="font-bold text-xxs">Your Designation *</label>
 
-          <nz-select
-            class="w-48 h-8 rounded-lg"
-            nzShowSearch
-            nzAllowClear
-            formControlName="designation"
-            nzPlaceHolder="Please Select"
-          >
-            <nz-option
-              *ngFor="let designation of this.designations"
-              [nzLabel]="designation"
-              [nzValue]="designation"
-            ></nz-option>
+          <nz-select class="w-48 h-6 rounded-lg" nzShowSearch nzAllowClear formControlName="designation"
+            nzPlaceHolder="Please Select">
+            <nz-option *ngFor="let designation of this.designations" [nzLabel]="designation"
+              [nzValue]="designation"></nz-option>
           </nz-select>
         </div>
       </form>
 
       <div class="flex justify-end mt-16 mr-12">
-        <button
-          class="border border-green text-green"
-          nz-button
-          (click)="nextStep()"
-        >
+        <button class="border border-green text-green" nz-button (click)="nextStep()">
           Next
         </button>
         <!-- [disabled]="isNextButtonDisabled()" -->
@@ -101,109 +68,65 @@
       <!-- Form for Step 2--------------------------------------------------------- -->
       <!-- Form for Step 2--------------------------------------------------------- -->
 
-      <form
-        [formGroup]="secondForm"
-        class="grid grid-cols-3 gap-x-10 gap-y-12 py-5 border"
-      >
+      <form [formGroup]="secondForm" class="grid grid-cols-3 gap-x-10 gap-y-12 py-5">
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Restaurant Name *</label>
-          <input
-            required
-            nz-input
-            type="text"
-            formControlName="restaurantName"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">Restaurant Name *</label>
+          <input required nz-input type="text" formControlName="restaurantName" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Location *</label>
-          <input
-            nz-input
-            type="text"
-            formControlName="location"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">Location *</label>
+          <input nz-input type="text" formControlName="location" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Restaurant Phone *</label>
-          <input
-            nz-input
-            type="number"
-            formControlName="restaurantPhone"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">Restaurant Phone *</label>
+          <input nz-input type="number" formControlName="restaurantPhone" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Country *</label>
-          <nz-select
-            class="w-48 h-8 rounded-lg"
-            nzShowSearch
-            nzAllowClear
-            formControlName="country"
-            nzPlaceHolder="Search Country"
-          >
-            <nz-option
-              *ngFor="let country of this.countries"
-              [nzLabel]="country.name"
-              [nzValue]="country.name"
-            ></nz-option>
+          <label class="font-bold text-xxs">Country *</label>
+          <nz-select class="w-48 h-6 rounded-lg" nzShowSearch nzAllowClear formControlName="country"
+            nzPlaceHolder="Search Country">
+            <nz-option *ngFor="let country of this.countries" [nzLabel]="
+                country.countryName +
+                '        ' +
+                '(' +
+                (country.gmtOffset < 0 ? 'GMT ' : 'GMT +') +
+                country.gmtOffset / 3600 +
+                ':00' +
+                ')'
+              " [nzValue]="country"></nz-option>
           </nz-select>
         </div>
 
         <div class="flex flex-col mx-auto w-48">
-          <label class="font-bold">Operating Time *</label>
-          <div class="flex justify-center items-center gap-x-5 mt-2">
-            <nz-time-picker
-              nzPlaceHolder="Time"
-              formControlName="openingTime"
-              [nzUse12Hours]="true"
-              nzFormat="h a"
-            ></nz-time-picker>
-            <span class="font-bold">To</span>
-            <nz-time-picker
-              nzPlaceHolder="Time"
-              formControlName="closingTime"
-              [nzUse12Hours]="true"
-              nzFormat="h a"
-            ></nz-time-picker>
-          </div>
-        </div>
-
-        <div class="flex flex-col mx-auto">
-          <label class="font-bold">Website *</label>
-          <input
-            nz-input
-            type="number"
-            formControlName="website"
-            class="w-48 h-8 rounded-lg"
-          />
+          <label class="font-bold text-xxs">Type of Restaurant*</label>
+          <nz-select class="w-48 h-6 rounded-lg" nzShowSearch nzAllowClear formControlName="typeOfRestaurant"
+            nzPlaceHolder="Type">
+            <nz-option *ngFor="let type of this.typeOfRestaurant" [nzLabel]="type" [nzValue]="type"></nz-option>
+          </nz-select>
         </div>
 
         <!-- Monthly Orders -->
 
         <div class="col-span-3 ml-10 mx-20">
-          <label class="font-bold mb-5">Monthly Orders *</label>
+          <label class="mb-5 text-xxs font-semibold">Monthly Orders *</label>
           <div class="flex gap-x-10">
-            <div
-              [ngClass]="{
+            <div [ngClass]="{
                 'bg-black': clickedIndex == i,
                 'text-white': clickedIndex == i,
 
-              }"
-              (click)="orderAmountClickHandler(orderAmount, i)"
+              }" (click)="orderAmountClickHandler(orderAmount, i)"
               class="cursor-pointer border border-gray rounded-2xl w-32 h-8 flex items-center justify-center font-semibold"
-              *ngFor="let orderAmount of orderAmounts; let i = index"
-            >
+              *ngFor="let orderAmount of orderAmounts; let i = index">
               {{ orderAmount }}
             </div>
           </div>
         </div>
 
         <div class="flex flex-col mx-auto w-48">
-          <label class="font-bold">Do you sell Alcohol ? *</label>
+          <label class="font-bold text-xxs">Do you sell Alcohol ? *</label>
           <nz-radio-group formControlName="sellsAlcohol">
             <label nz-radio nzValue="true">Yes</label>
             <label nz-radio nzValue="false">No </label>
@@ -211,7 +134,7 @@
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold">Is Your Restaurant Vegan Friendly ? *</label>
+          <label class="font-bold text-xxs">Is Your Restaurant Vegan Friendly ? *</label>
           <nz-radio-group formControlName="veganFriendly">
             <label nz-radio nzValue="true">Yes</label>
             <label nz-radio nzValue="false">No </label>
@@ -219,9 +142,7 @@
         </div>
 
         <div class="flex flex-col mx-auto">
-          <label class="font-bold"
-            >Does Your Restaurant Serves Halal Food ? *</label
-          >
+          <label class="font-bold text-xxs">Does Your Restaurant Serves Halal Food ? *</label>
           <nz-radio-group formControlName="halal">
             <label nz-radio nzValue="true">Yes</label>
             <label nz-radio nzValue="false">No </label>
@@ -230,85 +151,65 @@
         <!-- 
         <div class="col-span-3 grid grid-cols-2 gap-y-10">
           <div class="flex flex-col mx-auto">
-            <label class="font-bold">Bank Name *</label>
+            <label class="font-bold text-xxs">Bank Name *</label>
             <input
               nz-input
               type="text"
               formControlName="bankName"
-              class="w-48 h-8 rounded-lg"
+               class="w-48 h-6  rounded-lg"
             />
           </div>
 
           <div class="flex flex-col mx-auto">
-            <label class="font-bold">Account Holder Name *</label>
+            <label class="font-bold text-xxs">Account Holder Name *</label>
             <input
               nz-input
               type="text"
               formControlName="bankAccountHolder"
-              class="w-48 h-8 rounded-lg"
+               class="w-48 h-6  rounded-lg"
             />
           </div>
 
           <div class="flex flex-col mx-auto">
-            <label class="font-bold">Account Number *</label>
+            <label class="font-bold text-xxs">Account Number *</label>
             <input
               nz-input
               type="number"
               formControlName="bankAccountNumber"
-              class="w-48 h-8 rounded-lg"
+               class="w-48 h-6  rounded-lg"
             />
           </div>
           <div class="flex flex-col mx-auto">
-            <label class="font-bold">Routing Number *</label>
+            <label class="font-bold text-xxs">Routing Number *</label>
             <input
               nz-input
               type="number"
               formControlName="bankAccountRoutingNumber"
-              class="w-48 h-8 rounded-lg"
+               class="w-48 h-6  rounded-lg"
             />
           </div>
         </div> -->
 
         <div class="flex flex-col mx-auto w-48">
-          <label class="font-bold"
-            >Does your Restaurant Have Kids Zone ? *</label
-          >
+          <label class="font-bold">Does your Restaurant Have Kids Zone ? *</label>
           <nz-radio-group formControlName="kidsZone">
             <label nz-radio nzValue="true">Yes</label>
             <label nz-radio nzValue="false">No </label>
           </nz-radio-group>
         </div>
 
-        <div class="flex flex-col mx-auto">
-          <label class="font-bold">Average Bill Per Client *</label>
-          <input
-            placeholder="$"
-            nz-input
-            type="number"
-            formControlName="billPerClient"
-            class="w-48 h-8 rounded-lg"
-          />
+        <div class="flex flex-col mx-auto justify-center">
+          <label class="font-bold text-xxs">Average Bill Per Client *</label>
+          <input placeholder="$" nz-input type="number" formControlName="billPerClient" class="w-48 h-6 rounded-lg" />
         </div>
 
-        <div class="flex flex-col mx-auto w-64">
-          <label class="font-bold">Type of Restaurant*</label>
-          <nz-select
-            class="w-48 h-8 rounded-lg"
-            nzShowSearch
-            nzAllowClear
-            formControlName="typeOfRestaurant"
-            nzPlaceHolder="Type"
-          >
-            <nz-option
-              *ngFor="let type of this.typeOfRestaurant"
-              [nzLabel]="type"
-              [nzValue]="type"
-            ></nz-option>
-          </nz-select>
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold text-xxs">Website *</label>
+          <input nz-input type="number" formControlName="website" class="w-48 h-6 rounded-lg" />
         </div>
       </form>
 
-      <div class="flex justify-between mt-20 border">
+      <div class="flex justify-between mt-20">
         <button class="text-green" nz-button (click)="prevStep()">
           Previous
         </button>
@@ -318,23 +219,161 @@
       </div>
     </div>
 
-    <div *ngIf="currentStep === 2">
+    <!-- Form 3 ------------------------------------------------------------------------------------------------>
+    <!-- Form 3 ------------------------------------------------------------------------------------------------>
+    <!-- Form 3 ------------------------------------------------------------------------------------------------>
+    <!-- Form 3 ------------------------------------------------------------------------------------------------>
+    <div *ngIf="currentStep === 0">
       <!-- Step 3 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
-        Tell Us About Operation
+        Tell Us About Operations
       </h2>
 
-      <!-- Form 3 ------------------------------------------------------------------------------------------------>
-      <!-- Form 3 ------------------------------------------------------------------------------------------------>
-      <!-- Form 3 ------------------------------------------------------------------------------------------------>
-      <!-- Form 3 ------------------------------------------------------------------------------------------------>
+      <form [formGroup]="operationThirdForm" class="grid grid-cols-3 gap-x-10 gap-y-7">
 
-      <form
-        [formGroup]="operationThirdForm"
-        class="grid grid-cols-2 gap-x-10 gap-y-7"
-      >
+        <div class="col-span-3 h-8 text-xl ">
+          <h4 class="">Basic Infos</h4>
+          <hr>
+        </div>
+
+        <div class="flex flex-col h-20">
+          <label class="font-bold text-xxs">Operating Days *</label>
+
+          <nz-select class="w-64" [nzSize]="'small'" nzMode="multiple" nzPlaceHolder="Please select "
+            formControlName="operatingDays">
+            <nz-option *ngFor="let day of weekDays" [nzLabel]="day" [nzValue]="day"></nz-option>
+          </nz-select>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Do you operate on holidays ? *</label>
+          <nz-radio-group formControlName="doesOperateOnHolidays">
+            <label nz-radio nzValue="true">Yes</label>
+            <label nz-radio nzValue="false">No </label>
+          </nz-radio-group>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Maximum number of Waiter *</label>
+          <input placeholder="0" nz-input type="number" formControlName="maximumWaiterNumber"
+            class="w-48 h-6 rounded-lg" />
+        </div>
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Maximum number of Chefs *</label>
+          <input nz-input placeholder="0" type="number" formControlName="maximumChefNumber"
+            class="w-48 h-6 rounded-lg" />
+        </div>
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Dinning Area (in Sq Feet) *</label>
+          <input placeholder="0" nz-input type="number" formControlName="dinningAreaSqFeet"
+            class="w-48 h-6 rounded-lg" />
+        </div>
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Kitchen Area (in Sq Feet) *</label>
+          <input placeholder="0" nz-input type="number" formControlName="kitchenAreaSqFeet"
+            class="w-48 h-6 rounded-lg" />
+        </div>
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Maximum Dining of Capacity *</label>
+          <input nz-input placeholder="0" type="number" formControlName="maximumDinningCapacity"
+            class="w-48 h-6 rounded-lg" />
+        </div>
+
+        <div class="flex flex-col h-20">
+          <label class="font-bold text-xxs">Cuisines *</label>
+
+          <nz-select class="w-64" [nzSize]="'small'" nzMode="multiple" nzPlaceHolder="Please select "
+            formControlName="cuisines">
+            <nz-option *ngFor="let cuisine of Cuisines" [nzLabel]="cuisine" [nzValue]="cuisine"></nz-option>
+          </nz-select>
+        </div>
+
+
+        <div class="col-span-3 h-10 text-xl ">
+          <h4 class="">Basic Operation Timings</h4>
+          <hr>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Operating Time *</label>
+          <div class="flex items-center gap-x-5">
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="operationOpeningTime" nzFormat="h:mm a"
+              nzUse12Hours="true" [nzNowText]="' '"></nz-time-picker>
+            <span class="font-bold">To</span>
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="operationClosingTime" [nzNowText]="' '"
+              nzUse12Hours="true" nzFormat="h:mm a"></nz-time-picker>
+          </div>
+        </div>
+
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Breakfast Time *</label>
+          <div class="flex items-center gap-x-5">
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="breakfastStart" nzFormat="h:mm a" nzUse12Hours="true"
+              [nzNowText]="' '"></nz-time-picker>
+            <span class="font-bold">To</span>
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="breakfastEnd" [nzNowText]="' '" nzUse12Hours="true"
+              nzFormat="h:mm a"></nz-time-picker>
+          </div>
+        </div>
+
+
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Lunch Time *</label>
+          <div class="flex items-center gap-x-5">
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="lunchStart" nzFormat="h:mm a" nzUse12Hours="true"
+              [nzNowText]="' '"></nz-time-picker>
+            <span class="font-bold">To</span>
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="lunchEnd" [nzNowText]="' '" nzUse12Hours="true"
+              nzFormat="h:mm a"></nz-time-picker>
+          </div>
+        </div>
+
+
+
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Dinner Time *</label>
+          <div class="flex items-center gap-x-5">
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="dinnerStart" nzFormat="h:mm a" nzUse12Hours="true"
+              [nzNowText]="' '"></nz-time-picker>
+            <span class="font-bold">To</span>
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="dinnerEnd" [nzNowText]="' '" nzUse12Hours="true"
+              nzFormat="h:mm a"></nz-time-picker>
+          </div>
+        </div>
+
+
+
+        <div class="flex flex-col">
+          <label class="font-bold text-xxs">Dine In Time *</label>
+          <div class="flex items-center gap-x-5">
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="dineInTimeStart" nzFormat="h:mm a" nzUse12Hours="true"
+              [nzNowText]="' '"></nz-time-picker>
+            <span class="font-bold">To</span>
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="dineInTimeEnd" [nzNowText]="' '" nzUse12Hours="true"
+              nzFormat="h:mm a"></nz-time-picker>
+          </div>
+        </div>
+
+
+
         <!-- Pickup and Delivery -->
-        <div
+        <!--      <div
           class="flex mx-auto mt-5 w-48 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2"
         >
           <span class="font-bold">Enable Delivery</span>
@@ -346,7 +385,7 @@
         >
           <span class="font-bold">Enable Pickup</span>
           <nz-switch nzSize="small" formControlName="pickup"></nz-switch>
-        </div>
+        </div> -->
       </form>
 
       <div class="flex justify-between mt-20">

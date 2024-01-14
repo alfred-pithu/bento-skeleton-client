@@ -1480,6 +1480,9 @@ pre {
 .h-6 {
     height: 1.5rem;
 }
+.h-7 {
+    height: 1.75rem;
+}
 
 .h-8 {
     height: 2rem;
@@ -1862,6 +1865,14 @@ pre {
 }
 
 /* Text Size and Line Height Classes */
+
+.text-xxs {
+    font-size: 0.65rem;
+    /* 12px */
+    line-height: 0.75rem;
+    /* 16px */
+}
+
 .text-xs {
     font-size: 0.75rem;
     /* 12px */

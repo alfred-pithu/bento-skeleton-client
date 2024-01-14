@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from '../../services/signup/signup.service'
-import { CountryInterface } from '../../Interfaces/Country.interface'
+import { SingleCountryInterface } from '../../Interfaces/Country.interface'
 import { format } from 'date-fns'
 
 @Component({
@@ -11,13 +11,22 @@ import { format } from 'date-fns'
 })
 export class SignupComponent implements OnInit {
   currentStep = 0
-  countries: CountryInterface[] = []
+  countries: SingleCountryInterface[] = []
   clickedOrderAmount: string = ''
   isClicked: boolean = false
   clickedIndex: number = 0
 
   orderAmounts: string[] = ['0 - 350', '350 - 750', '750 - 1250', '> 1250']
   designations: string[] = ['Owner', 'Manager', 'Admin', 'HR']
+  weekDays: string[] = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ]
   typeOfRestaurant: string[] = [
     'Fast Food Restaurant',
     'Casual Dining Restaurant',
@@ -29,7 +38,25 @@ export class SignupComponent implements OnInit {
     'Barbecue Restaurant',
   ]
 
-  constructor(private fb: FormBuilder, private SignupService: SignupService) {}
+  Cuisines = [
+    'Italian',
+    'Chinese',
+    'Indian',
+    'Japanese',
+    'Mediterranean',
+    'Mexican',
+    'French',
+    'Thai',
+    'American',
+    'Brazilian',
+    'Turkish',
+    'Vietnamese',
+    'Korean',
+    'Spanish',
+    'Middle Eastern',
+  ]
+
+  constructor(private fb: FormBuilder, private SignupService: SignupService) { }
 
   ngOnInit(): void {
     this.getAllCountries()
@@ -46,7 +73,9 @@ export class SignupComponent implements OnInit {
   secondForm = new FormGroup({
     restaurantName: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
-    country: new FormControl('', Validators.required),
+    country: new FormControl({ countryCode: '', countryName: '', zoneName: '', gmtOffset: 0, timestamp: 0, },
+      Validators.required
+    ),
     halal: new FormControl('', Validators.required),
     billPerClient: new FormControl('', Validators.required),
     website: new FormControl('', Validators.required),
@@ -54,8 +83,6 @@ export class SignupComponent implements OnInit {
     veganFriendly: new FormControl(false, Validators.required),
     sellsAlcohol: new FormControl(false, Validators.required),
     monthlyOrders: new FormControl('', Validators.required),
-    openingTime: new FormControl(null, Validators.required),
-    closingTime: new FormControl(null, Validators.required),
 
     typeOfRestaurant: new FormControl('', Validators.required),
     kidsZone: new FormControl(false, Validators.required),
@@ -65,6 +92,30 @@ export class SignupComponent implements OnInit {
   operationThirdForm = new FormGroup({
     delivery: new FormControl(true),
     pickup: new FormControl(true),
+
+    operationOpeningTime: new FormControl(new Date(), Validators.required),
+    operationClosingTime: new FormControl(new Date(), Validators.required),
+
+    breakfastStart: new FormControl(new Date(), Validators.required),
+    breakfastEnd: new FormControl(new Date(), Validators.required),
+
+    lunchStart: new FormControl(new Date(), Validators.required),
+    lunchEnd: new FormControl(new Date(), Validators.required),
+
+    dinnerStart: new FormControl(new Date(), Validators.required),
+    dinnerEnd: new FormControl(new Date(), Validators.required),
+
+    dineInTimeStart: new FormControl(new Date(), Validators.required),
+    dineInTimeEnd: new FormControl(new Date(), Validators.required),
+
+    operatingDays: new FormControl([], Validators.required),
+    cuisines: new FormControl([], Validators.required),
+    doesOperateOnHolidays: new FormControl(null, Validators.required),
+    maximumWaiterNumber: new FormControl('', Validators.required),
+    maximumChefNumber: new FormControl('', Validators.required),
+    maximumDinningCapacity: new FormControl('', Validators.required),
+    dinningAreaSqFeet: new FormControl('', Validators.required),
+    kitchenAreaSqFeet: new FormControl('', Validators.required),
   })
 
   bankingInfoFourthForm = new FormGroup({
@@ -92,9 +143,61 @@ export class SignupComponent implements OnInit {
     return !this.secondForm.valid
   }
 
+  convertToUTCDate(date: Date) {
+    if (this.secondForm.value.country?.gmtOffset) {
+      const utcHour = date.getHours() - this.secondForm.value.country?.gmtOffset / 3600
+      const utcMins = date.getMinutes()
+      return new Date(Date.UTC(1, 1, 1, utcHour, utcMins, 0))
+    } else {
+      return null
+    }
+  }
+
   nextStep(): void {
     if (this.currentStep < 3) {
       this.currentStep++
+
+      if (this.currentStep == 3 && this.operationThirdForm.value.operationOpeningTime && this.operationThirdForm.value.operationClosingTime
+        && this.operationThirdForm.value.breakfastStart && this.operationThirdForm.value.breakfastEnd
+        && this.operationThirdForm.value.lunchStart && this.operationThirdForm.value.lunchEnd
+        && this.operationThirdForm.value.dinnerStart && this.operationThirdForm.value.dinnerEnd) {
+
+        const operationOpeningUTCDate = this.convertToUTCDate(this.operationThirdForm.value.operationOpeningTime)
+        this.operationThirdForm.get('operationOpeningTime')?.setValue(operationOpeningUTCDate)
+
+        const operationClosingUTCDate = this.convertToUTCDate(this.operationThirdForm.value.operationClosingTime)
+        this.operationThirdForm.get('operationClosingTime')?.setValue(operationClosingUTCDate)
+
+        const breakfastStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.breakfastStart)
+        this.operationThirdForm.get('breakfastStart')?.setValue(breakfastStartUTCDate)
+
+        const breakfastEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.breakfastEnd)
+        this.operationThirdForm.get('breakfastEnd')?.setValue(breakfastEndUTCDate)
+
+        const lunchStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.lunchStart)
+        this.operationThirdForm.get('lunchStart')?.setValue(lunchStartUTCDate)
+
+        const lunchEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.lunchEnd)
+        this.operationThirdForm.get('lunchEnd')?.setValue(lunchEndUTCDate)
+
+        const dinnerStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.dinnerStart)
+        this.operationThirdForm.get('dinnerStart')?.setValue(dinnerStartUTCDate)
+
+        const dinnerEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.dinnerEnd)
+        this.operationThirdForm.get('dinnerEnd')?.setValue(dinnerEndUTCDate)
+
+
+
+        const formData = {
+          ...this.firstForm.value,
+          ...this.secondForm.value,
+          ...this.operationThirdForm.value
+
+        }
+        console.log('Form submitted!', formData)
+      }
+
+
     }
   }
 
@@ -106,31 +209,20 @@ export class SignupComponent implements OnInit {
 
   getAllCountries(): void {
     this.SignupService.getAllCountry().subscribe((data) => {
-      this.countries = data
+      this.countries = data.zones
     })
   }
 
-  // Format time as "h a" (e.g., "6 am")
-  formatTime = (time: Date | null): string | null => {
-    return time ? format(time, 'h a') : null
-  }
 
   submitForm(): void {
-    const openingTimeControl = this.secondForm.get('openingTime')
-    const closingTimeControl = this.secondForm.get('closingTime')
 
-    if (openingTimeControl && closingTimeControl) {
-      // Formatting both time into strings
-      const openingTimeFormatted = this.formatTime(openingTimeControl.value)
-      const closingTimeFormatted = this.formatTime(closingTimeControl.value)
+    const formData = {
+      ...this.firstForm.value,
+      ...this.secondForm.value,
+      ...this.operationThirdForm.value
 
-      const formData = {
-        ...this.firstForm.value,
-        ...this.secondForm.value,
-        openingTime: openingTimeFormatted,
-        closingTime: closingTimeFormatted,
-      }
-      console.log('Form submitted!', formData)
     }
+    console.log('Form submitted!', formData)
+
   }
 }
