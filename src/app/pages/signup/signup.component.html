@@ -8,20 +8,15 @@
 
   <div class="mt-8">
 
-
-
-
-
-    <div *ngIf="currentStep === 1">
+    <!-- Form 1 ------------------------------------------------------------------------------------------------>
+    <!-- Form 1 ------------------------------------------------------------------------------------------------>
+    <!-- Form 1 ------------------------------------------------------------------------------------------------>
+    <!-- Form 1 ------------------------------------------------------------------------------------------------>
+    <div *ngIf="currentStep === 0">
       <!-- Step 1 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Yourself
       </h2>
-
-      <!-- Form 1 ------------------------------------------------------------------------------------------------>
-      <!-- Form 1 ------------------------------------------------------------------------------------------------>
-      <!-- Form 1 ------------------------------------------------------------------------------------------------>
-      <!-- Form 1 ------------------------------------------------------------------------------------------------>
 
       <form [formGroup]="firstForm" class="grid grid-cols-2 gap-x-10 gap-y-7">
         <div class="flex flex-col mx-auto">
@@ -53,25 +48,29 @@
               [nzValue]="designation"></nz-option>
           </nz-select>
         </div>
+
       </form>
 
       <div class="flex justify-end mt-16 mr-12">
-        <button class="border border-green text-green" nz-button (click)="nextStep()">
+        <button [disabled]="isNextButtonDisabled()" class="border border-green text-green" nz-button
+          (click)="nextStep()">
           Next
         </button>
-        <!-- [disabled]="isNextButtonDisabled()" -->
       </div>
+
     </div>
 
-    <div *ngIf="currentStep === 0">
+
+    <!-- Form for Step 2--------------------------------------------------------- -->
+    <!-- Form for Step 2--------------------------------------------------------- -->
+    <!-- Form for Step 2--------------------------------------------------------- -->
+    <!-- Form for Step 2--------------------------------------------------------- -->
+
+    <div *ngIf="currentStep === 1">
       <!-- Step 2 Content -->
       <h2 class="mb-10 font-bold text-green text-center text-uppercase text-xl">
         Tell Us About Your Restaurant
       </h2>
-      <!-- Form for Step 2--------------------------------------------------------- -->
-      <!-- Form for Step 2--------------------------------------------------------- -->
-      <!-- Form for Step 2--------------------------------------------------------- -->
-      <!-- Form for Step 2--------------------------------------------------------- -->
 
       <form [formGroup]="secondForm" class="grid grid-cols-3 gap-x-10 gap-y-12 py-5">
 
@@ -126,8 +125,6 @@
               Click to Upload
             </button>
           </nz-upload>
-
-          <!-- <input (change)="handleLogoUploadChange($event)" type="file" accept="image/*" name="" id=""> -->
 
         </div>
 
@@ -199,8 +196,7 @@
           Previous
         </button>
 
-        <button class="text-green" nz-button (click)="nextStep()">Next</button>
-        <!-- [disabled]="isNextButtonDisabledForSecondForm()" -->
+        <button [disabled]="isNextButtonDisabled()" class="text-green" nz-button (click)="nextStep()">Next</button>
       </div>
     </div>
 
@@ -208,6 +204,7 @@
     <!-- Form 3 ------------------------------------------------------------------------------------------------>
     <!-- Form 3 ------------------------------------------------------------------------------------------------>
     <!-- Form 3 ------------------------------------------------------------------------------------------------>
+
     <div *ngIf="currentStep === 2">
       <!-- Step 3 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
@@ -407,6 +404,7 @@
 
             <nz-time-picker nzPlaceHolder="Time" formControlName="pickupTimeStart" nzFormat="h:mm a" nzUse12Hours="true"
               [nzNowText]="' '"></nz-time-picker>
+
             <span class="font-bold">To</span>
 
             <nz-time-picker nzPlaceHolder="Time" formControlName="pickupTimeEnd" [nzNowText]="' '" nzUse12Hours="true"
@@ -420,29 +418,25 @@
       </form>
 
       <div class="flex justify-between mt-20 pb-12 ">
-        <button class="text-green" nz-button (click)="prevStep()">
-          Previous
-        </button>
+        <button class="text-green" nz-button (click)="prevStep()"> Previous </button>
 
-        <button class="text-green" nz-button (click)="nextStep()">Next</button>
-        <!-- [disabled]="isNextButtonDisabledForSecondForm()" -->
+        <button [disabled]="isNextButtonDisabled()" class="text-green" nz-button (click)="nextStep()">Next</button>
       </div>
 
 
 
     </div>
 
+    <!-- Form 4 ------------------------------------------------------------------------------------------------>
+    <!-- Form 4 ------------------------------------------------------------------------------------------------>
+    <!-- Form 4 ------------------------------------------------------------------------------------------------>
+    <!-- Form 4 ------------------------------------------------------------------------------------------------>
 
     <div *ngIf="currentStep === 3">
       <!-- Step 1 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
         Banking and Payment Information
       </h2>
-
-      <!-- Form 4 ------------------------------------------------------------------------------------------------>
-      <!-- Form 4 ------------------------------------------------------------------------------------------------>
-      <!-- Form 4 ------------------------------------------------------------------------------------------------>
-      <!-- Form 4 ------------------------------------------------------------------------------------------------>
 
       <form [formGroup]="bankingInfoFourthForm" class="grid grid-cols-2 gap-x-10 gap-y-7">
 
@@ -461,19 +455,27 @@
             <label class="font-bold text-xxs">Account Number *</label>
             <input nz-input type="number" formControlName="bankAccountNumber" class="w-48 h-6  rounded-lg" />
           </div>
+
+
           <div class="flex flex-col mx-auto">
             <label class="font-bold text-xxs">Routing Number *</label>
             <input nz-input type="number" formControlName="bankAccountRoutingNumber" class="w-48 h-6  rounded-lg" />
           </div>
+
         </div>
+
+
       </form>
 
-      <div class="flex justify-end mt-16 mr-12">
-        <button class="border border-green text-green" nz-button (click)="nextStep()">
-          Next
+      <div class="flex justify-between mt-20 pb-12 ">
+        <button class="text-green" nz-button (click)="prevStep()"> Previous </button>
+        <button [disabled]="isNextButtonDisabled()" class="border border-green text-green" nz-button
+          (click)="submitForm()">
+          Submit
         </button>
-        <!-- [disabled]="isNextButtonDisabled()" -->
       </div>
     </div>
+
+
   </div>
 </section>

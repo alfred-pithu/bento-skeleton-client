@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from '../../services/signup/signup.service'
 import { SingleCountryInterface } from '../../Interfaces/Country.interface'
-import { format } from 'date-fns'
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
 
 @Component({
@@ -20,6 +19,7 @@ export class SignupComponent implements OnInit {
 
   orderAmounts: string[] = ['0 - 350', '350 - 750', '750 - 1250', '> 1250']
   designations: string[] = ['Owner', 'Manager', 'Admin', 'HR']
+
   weekDays: string[] = [
     'Sunday',
     'Monday',
@@ -64,15 +64,43 @@ export class SignupComponent implements OnInit {
   defaultDate = new Date();
 
 
-
-
-
-
   ngOnInit(): void {
+
     this.getAllCountries()
     this.defaultDate.setHours(0, 0, 0, 0);
 
+    this.operationThirdForm.get('delivery')?.valueChanges.subscribe(value => {
+      if (value) {
+        this.operationThirdForm.get('deliveryTimeStart')?.setValidators(Validators.required);
+        this.operationThirdForm.get('deliveryTimeEnd')?.setValidators(Validators.required)
+        this.operationThirdForm.get('minimumDeliveryAmount')?.setValidators(Validators.required)
+        this.operationThirdForm.get('maximumDeliveryRange')?.setValidators(Validators.required)
+      } else {
+        this.operationThirdForm.get('deliveryTimeStart')?.removeValidators(Validators.required);
+        this.operationThirdForm.get('deliveryTimeEnd')?.removeValidators(Validators.required);
+        this.operationThirdForm.get('minimumDeliveryAmount')?.removeValidators(Validators.required);
+        this.operationThirdForm.get('maximumDeliveryRange')?.removeValidators(Validators.required);
+      }
 
+      this.operationThirdForm.get('deliveryTimeStart')?.updateValueAndValidity()
+      this.operationThirdForm.get('deliveryTimeEnd')?.updateValueAndValidity()
+      this.operationThirdForm.get('minimumDeliveryAmount')?.updateValueAndValidity()
+      this.operationThirdForm.get('maximumDeliveryRange')?.updateValueAndValidity()
+
+    });
+
+
+    this.operationThirdForm.get('pickup')?.valueChanges.subscribe(value => {
+      if (value) {
+        this.operationThirdForm.get('pickupTimeStart')?.setValidators(Validators.required);
+        this.operationThirdForm.get('pickupTimeEnd')?.setValidators(Validators.required);
+      } else {
+        this.operationThirdForm.get('pickupTimeStart')?.removeValidators(Validators.required);
+        this.operationThirdForm.get('pickupTimeEnd')?.removeValidators(Validators.required);
+      }
+      this.operationThirdForm.get('pickupTimeStart')?.updateValueAndValidity()
+      this.operationThirdForm.get('pickupTimeEnd')?.updateValueAndValidity()
+    })
 
   }
 
@@ -107,31 +135,32 @@ export class SignupComponent implements OnInit {
 
   operationThirdForm = new FormGroup({
     delivery: new FormControl(true, Validators.required),
-    deliveryTimeStart: new FormControl(this.defaultDate, Validators.required),
-    deliveryTimeEnd: new FormControl(this.defaultDate, Validators.required),
-    minimumDeliveryAmount: new FormControl(0, Validators.required),
-    maximumDeliveryRange: new FormControl(0, Validators.required),
+
+
+    deliveryTimeStart: new FormControl<Date | null>(null),
+    deliveryTimeEnd: new FormControl<Date | null>(null, Validators.required),
+    minimumDeliveryAmount: new FormControl(''),
+    maximumDeliveryRange: new FormControl(''),
 
     pickup: new FormControl(true, Validators.required),
-    pickupTimeStart: new FormControl(this.defaultDate, Validators.required),
-    pickupTimeEnd: new FormControl(this.defaultDate, Validators.required),
+    pickupTimeStart: new FormControl<Date | null>(null, Validators.required),
+    pickupTimeEnd: new FormControl<Date | null>(null, Validators.required),
 
 
-    operationOpeningTime: new FormControl(this.defaultDate, Validators.required),
-    operationClosingTime: new FormControl(this.defaultDate, Validators.required),
+    operationOpeningTime: new FormControl<Date | null>(null, Validators.required),
+    operationClosingTime: new FormControl<Date | null>(null, Validators.required),
 
-    breakfastStart: new FormControl(this.defaultDate, Validators.required),
-    breakfastEnd: new FormControl(this.defaultDate, Validators.required),
+    breakfastStart: new FormControl<Date | null>(null, Validators.required),
+    breakfastEnd: new FormControl<Date | null>(null, Validators.required),
 
-    lunchStart: new FormControl(this.defaultDate, Validators.required),
-    lunchEnd: new FormControl(this.defaultDate, Validators.required),
+    lunchStart: new FormControl<Date | null>(null, Validators.required),
+    lunchEnd: new FormControl<Date | null>(null, Validators.required),
 
-    dinnerStart: new FormControl(this.defaultDate, Validators.required),
-    dinnerEnd: new FormControl(this.defaultDate, Validators.required),
+    dinnerStart: new FormControl<Date | null>(null, Validators.required),
+    dinnerEnd: new FormControl<Date | null>(null, Validators.required),
 
-    dineInTimeStart: new FormControl(this.defaultDate, Validators.required),
-    dineInTimeEnd: new FormControl(this.defaultDate, Validators.required),
-
+    dineInTimeStart: new FormControl<Date | null>(null, Validators.required),
+    dineInTimeEnd: new FormControl<Date | null>(null, Validators.required),
 
 
     operatingDays: new FormControl([], Validators.required),
@@ -163,19 +192,15 @@ export class SignupComponent implements OnInit {
 
 
   handleLogoUploadChange($event: NzUploadChangeParam) {
-
-
     if ($event.type == 'start') {
       let fileList = [...$event.fileList]
       fileList = fileList.slice(-1)
       const file = fileList[0].originFileObj;
 
-
       const reader = new FileReader()
 
       reader.onloadend = () => {
         const base64String = reader.result as string;
-        // console.log(base64String);
         this.secondForm.get('restaurantLogo')?.setValue(base64String)
       }
 
@@ -184,15 +209,22 @@ export class SignupComponent implements OnInit {
       }
     }
 
-
   }
 
   isNextButtonDisabled(): boolean {
-    return !this.firstForm.valid
+
+    if (this.currentStep == 0) {
+      return !this.firstForm.valid
+    } else if (this.currentStep == 1) {
+      return !this.secondForm.valid
+    } else if (this.currentStep == 2) {
+      return !this.operationThirdForm.valid
+    } else if (this.currentStep == 3) {
+      return !this.bankingInfoFourthForm.valid
+    }
+    return false
   }
-  isNextButtonDisabledForSecondForm(): boolean {
-    return !this.secondForm.valid
-  }
+
 
   isSubmitDisabled(): boolean {
     return !this.secondForm.valid
@@ -249,14 +281,6 @@ export class SignupComponent implements OnInit {
         const deliveryEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.deliveryTimeEnd)
         this.operationThirdForm.get('deliveryTimeEnd')?.setValue(deliveryEndUTCDate)
 
-
-        const formData = {
-          ...this.firstForm.value,
-          ...this.secondForm.value,
-          ...this.operationThirdForm.value
-
-        }
-        console.log('Form submitted!', formData)
       }
 
 
@@ -280,12 +304,31 @@ export class SignupComponent implements OnInit {
   submitForm(): void {
 
     const formData = {
-      ...this.firstForm.value,
-      ...this.secondForm.value,
-      ...this.operationThirdForm.value
+      restaurantRep: { ...this.firstForm.value, restaurantName: this.secondForm.value.restaurantName },
+      restaurantInfo: {
+        ...this.secondForm.value,
+        ...this.operationThirdForm.value,
+        ...this.bankingInfoFourthForm.value
+      }
 
     }
-    console.log('Form submitted!', formData)
+
+    if (formData.restaurantInfo.pickup == false) {
+      formData.restaurantInfo.pickupTimeStart = null
+      formData.restaurantInfo.pickupTimeEnd = null
+    }
+
+    if (formData.restaurantInfo.delivery == false) {
+      formData.restaurantInfo.deliveryTimeStart = null
+      formData.restaurantInfo.deliveryTimeEnd = null
+      formData.restaurantInfo.maximumDeliveryRange = null
+      formData.restaurantInfo.minimumDeliveryAmount = null
+    }
+
+
+    this.SignupService.sendRegistrationInfoToBackend(formData).subscribe((res) => {
+      console.log(res);
+    })
 
   }
 }
