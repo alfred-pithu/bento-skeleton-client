@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { IUser } from '../../Interfaces/user.interface';
+import { IUser } from '../../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +40,13 @@ export class SkeletonApiService {
     return this.http.get<{ user: IUser }>(
       this.rootUrl + '/service-auth/user-from-token'
     );
+  }
+
+  checkInUser () {
+    return this.http.post<{ status: boolean }>(this.rootUrl + '/employee/check-in', {});
+  }
+
+  checkOutUser () {
+    return this.http.post<{ status: boolean }>(this.rootUrl + '/employee/check-out', {});
   }
 }
