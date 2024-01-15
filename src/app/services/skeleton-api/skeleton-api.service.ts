@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { IUser } from '../../interfaces/user.interface';
+import { IUser } from '../../Interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SkeletonApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   rootUrl = environment.API_URL;
 
@@ -42,11 +42,11 @@ export class SkeletonApiService {
     );
   }
 
-  checkInUser () {
+  checkInUser() {
     return this.http.post<{ status: boolean }>(this.rootUrl + '/employee/check-in', {});
   }
 
-  checkOutUser () {
+  checkOutUser() {
     return this.http.post<{ status: boolean }>(this.rootUrl + '/employee/check-out', {});
   }
 }

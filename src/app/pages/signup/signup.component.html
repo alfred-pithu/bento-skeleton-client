@@ -7,7 +7,12 @@
   </nz-steps>
 
   <div class="mt-8">
-    <div *ngIf="currentStep === 0">
+
+
+
+
+
+    <div *ngIf="currentStep === 1">
       <!-- Step 1 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Yourself
@@ -58,7 +63,7 @@
       </div>
     </div>
 
-    <div *ngIf="currentStep === 1">
+    <div *ngIf="currentStep === 0">
       <!-- Step 2 Content -->
       <h2 class="mb-10 font-bold text-green text-center text-uppercase text-xl">
         Tell Us About Your Restaurant
@@ -69,6 +74,8 @@
       <!-- Form for Step 2--------------------------------------------------------- -->
 
       <form [formGroup]="secondForm" class="grid grid-cols-3 gap-x-10 gap-y-12 py-5">
+
+
         <div class="flex flex-col mx-auto">
           <label class="font-bold text-xxs">Restaurant Name *</label>
           <input required nz-input type="text" formControlName="restaurantName" class="w-48 h-6 rounded-lg" />
@@ -100,13 +107,31 @@
           </nz-select>
         </div>
 
-        <div class="flex flex-col mx-auto w-48">
+        <div class="flex flex-col mx-auto ">
           <label class="font-bold text-xxs">Type of Restaurant*</label>
           <nz-select class="w-48 h-6 rounded-lg" nzShowSearch nzAllowClear formControlName="typeOfRestaurant"
             nzPlaceHolder="Type">
             <nz-option *ngFor="let type of this.typeOfRestaurant" [nzLabel]="type" [nzValue]="type"></nz-option>
           </nz-select>
         </div>
+
+
+        <div class="flex flex-col mx-auto  w-48 h-20 ">
+          <label class="font-bold text-xxs">Upload Restaurant Logo*</label>
+
+          <nz-upload nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }" [nzFileList]="fileList"
+            (nzChange)="handleLogoUploadChange($event)">
+            <button nz-button>
+              <span nz-icon nzType="upload"></span>
+              Click to Upload
+            </button>
+          </nz-upload>
+
+          <!-- <input (change)="handleLogoUploadChange($event)" type="file" accept="image/*" name="" id=""> -->
+
+        </div>
+
+
 
         <!-- Monthly Orders -->
 
@@ -165,11 +190,11 @@
 
         <div class="flex flex-col mx-auto">
           <label class="font-bold text-xxs">Website *</label>
-          <input nz-input type="number" formControlName="website" class="w-48 h-6 rounded-lg" />
+          <input nz-input type="text" formControlName="website" class="w-48 h-6 rounded-lg" />
         </div>
       </form>
 
-      <div class="flex justify-between mt-20">
+      <div class="flex justify-between mt-20 pb-16">
         <button class="text-green" nz-button (click)="prevStep()">
           Previous
         </button>
@@ -189,7 +214,7 @@
         Tell Us About Operations
       </h2>
 
-      <form [formGroup]="operationThirdForm" class="grid grid-cols-3 gap-x-10 gap-y-7">
+      <form [formGroup]="operationThirdForm" class="grid grid-cols-3 gap-x-10 gap-y-7 ">
 
         <div class="col-span-3 h-8 text-xl ">
           <h4 class="">Basic Infos</h4>
@@ -337,8 +362,7 @@
         <div
           class="border col-span-3 flex  mt-5 w-48 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2">
           <span class="font-bold">Enable Delivery</span>
-          <nz-switch formControlName="delivery" ngModel="deliveryModel" nzSize="small"
-            formControlName="delivery"></nz-switch>
+          <nz-switch formControlName="delivery" nzSize="small" formControlName="delivery"></nz-switch>
         </div>
 
 
@@ -395,7 +419,7 @@
 
       </form>
 
-      <div class="flex justify-between mt-20">
+      <div class="flex justify-between mt-20 pb-12 ">
         <button class="text-green" nz-button (click)="prevStep()">
           Previous
         </button>
@@ -403,6 +427,9 @@
         <button class="text-green" nz-button (click)="nextStep()">Next</button>
         <!-- [disabled]="isNextButtonDisabledForSecondForm()" -->
       </div>
+
+
+
     </div>
 
 

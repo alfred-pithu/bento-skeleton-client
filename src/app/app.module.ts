@@ -23,6 +23,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 
 // Components
@@ -82,6 +83,7 @@ registerLocaleData(en);
     NzCheckboxModule,
     NzTimePickerModule,
     NzRadioModule,
+    NzUploadModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
@@ -103,4 +105,4 @@ registerLocaleData(en);
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

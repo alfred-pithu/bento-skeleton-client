@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.service';
-import { IUser } from '../../interfaces/user.interface';
+import { IUser } from '../../Interfaces/user.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   @Input() isAuth!: boolean;
   user: IUser | undefined;
 
-  constructor(private router: Router, private api: SkeletonApiService) {}
+  constructor(private router: Router, private api: SkeletonApiService) { }
 
   logout() {
     this.router.navigateByUrl('/logout');
@@ -25,11 +25,11 @@ export class NavbarComponent implements OnInit {
     // Get data to see if checked in or checked out
   }
 
-  checkIn () {
+  checkIn() {
     this.api.checkInUser().subscribe((data) => console.log(data));
   }
 
-  checkOut () {
+  checkOut() {
     this.api.checkOutUser().subscribe((data) => console.log(data));
   }
 }

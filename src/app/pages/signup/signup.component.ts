@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from '../../services/signup/signup.service'
 import { SingleCountryInterface } from '../../Interfaces/Country.interface'
 import { format } from 'date-fns'
+import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
 
 @Component({
   selector: 'app-signup',
@@ -97,6 +98,8 @@ export class SignupComponent implements OnInit {
     sellsAlcohol: new FormControl(false, Validators.required),
     monthlyOrders: new FormControl('', Validators.required),
 
+    restaurantLogo: new FormControl('', Validators.required),
+
     typeOfRestaurant: new FormControl('', Validators.required),
     kidsZone: new FormControl(false, Validators.required),
     city: new FormControl(true),
@@ -153,6 +156,35 @@ export class SignupComponent implements OnInit {
     this.clickedIndex = index
 
     this.secondForm.get('monthlyOrders')?.setValue(amount)
+  }
+
+
+  fileList: NzUploadFile[] = [];
+
+
+  handleLogoUploadChange($event: NzUploadChangeParam) {
+
+
+    if ($event.type == 'start') {
+      let fileList = [...$event.fileList]
+      fileList = fileList.slice(-1)
+      const file = fileList[0].originFileObj;
+
+
+      const reader = new FileReader()
+
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        // console.log(base64String);
+        this.secondForm.get('restaurantLogo')?.setValue(base64String)
+      }
+
+      if (file) {
+        reader.readAsDataURL(file)
+      }
+    }
+
+
   }
 
   isNextButtonDisabled(): boolean {
