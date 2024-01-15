@@ -7,7 +7,7 @@
   </nz-steps>
 
   <div class="mt-8">
-    <div *ngIf="currentStep === 2">
+    <div *ngIf="currentStep === 0">
       <!-- Step 1 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Yourself
@@ -148,47 +148,7 @@
             <label nz-radio nzValue="false">No </label>
           </nz-radio-group>
         </div>
-        <!-- 
-        <div class="col-span-3 grid grid-cols-2 gap-y-10">
-          <div class="flex flex-col mx-auto">
-            <label class="font-bold text-xxs">Bank Name *</label>
-            <input
-              nz-input
-              type="text"
-              formControlName="bankName"
-               class="w-48 h-6  rounded-lg"
-            />
-          </div>
 
-          <div class="flex flex-col mx-auto">
-            <label class="font-bold text-xxs">Account Holder Name *</label>
-            <input
-              nz-input
-              type="text"
-              formControlName="bankAccountHolder"
-               class="w-48 h-6  rounded-lg"
-            />
-          </div>
-
-          <div class="flex flex-col mx-auto">
-            <label class="font-bold text-xxs">Account Number *</label>
-            <input
-              nz-input
-              type="number"
-              formControlName="bankAccountNumber"
-               class="w-48 h-6  rounded-lg"
-            />
-          </div>
-          <div class="flex flex-col mx-auto">
-            <label class="font-bold text-xxs">Routing Number *</label>
-            <input
-              nz-input
-              type="number"
-              formControlName="bankAccountRoutingNumber"
-               class="w-48 h-6  rounded-lg"
-            />
-          </div>
-        </div> -->
 
         <div class="flex flex-col mx-auto w-48">
           <label class="font-bold">Does your Restaurant Have Kids Zone ? *</label>
@@ -223,7 +183,7 @@
     <!-- Form 3 ------------------------------------------------------------------------------------------------>
     <!-- Form 3 ------------------------------------------------------------------------------------------------>
     <!-- Form 3 ------------------------------------------------------------------------------------------------>
-    <div *ngIf="currentStep === 0">
+    <div *ngIf="currentStep === 2">
       <!-- Step 3 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Operations
@@ -371,21 +331,68 @@
         </div>
 
 
-
         <!-- Pickup and Delivery -->
-        <!--      <div
-          class="flex mx-auto mt-5 w-48 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2"
-        >
-          <span class="font-bold">Enable Delivery</span>
-          <nz-switch nzSize="small" formControlName="delivery"></nz-switch>
-        </div>
+
 
         <div
-          class="flex mx-auto mt-5 w-48 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2"
-        >
+          class="border col-span-3 flex  mt-5 w-48 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2">
+          <span class="font-bold">Enable Delivery</span>
+          <nz-switch formControlName="delivery" ngModel="deliveryModel" nzSize="small"
+            formControlName="delivery"></nz-switch>
+        </div>
+
+
+        <div *ngIf="operationThirdForm.value.delivery" class="flex flex-col">
+          <label class="font-bold text-xxs">Minimum Delivery Amount *</label>
+          <input nz-input placeholder="0" type="number" formControlName="minimumDeliveryAmount"
+            class="w-48 h-6 rounded-lg" />
+        </div>
+
+
+        <div *ngIf="operationThirdForm.value.delivery" class="flex flex-col">
+          <label class="font-bold text-xxs">Maximum range of Delivery (in miles)*</label>
+          <input nz-input placeholder="0" type="number" formControlName="maximumDeliveryRange"
+            class="w-48 h-6 rounded-lg" />
+        </div>
+
+
+        <div *ngIf="operationThirdForm.value.delivery" class="flex flex-col">
+          <label class="font-bold text-xxs">Delivery Time *</label>
+          <div class="flex items-center gap-x-5">
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="deliveryTimeStart" nzFormat="h:mm a"
+              nzUse12Hours="true" [nzNowText]="' '"></nz-time-picker>
+            <span class="font-bold">To</span>
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="deliveryTimeEnd" [nzNowText]="' '" nzUse12Hours="true"
+              nzFormat="h:mm a"></nz-time-picker>
+          </div>
+        </div>
+
+
+        <div
+          class="border flex  mt-5 w-48 items-center justify-start gap-x-7 border border-light-gray h-8 rounded-xl pl-2 py-2">
           <span class="font-bold">Enable Pickup</span>
-          <nz-switch nzSize="small" formControlName="pickup"></nz-switch>
-        </div> -->
+          <nz-switch formControlName="pickup" nzSize="small"></nz-switch>
+        </div>
+
+
+        <div *ngIf="operationThirdForm.value.pickup" class="flex flex-col justify-center ">
+          <label class="font-bold text-xxs">Pickup Time *</label>
+          <div class="flex items-center gap-x-5">
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="pickupTimeStart" nzFormat="h:mm a" nzUse12Hours="true"
+              [nzNowText]="' '"></nz-time-picker>
+            <span class="font-bold">To</span>
+
+            <nz-time-picker nzPlaceHolder="Time" formControlName="pickupTimeEnd" [nzNowText]="' '" nzUse12Hours="true"
+              nzFormat="h:mm a"></nz-time-picker>
+          </div>
+        </div>
+
+
+
+
       </form>
 
       <div class="flex justify-between mt-20">
@@ -395,6 +402,50 @@
 
         <button class="text-green" nz-button (click)="nextStep()">Next</button>
         <!-- [disabled]="isNextButtonDisabledForSecondForm()" -->
+      </div>
+    </div>
+
+
+    <div *ngIf="currentStep === 3">
+      <!-- Step 1 Content -->
+      <h2 class="mb-10 font-bold text-green text-center">
+        Banking and Payment Information
+      </h2>
+
+      <!-- Form 4 ------------------------------------------------------------------------------------------------>
+      <!-- Form 4 ------------------------------------------------------------------------------------------------>
+      <!-- Form 4 ------------------------------------------------------------------------------------------------>
+      <!-- Form 4 ------------------------------------------------------------------------------------------------>
+
+      <form [formGroup]="bankingInfoFourthForm" class="grid grid-cols-2 gap-x-10 gap-y-7">
+
+        <div class="col-span-3 grid grid-cols-2 gap-y-10">
+          <div class="flex flex-col mx-auto">
+            <label class="font-bold text-xxs">Bank Name *</label>
+            <input nz-input type="text" formControlName="bankName" class="w-48 h-6  rounded-lg" />
+          </div>
+
+          <div class="flex flex-col mx-auto">
+            <label class="font-bold text-xxs">Account Holder Name *</label>
+            <input nz-input type="text" formControlName="bankAccountHolder" class="w-48 h-6  rounded-lg" />
+          </div>
+
+          <div class="flex flex-col mx-auto">
+            <label class="font-bold text-xxs">Account Number *</label>
+            <input nz-input type="number" formControlName="bankAccountNumber" class="w-48 h-6  rounded-lg" />
+          </div>
+          <div class="flex flex-col mx-auto">
+            <label class="font-bold text-xxs">Routing Number *</label>
+            <input nz-input type="number" formControlName="bankAccountRoutingNumber" class="w-48 h-6  rounded-lg" />
+          </div>
+        </div>
+      </form>
+
+      <div class="flex justify-end mt-16 mr-12">
+        <button class="border border-green text-green" nz-button (click)="nextStep()">
+          Next
+        </button>
+        <!-- [disabled]="isNextButtonDisabled()" -->
       </div>
     </div>
   </div>

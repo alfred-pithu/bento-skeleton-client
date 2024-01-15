@@ -10,6 +10,7 @@ import { format } from 'date-fns'
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+
   currentStep = 0
   countries: SingleCountryInterface[] = []
   clickedOrderAmount: string = ''
@@ -56,10 +57,22 @@ export class SignupComponent implements OnInit {
     'Middle Eastern',
   ]
 
+
   constructor(private fb: FormBuilder, private SignupService: SignupService) { }
+
+  defaultDate = new Date();
+
+
+
+
+
 
   ngOnInit(): void {
     this.getAllCountries()
+    this.defaultDate.setHours(0, 0, 0, 0);
+
+
+
   }
 
   firstForm = new FormGroup({
@@ -90,23 +103,33 @@ export class SignupComponent implements OnInit {
   })
 
   operationThirdForm = new FormGroup({
-    delivery: new FormControl(true),
-    pickup: new FormControl(true),
+    delivery: new FormControl(true, Validators.required),
+    deliveryTimeStart: new FormControl(this.defaultDate, Validators.required),
+    deliveryTimeEnd: new FormControl(this.defaultDate, Validators.required),
+    minimumDeliveryAmount: new FormControl(0, Validators.required),
+    maximumDeliveryRange: new FormControl(0, Validators.required),
 
-    operationOpeningTime: new FormControl(new Date(), Validators.required),
-    operationClosingTime: new FormControl(new Date(), Validators.required),
+    pickup: new FormControl(true, Validators.required),
+    pickupTimeStart: new FormControl(this.defaultDate, Validators.required),
+    pickupTimeEnd: new FormControl(this.defaultDate, Validators.required),
 
-    breakfastStart: new FormControl(new Date(), Validators.required),
-    breakfastEnd: new FormControl(new Date(), Validators.required),
 
-    lunchStart: new FormControl(new Date(), Validators.required),
-    lunchEnd: new FormControl(new Date(), Validators.required),
+    operationOpeningTime: new FormControl(this.defaultDate, Validators.required),
+    operationClosingTime: new FormControl(this.defaultDate, Validators.required),
 
-    dinnerStart: new FormControl(new Date(), Validators.required),
-    dinnerEnd: new FormControl(new Date(), Validators.required),
+    breakfastStart: new FormControl(this.defaultDate, Validators.required),
+    breakfastEnd: new FormControl(this.defaultDate, Validators.required),
 
-    dineInTimeStart: new FormControl(new Date(), Validators.required),
-    dineInTimeEnd: new FormControl(new Date(), Validators.required),
+    lunchStart: new FormControl(this.defaultDate, Validators.required),
+    lunchEnd: new FormControl(this.defaultDate, Validators.required),
+
+    dinnerStart: new FormControl(this.defaultDate, Validators.required),
+    dinnerEnd: new FormControl(this.defaultDate, Validators.required),
+
+    dineInTimeStart: new FormControl(this.defaultDate, Validators.required),
+    dineInTimeEnd: new FormControl(this.defaultDate, Validators.required),
+
+
 
     operatingDays: new FormControl([], Validators.required),
     cuisines: new FormControl([], Validators.required),
@@ -160,7 +183,8 @@ export class SignupComponent implements OnInit {
       if (this.currentStep == 3 && this.operationThirdForm.value.operationOpeningTime && this.operationThirdForm.value.operationClosingTime
         && this.operationThirdForm.value.breakfastStart && this.operationThirdForm.value.breakfastEnd
         && this.operationThirdForm.value.lunchStart && this.operationThirdForm.value.lunchEnd
-        && this.operationThirdForm.value.dinnerStart && this.operationThirdForm.value.dinnerEnd) {
+        && this.operationThirdForm.value.dinnerStart && this.operationThirdForm.value.dinnerEnd
+        && this.operationThirdForm.value.deliveryTimeStart && this.operationThirdForm.value.deliveryTimeEnd) {
 
         const operationOpeningUTCDate = this.convertToUTCDate(this.operationThirdForm.value.operationOpeningTime)
         this.operationThirdForm.get('operationOpeningTime')?.setValue(operationOpeningUTCDate)
@@ -186,6 +210,12 @@ export class SignupComponent implements OnInit {
         const dinnerEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.dinnerEnd)
         this.operationThirdForm.get('dinnerEnd')?.setValue(dinnerEndUTCDate)
 
+        const deliveryStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.deliveryTimeStart)
+        this.operationThirdForm.get('deliveryTimeStart')?.setValue(deliveryStartUTCDate)
+
+
+        const deliveryEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.deliveryTimeEnd)
+        this.operationThirdForm.get('deliveryTimeEnd')?.setValue(deliveryEndUTCDate)
 
 
         const formData = {
@@ -200,6 +230,7 @@ export class SignupComponent implements OnInit {
 
     }
   }
+
 
   prevStep(): void {
     if (this.currentStep > 0) {
