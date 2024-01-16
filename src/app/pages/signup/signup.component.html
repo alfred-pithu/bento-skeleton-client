@@ -39,14 +39,16 @@
           <input nz-input type="number" formControlName="phone" class="w-48 h-6 rounded-lg" />
         </div>
 
-        <div class="flex flex-col mx-auto">
-          <label class="font-bold text-xxs">Your Designation *</label>
 
-          <nz-select class="w-48 h-6 rounded-lg" nzShowSearch nzAllowClear formControlName="designation"
-            nzPlaceHolder="Please Select">
-            <nz-option *ngFor="let designation of this.designations" [nzLabel]="designation"
-              [nzValue]="designation"></nz-option>
-          </nz-select>
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold text-xxs">Password *</label>
+          <input nz-input type="text" formControlName="password" class="w-48 h-6 rounded-lg" />
+        </div>
+
+        <div class="flex flex-col mx-auto">
+          <label class="font-bold text-xxs">Confirm Password *</label>
+          <input nz-input type="text" formControlName="confirmPassword" class="w-48 h-6 rounded-lg" />
+          <span *ngIf="!isPassAndConfirmPassSame" class="text-xxs ml-2 mt-2 text-red">Password didn't match</span>
         </div>
 
       </form>
@@ -116,10 +118,10 @@
 
 
         <div class="flex flex-col mx-auto  w-48 h-20 ">
-          <label class="font-bold text-xxs">Upload Restaurant Logo*</label>
+          <label class="font-bold text-xxs">Upload Restaurant Logo (&lt; 100kb)*</label>
 
-          <nz-upload nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }" [nzFileList]="fileList"
-            (nzChange)="handleLogoUploadChange($event)">
+          <nz-upload [nzSize]="100" nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }"
+            [nzFileList]="fileList" (nzChange)="handleLogoUploadChange($event)">
             <button nz-button>
               <span nz-icon nzType="upload"></span>
               Click to Upload
@@ -294,7 +296,7 @@
 
 
         <div class="flex flex-col">
-          <label class="font-bold text-xxs">Breakfast Time *</label>
+          <label class="font-bold text-xxs">Breakfast Time (optional)</label>
           <div class="flex items-center gap-x-5">
 
             <nz-time-picker nzPlaceHolder="Time" formControlName="breakfastStart" nzFormat="h:mm a" nzUse12Hours="true"
@@ -309,7 +311,7 @@
 
 
         <div class="flex flex-col">
-          <label class="font-bold text-xxs">Lunch Time *</label>
+          <label class="font-bold text-xxs">Lunch Time (optional)</label>
           <div class="flex items-center gap-x-5">
 
             <nz-time-picker nzPlaceHolder="Time" formControlName="lunchStart" nzFormat="h:mm a" nzUse12Hours="true"
@@ -325,7 +327,7 @@
 
 
         <div class="flex flex-col">
-          <label class="font-bold text-xxs">Dinner Time *</label>
+          <label class="font-bold text-xxs">Dinner Time (optional)</label>
           <div class="flex items-center gap-x-5">
 
             <nz-time-picker nzPlaceHolder="Time" formControlName="dinnerStart" nzFormat="h:mm a" nzUse12Hours="true"
@@ -340,7 +342,7 @@
 
 
         <div class="flex flex-col">
-          <label class="font-bold text-xxs">Dine In Time *</label>
+          <label class="font-bold text-xxs">Dine In Time (optional)</label>
           <div class="flex items-center gap-x-5">
 
             <nz-time-picker nzPlaceHolder="Time" formControlName="dineInTimeStart" nzFormat="h:mm a" nzUse12Hours="true"

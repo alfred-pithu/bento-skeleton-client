@@ -10,7 +10,7 @@ import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-
+  isPassAndConfirmPassSame: boolean = true;
   currentStep = 0
   countries: SingleCountryInterface[] = []
   clickedOrderAmount: string = ''
@@ -18,7 +18,6 @@ export class SignupComponent implements OnInit {
   clickedIndex: number = 0
 
   orderAmounts: string[] = ['0 - 350', '350 - 750', '750 - 1250', '> 1250']
-  designations: string[] = ['Owner', 'Manager', 'Admin', 'HR']
 
   weekDays: string[] = [
     'Sunday',
@@ -102,11 +101,21 @@ export class SignupComponent implements OnInit {
       this.operationThirdForm.get('pickupTimeEnd')?.updateValueAndValidity()
     })
 
+    this.firstForm.get('confirmPassword')?.valueChanges.subscribe(value => {
+      if (value === this.firstForm.get('password')?.value) {
+        this.isPassAndConfirmPassSame = true;
+      }
+      else {
+        this.isPassAndConfirmPassSame = false;
+      }
+    })
+
   }
 
   firstForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
-    designation: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', Validators.required),
@@ -115,16 +124,14 @@ export class SignupComponent implements OnInit {
   secondForm = new FormGroup({
     restaurantName: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
-    country: new FormControl({ countryCode: '', countryName: '', zoneName: '', gmtOffset: 0, timestamp: 0, },
-      Validators.required
-    ),
+    country: new FormControl({ countryCode: '', countryName: '', zoneName: '', gmtOffset: 0, timestamp: 0, }, Validators.required),
     halal: new FormControl('', Validators.required),
     billPerClient: new FormControl('', Validators.required),
     website: new FormControl('', Validators.required),
     restaurantPhone: new FormControl('', Validators.required),
     veganFriendly: new FormControl(false, Validators.required),
     sellsAlcohol: new FormControl(false, Validators.required),
-    monthlyOrders: new FormControl('', Validators.required),
+    monthlyOrders: new FormControl('0 - 350', Validators.required),
 
     restaurantLogo: new FormControl('', Validators.required),
 
@@ -150,17 +157,17 @@ export class SignupComponent implements OnInit {
     operationOpeningTime: new FormControl<Date | null>(null, Validators.required),
     operationClosingTime: new FormControl<Date | null>(null, Validators.required),
 
-    breakfastStart: new FormControl<Date | null>(null, Validators.required),
-    breakfastEnd: new FormControl<Date | null>(null, Validators.required),
+    breakfastStart: new FormControl<Date | null>(null),
+    breakfastEnd: new FormControl<Date | null>(null),
 
-    lunchStart: new FormControl<Date | null>(null, Validators.required),
-    lunchEnd: new FormControl<Date | null>(null, Validators.required),
+    lunchStart: new FormControl<Date | null>(null),
+    lunchEnd: new FormControl<Date | null>(null),
 
-    dinnerStart: new FormControl<Date | null>(null, Validators.required),
-    dinnerEnd: new FormControl<Date | null>(null, Validators.required),
+    dinnerStart: new FormControl<Date | null>(null),
+    dinnerEnd: new FormControl<Date | null>(null),
 
-    dineInTimeStart: new FormControl<Date | null>(null, Validators.required),
-    dineInTimeEnd: new FormControl<Date | null>(null, Validators.required),
+    dineInTimeStart: new FormControl<Date | null>(null),
+    dineInTimeEnd: new FormControl<Date | null>(null),
 
 
     operatingDays: new FormControl([], Validators.required),
@@ -212,9 +219,13 @@ export class SignupComponent implements OnInit {
   }
 
   isNextButtonDisabled(): boolean {
-
     if (this.currentStep == 0) {
-      return !this.firstForm.valid
+      if (this.isPassAndConfirmPassSame && this.firstForm.valid) {
+        return false
+      } else {
+        return true
+      }
+      // return !this.firstForm.valid
     } else if (this.currentStep == 1) {
       return !this.secondForm.valid
     } else if (this.currentStep == 2) {
@@ -242,9 +253,10 @@ export class SignupComponent implements OnInit {
 
   nextStep(): void {
     if (this.currentStep < 3) {
+
       this.currentStep++
 
-      if (this.currentStep == 3 && this.operationThirdForm.value.operationOpeningTime && this.operationThirdForm.value.operationClosingTime
+      if (this.currentStep == 2 && this.operationThirdForm.value.operationOpeningTime && this.operationThirdForm.value.operationClosingTime
         && this.operationThirdForm.value.breakfastStart && this.operationThirdForm.value.breakfastEnd
         && this.operationThirdForm.value.lunchStart && this.operationThirdForm.value.lunchEnd
         && this.operationThirdForm.value.dinnerStart && this.operationThirdForm.value.dinnerEnd
@@ -325,10 +337,20 @@ export class SignupComponent implements OnInit {
       formData.restaurantInfo.minimumDeliveryAmount = null
     }
 
+    if (formData.restaurantRep.password === formData.restaurantRep.confirmPassword) {
+      delete formData.restaurantRep.confirmPassword;
+      console.log("formData", formData);
+      this.SignupService.sendRegistrationInfoToBackend(formData).subscribe((res) => {
+        if (res) {
+          console.log(res);
+        }
+      }, (error) => {
+        if (error) {
 
-    this.SignupService.sendRegistrationInfoToBackend(formData).subscribe((res) => {
-      console.log(res);
-    })
+        }
+      })
+    }
+
 
   }
 }
