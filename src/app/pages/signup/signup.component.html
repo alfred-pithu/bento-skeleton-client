@@ -1,10 +1,28 @@
-<section class="wp-80 mx-auto px-5 pt-3">
-  <nz-steps class="wp-75 mx-auto" [nzCurrent]="currentStep">
+<div class="  h-12 flex items-center px-5 justify-between">
+  <img routerLink="/home" class="w-24 cursor-pointer" src="../../assets/photos and logos/logo-2.png" alt="" />
+
+  <div routerLink="/login"
+    class="font-bold px-5 py-1 rounded text-white flex items-center gap-x-3 cursor-pointer bg-green">
+    <p class="text-white login-text">Log in</p>
+    <span class=" font-extrabold m-0" nz-icon nzType="login" nzTheme="outline"></span>
+  </div>
+
+</div>
+
+
+<section class="wp-80 mx-auto px-5 mt-5">
+
+  <nz-steps class="wp-75 mx-auto  " [nzCurrent]="currentStep">
     <nz-step nzTitle="About You"></nz-step>
     <nz-step nzTitle="About Restaurant"></nz-step>
     <nz-step nzTitle="About  Operation"></nz-step>
     <nz-step nzTitle="Banking  Information"></nz-step>
   </nz-steps>
+
+  <div></div>
+
+
+
 
   <div class="mt-8">
 

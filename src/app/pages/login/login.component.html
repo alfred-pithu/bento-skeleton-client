@@ -1,53 +1,29 @@
-<section class="h-screen border border-green flex items-center justify-center">
-  <form
-    nz-form
-    class="flex flex-col gap-y-5 wp-25"
-    #loginForm="ngForm"
-    (ngSubmit)="onSubmit()"
-  >
+<div class="border border border-light-gray border-l-0 border-r-0 px-4 py-2 h-12 flex items-center">
+  <img routerLink="/home" class="w-32 cursor-pointer" src="../../assets/photos and logos/logo-2.png" alt="" />
+</div>
+
+<section class="h-screen  flex items-center justify-center">
+  <form nz-form class="flex flex-col gap-y-5 wp-25" #loginForm="ngForm" (ngSubmit)="onSubmit()">
     <div>
       <h2 class="font-medium">Welcome</h2>
       <p>Log in to continue to Bento</p>
     </div>
 
-    <input
-      name="email"
-      class="w-full py-2"
-      nz-input
-      placeholder="Email"
-      type="email"
-      [(ngModel)]="email"
-      required
-      email
-    />
+    <input name="email" class="w-full py-2" nz-input placeholder="Email" type="email" [(ngModel)]="email" required
+      email />
 
     <nz-input-group class="w-full py-2" [nzSuffix]="suffixTemplate">
-      <input
-        name="password"
-        [type]="passwordVisible ? 'text' : 'password'"
-        nz-input
-        placeholder="Password"
-        [(ngModel)]="password"
-        required
-      />
+      <input name="password" [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Password"
+        [(ngModel)]="password" required />
     </nz-input-group>
 
     <ng-template #suffixTemplate>
-      <span
-        nz-icon
-        [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
-        (click)="passwordVisible = !passwordVisible"
-      ></span>
+      <span nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"></span>
     </ng-template>
 
-    <button
-      nz-button
-      type="submit"
-      nzType="primary"
-      [nzLoading]="loading"
-      [disabled]="loginForm.invalid"
-      class="bg-light-green border-0 text-white w-full h-10 cursor-pointer"
-    >
+    <button nz-button type="submit" nzType="primary" [nzLoading]="loading" [disabled]="loginForm.invalid"
+      class="bg-light-green border-0 text-white w-full h-10 cursor-pointer">
       Login
     </button>
   </form>
