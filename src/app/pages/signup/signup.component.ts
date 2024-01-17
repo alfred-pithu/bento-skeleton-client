@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from '../../services/signup/signup.service'
 import { SingleCountryInterface } from '../../Interfaces/Country.interface'
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
+import { Router } from '@angular/router';
+import { ToastMessageService } from '../../services/toast-message/toast-message.service'
+
 
 @Component({
   selector: 'app-signup',
@@ -58,7 +61,7 @@ export class SignupComponent implements OnInit {
   ]
 
 
-  constructor(private fb: FormBuilder, private SignupService: SignupService) { }
+  constructor(private fb: FormBuilder, private SignupService: SignupService, private router: Router, private toast: ToastMessageService) { }
 
   defaultDate = new Date();
 
@@ -342,11 +345,12 @@ export class SignupComponent implements OnInit {
       console.log("formData", formData);
       this.SignupService.sendRegistrationInfoToBackend(formData).subscribe((res) => {
         if (res) {
-          console.log(res);
+          this.toast.setMessage('Sign Up Successful. Please Login', 'success')
+          this.router.navigate(['/login'])
         }
       }, (error) => {
         if (error) {
-
+          this.toast.setMessage(error.error.message, 'success')
         }
       })
     }
