@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
 
       // Get the User Info from JWTToken
       this.api.getUserFromToken().subscribe((data) => {
-        this.user = data.message
+        this.user = data.user // Potential error here . Previously data.message
       });
 
       // Get data to see if checked in or checked out
