@@ -36,17 +36,28 @@ export class SkeletonApiService {
     );
   }
 
-  getUserFromToken(): Observable<{ user: IUser }> {
-    return this.http.get<{ user: IUser }>(
-      this.rootUrl + '/service-auth/user-from-token'
-    );
+  /*   getUserFromToken(): Observable<{ user: IUser }> {
+      return this.http.get<{ user: IUser }>(
+        this.rootUrl + '/service-auth/user-from-token'
+      );
+    } */
+
+  getUserFromToken(): Observable<any> {
+    return this.http.get<any>
+      (this.rootUrl + '/service-auth/user-from-token');
   }
 
-  checkInUser() {
-    return this.http.post<{ status: boolean }>(this.rootUrl + '/employee/check-in', {});
+  checkInUser(employeeId: number): Observable<any> {
+    return this.http.post<{ status: string }>(this.rootUrl + '/employee/check-in', { employeeId, checkInTime: Date.now() });
   }
 
-  checkOutUser() {
-    return this.http.post<{ status: boolean }>(this.rootUrl + '/employee/check-out', {});
+  checkOutUser(employeeId: number): Observable<any> {
+    return this.http.post<{ status: string }>(this.rootUrl + '/employee/check-out',
+      { employeeId, checkOutTime: Date.now() });
   }
+
+  getIsCheckedInData(): Observable<{ id: number, isCheckedIn: boolean }> {
+    return this.http.get<{ id: number, isCheckedIn: boolean }>(this.rootUrl + '/employee/is-checked-in')
+  }
+
 }

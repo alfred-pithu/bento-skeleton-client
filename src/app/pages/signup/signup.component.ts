@@ -172,7 +172,7 @@ export class SignupComponent implements OnInit {
     dineInTimeStart: new FormControl<Date | null>(null),
     dineInTimeEnd: new FormControl<Date | null>(null),
 
-
+    orderServingMethod: new FormControl('', Validators.required),
     operatingDays: new FormControl([], Validators.required),
     cuisines: new FormControl([], Validators.required),
     doesOperateOnHolidays: new FormControl(null, Validators.required),

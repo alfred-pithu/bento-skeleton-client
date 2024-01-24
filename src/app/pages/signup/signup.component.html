@@ -279,7 +279,7 @@
         </div>
 
         <div class="flex flex-col">
-          <label class="font-bold text-xxs">Maximum Dining of Capacity *</label>
+          <label class="font-bold text-xxs">Maximum Dining In Capacity *</label>
           <input nz-input placeholder="0" type="number" formControlName="maximumDinningCapacity"
             class="w-48 h-6 rounded-lg" />
         </div>
@@ -290,6 +290,15 @@
           <nz-select class="w-64" [nzSize]="'small'" nzMode="multiple" nzPlaceHolder="Please select "
             formControlName="cuisines">
             <nz-option *ngFor="let cuisine of Cuisines" [nzLabel]="cuisine" [nzValue]="cuisine"></nz-option>
+          </nz-select>
+        </div>
+
+
+        <div class="flex flex-col ">
+          <label class="font-bold text-xxs ">How Do You Serve Orders To Dine in Guests ? *</label>
+          <nz-select class=" wp-70 h-6 rounded-lg" formControlName="orderServingMethod">
+            <nz-option nzValue="all in one go" nzLabel="All In One Go"></nz-option>
+            <nz-option nzValue="course by course" nzLabel="Course By Course"></nz-option>
           </nz-select>
         </div>
 

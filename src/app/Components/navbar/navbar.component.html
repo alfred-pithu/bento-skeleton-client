@@ -18,18 +18,27 @@
   </div>
 
   <div class="flex items-center">
+
     @if (user) {
     <p class="mx-5">{{ user.employeeInformation.name }}</p>
-    } @if (isAuth) {
+    }
 
-    <div class="flex justify-between gap-x-5">
+    @if (isAuth) {
+
+    <div class="flex justify-between gap-x-5 ">
+
+      @if (!isUserCheckedIn) {
       <button nz-button class="border border-light-green font-bold" (click)="checkIn()">
         Check In
       </button>
-
+      } @else {
       <button nz-button nzDanger="true" class="font-bold" (click)="checkOut()">
         Check Out
       </button>
+      }
+
+
+
 
       <button nz-button nzType="primary" (click)="logout()">Logout</button>
     </div>

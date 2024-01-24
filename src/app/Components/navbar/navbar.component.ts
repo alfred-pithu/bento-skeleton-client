@@ -11,6 +11,7 @@ import { IUser } from '../../Interfaces/user.interface';
 export class NavbarComponent implements OnInit {
   @Input() isAuth!: boolean;
   user: IUser | undefined;
+  isUserCheckedIn: boolean = false;
 
   constructor(private router: Router, private api: SkeletonApiService) { }
 
@@ -19,17 +20,35 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.isAuth)
-      this.api.getUserFromToken().subscribe((data) => (this.user = data.user));
+    if (this.isAuth) {
 
-    // Get data to see if checked in or checked out
+      // Get the User Info from JWTToken
+      this.api.getUserFromToken().subscribe((data) => {
+        this.user = data.message
+      });
+
+      // Get data to see if checked in or checked out
+      this.api.getIsCheckedInData().subscribe((data) => {
+        console.log('isCheckedIn', data);
+        this.isUserCheckedIn = data.isCheckedIn;
+      })
+    }
   }
 
   checkIn() {
-    this.api.checkInUser().subscribe((data) => console.log(data));
+    if (this.user) {
+      console.log('clicked', this.user);
+      this.api.checkInUser(this.user?.employeeInformation.id)
+        .subscribe((data) => {
+          console.log('response from hr + skeleton backend', data)
+        });
+    }
   }
 
   checkOut() {
-    this.api.checkOutUser().subscribe((data) => console.log(data));
+    if (this.user) {
+      this.api.checkOutUser(this.user?.employeeInformation.id)
+        .subscribe((data) => console.log(data));
+    }
   }
 }
