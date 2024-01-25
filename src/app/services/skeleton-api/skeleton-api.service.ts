@@ -48,12 +48,12 @@ export class SkeletonApiService {
   }
 
   // Working here -------------------------------------------
-  checkInUser(employeeId: number): Observable<any> {
-    return this.http.post<{ status: string }>(this.rootUrl + '/employee/check-in', { employeeId, checkInTime: Date.now() });
+  checkInUser(employeeId: number, position: string): Observable<any> {
+    return this.http.post<{ status: string }>(this.rootUrl + '/employee/check-in', { employeeId, position });
   }
 
-  checkOutUser(employeeId: number, attendanceId: string): Observable<any> {
-    return this.http.post<any>(this.rootUrl + '/employee/check-out', { employeeId, attendanceId });
+  checkOutUser(employeeId: number, attendanceId: string, position: string): Observable<any> {
+    return this.http.post<any>(this.rootUrl + '/employee/check-out', { employeeId, attendanceId, position });
   }
 
   private attendaceIdSubject = new BehaviorSubject<string | null>(null)
