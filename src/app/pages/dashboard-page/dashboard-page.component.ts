@@ -11,15 +11,17 @@ export class DashboardPageComponent implements OnInit {
   services: string[] = [];
   loading: boolean = false;
 
-  constructor(private api: SkeletonApiService, private router: Router) {}
+  constructor(private api: SkeletonApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.loading = true;
     this.api.getServicesForUser().subscribe({
       next: (data) => {
         this.loading = false;
-        console.log(data);
+
         this.services = data.message;
+
+        // console.log(this.services);
       },
     });
   }

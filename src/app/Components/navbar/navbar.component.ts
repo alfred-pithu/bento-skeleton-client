@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SkeletonApiService } from '../../services/skeleton-api/skeleton-api.service';
 import { IUser } from '../../Interfaces/user.interface';
+import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-navbar',
@@ -24,14 +25,20 @@ export class NavbarComponent implements OnInit {
 
       // Get the User Info from JWTToken
       this.api.getUserFromToken().subscribe((data) => {
-        this.user = data.user // Potential error here . Previously data.message
+        this.user = data.user
       });
 
-      // Get data to see if checked in or checked out
       this.api.getIsCheckedInData().subscribe((data) => {
-        console.log('isCheckedIn', data);
-        this.isUserCheckedIn = data.isCheckedIn;
+        if (data) {
+          console.log('Behaviour subject data', data);
+          this.isUserCheckedIn = true
+
+        } else {
+          this.isUserCheckedIn = false
+
+        }
       })
+
     }
   }
 
@@ -40,15 +47,24 @@ export class NavbarComponent implements OnInit {
       console.log('clicked', this.user);
       this.api.checkInUser(this.user?.employeeInformation.id)
         .subscribe((data) => {
-          console.log('response from hr + skeleton backend', data)
+          this.api.setAttendanceId(data.attendanceId)
         });
     }
   }
 
   checkOut() {
     if (this.user) {
-      this.api.checkOutUser(this.user?.employeeInformation.id)
-        .subscribe((data) => console.log(data));
+      const attendaceIdFromLocalStorage = localStorage.getItem('attendanceId')
+      if (attendaceIdFromLocalStorage) {
+        this.api.checkOutUser(this.user.employeeInformation.id, attendaceIdFromLocalStorage)
+          .subscribe((data) => {
+            console.log('response to checkout from hr', data.data.isCheckedIn)
+            if (data.data.isCheckedIn == false) {
+              this.api.setAttendanceId('')
+            }
+          });
+      }
+
     }
   }
 }

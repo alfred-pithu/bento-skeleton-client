@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { IUser } from '../../Interfaces/user.interface';
 
@@ -47,17 +47,30 @@ export class SkeletonApiService {
       (this.rootUrl + '/service-auth/user-from-token');
   }
 
+  // Working here -------------------------------------------
   checkInUser(employeeId: number): Observable<any> {
     return this.http.post<{ status: string }>(this.rootUrl + '/employee/check-in', { employeeId, checkInTime: Date.now() });
   }
 
-  checkOutUser(employeeId: number): Observable<any> {
-    return this.http.post<{ status: string }>(this.rootUrl + '/employee/check-out',
-      { employeeId, checkOutTime: Date.now() });
+  checkOutUser(employeeId: number, attendanceId: string): Observable<any> {
+    return this.http.post<any>(this.rootUrl + '/employee/check-out', { employeeId, attendanceId });
   }
 
-  getIsCheckedInData(): Observable<{ id: number, isCheckedIn: boolean }> {
-    return this.http.get<{ id: number, isCheckedIn: boolean }>(this.rootUrl + '/employee/is-checked-in')
+  private attendaceIdSubject = new BehaviorSubject<string | null>(null)
+
+
+  getIsCheckedInData(): BehaviorSubject<string | null> {
+    const storedAttendanceId = localStorage.getItem('attendanceId')
+    this.attendaceIdSubject.next(storedAttendanceId)
+
+    return this.attendaceIdSubject
+    // return this.http.get<{ id: number, isCheckedIn: boolean }>(this.rootUrl + '/employee/is-checked-in')
+
+  }
+
+  setAttendanceId(newValue: string): void {
+    localStorage.setItem('attendanceId', newValue);
+    this.attendaceIdSubject.next(newValue);
   }
 
 }
