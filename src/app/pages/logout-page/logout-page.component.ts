@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
 })
 export class LogoutPageComponent implements OnInit {
 
-  constructor (private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('accessToken')
     setTimeout(() => this.router.navigateByUrl('/home'), 2000);
   }
 }

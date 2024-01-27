@@ -20,6 +20,9 @@ export class SignupComponent implements OnInit {
   isClicked: boolean = false
   clickedIndex: number = 0
 
+  curriencies: string[] = ["USD", "EUR", "BDT", "INR", "JPY", "GBP", "CHF", "CAD", "AUD", "CNY", "NZD", "ZAR"]
+
+
   orderAmounts: string[] = ['0 - 350', '350 - 750', '750 - 1250', '> 1250']
 
   weekDays: string[] = [
@@ -135,6 +138,17 @@ export class SignupComponent implements OnInit {
     veganFriendly: new FormControl(false, Validators.required),
     sellsAlcohol: new FormControl(false, Validators.required),
     monthlyOrders: new FormControl('0 - 350', Validators.required),
+
+    // NEW FOUR ---------
+
+    currency: new FormControl('', Validators.required),
+    restaurantDetails: new FormControl('', Validators.required),
+
+    restaurantCoverPhoto: new FormControl('', Validators.required),
+
+    restaurantAmbianceImages: new FormControl(''),
+
+    // --------------------------
 
     restaurantLogo: new FormControl('', Validators.required),
 
