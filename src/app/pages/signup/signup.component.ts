@@ -6,7 +6,6 @@ import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
 import { Router } from '@angular/router';
 import { ToastMessageService } from '../../services/toast-message/toast-message.service'
 import { CloudinaryServiceService } from '../../services/cloudinary/cloudinary-service.service'
-import { BehaviorSubject, Observable, forkJoin, of, takeUntil, tap } from 'rxjs'
 
 
 
@@ -296,15 +295,12 @@ export class SignupComponent implements OnInit {
       logoFileList = logoFileList.slice(-1)
       const file = logoFileList[0].originFileObj;
 
-      const reader = new FileReader()
-
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        this.secondForm.get('restaurantLogo')?.setValue(base64String)
-      }
 
       if (file) {
-        reader.readAsDataURL(file)
+        this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
+          this.secondForm.get('restaurantLogo')?.setValue(res.secure_url)
+          // console.log('cover photo', this.secondForm.value.restaurantLogo);
+        })
       }
     }
 

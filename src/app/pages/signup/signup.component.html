@@ -154,9 +154,9 @@
 
         <!-- // Logo -->
         <div class="flex flex-col mx-auto  w-48  h-20 ">
-          <label class="font-bold text-xxs">Upload Restaurant Logo (&lt; 100kb)*</label>
+          <label class="font-bold text-xxs">Upload Restaurant Logo</label>
 
-          <nz-upload [nzSize]="100" nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }"
+          <nz-upload nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }"
             (nzChange)="handleLogoUploadChange($event)">
             <button nz-button>
               <span nz-icon nzType="upload"></span>
