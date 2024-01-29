@@ -20,7 +20,9 @@ export class DashboardPageComponent implements OnInit {
         this.loading = false;
 
         this.services = data.message;
-
+        if (data.message[0] == 'all') {
+          this.services = ["INVENTORY", "MENU-BUILDER", "KDS", "POS", "HR"]
+        }
         // console.log(this.services);
       },
     });

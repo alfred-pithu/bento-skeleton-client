@@ -5,6 +5,10 @@ import { SingleCountryInterface } from '../../Interfaces/Country.interface'
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
 import { Router } from '@angular/router';
 import { ToastMessageService } from '../../services/toast-message/toast-message.service'
+import { CloudinaryServiceService } from '../../services/cloudinary/cloudinary-service.service'
+import { BehaviorSubject, Observable, forkJoin, of, takeUntil, tap } from 'rxjs'
+
+
 
 
 @Component({
@@ -13,6 +17,10 @@ import { ToastMessageService } from '../../services/toast-message/toast-message.
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+
+  loading = false;
+  avatarUrl?: string;
+
   isPassAndConfirmPassSame: boolean = true;
   currentStep = 0
   countries: SingleCountryInterface[] = []
@@ -21,6 +29,7 @@ export class SignupComponent implements OnInit {
   clickedIndex: number = 0
 
   curriencies: string[] = ["USD", "EUR", "BDT", "INR", "JPY", "GBP", "CHF", "CAD", "AUD", "CNY", "NZD", "ZAR"]
+
 
 
   orderAmounts: string[] = ['0 - 350', '350 - 750', '750 - 1250', '> 1250']
@@ -64,9 +73,10 @@ export class SignupComponent implements OnInit {
   ]
 
 
-  constructor(private fb: FormBuilder, private SignupService: SignupService, private router: Router, private toast: ToastMessageService) { }
+  constructor(private fb: FormBuilder, private SignupService: SignupService, private router: Router, private toast: ToastMessageService, private cloudinaryService: CloudinaryServiceService) { }
 
   defaultDate = new Date();
+
 
 
   ngOnInit(): void {
@@ -139,22 +149,26 @@ export class SignupComponent implements OnInit {
     sellsAlcohol: new FormControl(false, Validators.required),
     monthlyOrders: new FormControl('0 - 350', Validators.required),
 
-    // NEW FOUR ---------
+    restaurantLogo: new FormControl('', Validators.required),
+
+    // NEW ONES ---------
+    allAmbianceImages: new FormControl<string[]>([]),
+    restaurantCoverPhoto: new FormControl('', Validators.required),
+
+    ambianceImage1: new FormControl('', Validators.required),
+    ambianceImage2: new FormControl('', Validators.required),
+    ambianceImage3: new FormControl('', Validators.required),
+    ambianceImage4: new FormControl('', Validators.required),
 
     currency: new FormControl('', Validators.required),
     restaurantDetails: new FormControl('', Validators.required),
 
-    restaurantCoverPhoto: new FormControl('', Validators.required),
-
-    restaurantAmbianceImages: new FormControl(''),
 
     // --------------------------
 
-    restaurantLogo: new FormControl('', Validators.required),
 
     typeOfRestaurant: new FormControl('', Validators.required),
     kidsZone: new FormControl(false, Validators.required),
-    city: new FormControl(true),
   })
 
   operationThirdForm = new FormGroup({
@@ -211,15 +225,76 @@ export class SignupComponent implements OnInit {
     this.secondForm.get('monthlyOrders')?.setValue(amount)
   }
 
+  // ambiance4FileList: NzUploadFile[] = [];
+  handleAmbiance4($event: NzUploadChangeParam) {
+    if ($event.type == 'start') {
+      let logoFileList = [...$event.fileList]
+      logoFileList = logoFileList.slice(-1)
+      const file = logoFileList[0].originFileObj;
+      if (file) {
+        this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
+          this.secondForm.get('ambianceImage4')?.setValue(res.secure_url)
+          console.log('is second form valid ?', this.secondForm.valid);
+          console.log('current form state', this.secondForm.value);
+          // console.log('4', this.secondForm.value.ambianceImage4);
+        })
+      }
+    }
+  }
 
-  fileList: NzUploadFile[] = [];
+  // ambiance3FileList: NzUploadFile[] = [];
+  handleAmbiance3($event: NzUploadChangeParam) {
+    if ($event.type == 'start') {
+      let logoFileList = [...$event.fileList]
+      logoFileList = logoFileList.slice(-1)
+      const file = logoFileList[0].originFileObj;
+      if (file) {
+        this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
+          this.secondForm.get('ambianceImage3')?.setValue(res.secure_url)
+          console.log('3', this.secondForm.value.ambianceImage3);
+        })
+      }
+    }
+  }
 
 
+  // ambiance2FileList: NzUploadFile[] = [];
+  handleAmbiance2($event: NzUploadChangeParam) {
+    if ($event.type == 'start') {
+      let logoFileList = [...$event.fileList]
+      logoFileList = logoFileList.slice(-1)
+      const file = logoFileList[0].originFileObj;
+      if (file) {
+        this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
+          this.secondForm.get('ambianceImage2')?.setValue(res.secure_url)
+          // console.log('2  ', this.secondForm.value.ambianceImage2);
+        })
+      }
+    }
+  }
+
+  // ambiance1FileList: NzUploadFile[] = [];
+  handleAmbiance1($event: NzUploadChangeParam) {
+    if ($event.type == 'start') {
+      let logoFileList = [...$event.fileList]
+      logoFileList = logoFileList.slice(-1)
+      const file = logoFileList[0].originFileObj;
+      if (file) {
+        this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
+          this.secondForm.get('ambianceImage1')?.setValue(res.secure_url)
+          // console.log('1', this.secondForm.value.ambianceImage1);
+        })
+      }
+    }
+  }
+
+  // Logo ---------------------------
+  // logoFileList: NzUploadFile[] = [];
   handleLogoUploadChange($event: NzUploadChangeParam) {
     if ($event.type == 'start') {
-      let fileList = [...$event.fileList]
-      fileList = fileList.slice(-1)
-      const file = fileList[0].originFileObj;
+      let logoFileList = [...$event.fileList]
+      logoFileList = logoFileList.slice(-1)
+      const file = logoFileList[0].originFileObj;
 
       const reader = new FileReader()
 
@@ -234,6 +309,29 @@ export class SignupComponent implements OnInit {
     }
 
   }
+
+  // Cover Photo ---------------------------
+  coverPhotoFileList: NzUploadFile[] = [];
+
+  handleCoverPhotoUploadChange(info: NzUploadChangeParam) {
+
+    if (info.type == 'start') {
+      let fileList = [...info.fileList];
+      fileList = fileList.slice(-1);
+
+      const file = fileList[0].originFileObj
+      if (file) {
+        this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
+          this.secondForm.get('restaurantCoverPhoto')?.setValue(res.secure_url)
+          // console.log('cover photo', this.secondForm.value.restaurantCoverPhoto);
+        })
+      }
+    }
+
+  }
+
+
+
 
   isNextButtonDisabled(): boolean {
     if (this.currentStep == 0) {
@@ -331,16 +429,26 @@ export class SignupComponent implements OnInit {
 
 
   submitForm(): void {
-
     const formData = {
       restaurantRep: { ...this.firstForm.value, restaurantName: this.secondForm.value.restaurantName },
       restaurantInfo: {
         ...this.secondForm.value,
         ...this.operationThirdForm.value,
-        ...this.bankingInfoFourthForm.value
-      }
+        ...this.bankingInfoFourthForm.value,
 
+      }
     }
+
+    const ambianceImagesArr = []
+    ambianceImagesArr.push(formData.restaurantInfo.ambianceImage1)
+    ambianceImagesArr.push(formData.restaurantInfo.ambianceImage2)
+    ambianceImagesArr.push(formData.restaurantInfo.ambianceImage3)
+    ambianceImagesArr.push(formData.restaurantInfo.ambianceImage4)
+
+    formData.restaurantInfo.allAmbianceImages = ambianceImagesArr as string[]
+
+
+
 
     if (formData.restaurantInfo.pickup == false) {
       formData.restaurantInfo.pickupTimeStart = null
@@ -356,6 +464,10 @@ export class SignupComponent implements OnInit {
 
     if (formData.restaurantRep.password === formData.restaurantRep.confirmPassword) {
       delete formData.restaurantRep.confirmPassword;
+      delete formData.restaurantInfo.ambianceImage1
+      delete formData.restaurantInfo.ambianceImage2
+      delete formData.restaurantInfo.ambianceImage3
+      delete formData.restaurantInfo.ambianceImage4
       console.log("formData", formData);
       this.SignupService.sendRegistrationInfoToBackend(formData).subscribe((res) => {
         if (res) {

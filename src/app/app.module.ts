@@ -7,6 +7,8 @@ import en from '@angular/common/locales/en';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import axios from 'axios';
+
 
 // zorro imports
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
