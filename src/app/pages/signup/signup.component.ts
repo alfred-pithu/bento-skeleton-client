@@ -17,6 +17,9 @@ import { CloudinaryServiceService } from '../../services/cloudinary/cloudinary-s
 })
 export class SignupComponent implements OnInit {
 
+  restaurantLatitude!: number;
+  restaurantLongitude!: number;
+
   loading = false;
   avatarUrl?: string;
 
@@ -421,6 +424,13 @@ export class SignupComponent implements OnInit {
     this.SignupService.getAllCountry().subscribe((data) => {
       this.countries = data.zones
     })
+  }
+
+  // Eventhandler for Map component data
+  handleLatLongChanged(eventData: { lat: number, long: number }) {
+    const { lat, long } = eventData;
+    this.restaurantLatitude = lat;
+    this.restaurantLongitude = long;
   }
 
 

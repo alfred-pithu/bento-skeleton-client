@@ -30,7 +30,7 @@
     <!-- Form 1 ------------------------------------------------------------------------------------------------>
     <!-- Form 1 ------------------------------------------------------------------------------------------------>
     <!-- Form 1 ------------------------------------------------------------------------------------------------>
-    <div *ngIf="currentStep === 0">
+    <div *ngIf="currentStep === 1">
       <!-- Step 1 Content -->
       <h2 class="mb-10 font-bold text-green text-center">
         Tell Us About Yourself
@@ -86,7 +86,7 @@
     <!-- Form for Step 2--------------------------------------------------------- -->
     <!-- Form for Step 2--------------------------------------------------------- -->
 
-    <div *ngIf="currentStep === 1">
+    <div *ngIf="currentStep === 0">
       <!-- Step 2 Content -->
       <h2 class="mb-10 font-bold text-green text-center text-uppercase text-xl">
         Tell Us About Your Restaurant
@@ -100,9 +100,14 @@
           <input required nz-input type="text" formControlName="restaurantName" class="w-48 h-6 rounded-lg" />
         </div>
 
-        <div class="flex flex-col mx-auto">
+        <!-- <div class="flex flex-col mx-auto">
           <label class="font-bold text-xxs">Location *</label>
           <input nz-input type="text" formControlName="location" class="w-48 h-6 rounded-lg" />
+        </div> -->
+
+        <div class="flex flex-col mx-auto justify-center">
+          <label class="font-bold text-xxs">Average Bill Per Client *</label>
+          <input placeholder="$" nz-input type="number" formControlName="billPerClient" class="w-48 h-6 rounded-lg" />
         </div>
 
         <div class="flex flex-col mx-auto">
@@ -281,10 +286,7 @@
           </nz-radio-group>
         </div>
 
-        <div class="flex flex-col mx-auto justify-center">
-          <label class="font-bold text-xxs">Average Bill Per Client *</label>
-          <input placeholder="$" nz-input type="number" formControlName="billPerClient" class="w-48 h-6 rounded-lg" />
-        </div>
+
 
 
         <div class="flex flex-col mx-auto justify-center  ">
@@ -293,6 +295,12 @@
         </div>
 
 
+
+        <div class="col-span-3  wp-90 mx-auto mt-16">
+          <h4 class="font-semibold">Please Select Your Exact Location *</h4>
+          <hr>
+          <app-map (restaurantLatLongChanged)="handleLatLongChanged($event)"></app-map>
+        </div>
 
       </form>
 

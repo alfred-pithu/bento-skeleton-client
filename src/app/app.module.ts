@@ -45,6 +45,7 @@ import { RedirectPageComponent } from './pages/redirect-page/redirect-page.compo
 import { SplashLogoComponent } from './Components/splash-logo/splash-logo.component';
 import { PageContainerComponent } from './pages/page-container/page-container.component';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
+import { MapComponent } from './pages/map/map.component';
 
 // Formly
 
@@ -64,6 +65,7 @@ registerLocaleData(en);
     SplashLogoComponent,
     PageContainerComponent,
     LogoutPageComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,22 +9,26 @@ import { PageContainerComponent } from './pages/page-container/page-container.co
 import { authGuard } from './guards/auth/auth.guard';
 import { noAuthGuard } from './guards/no-auth/no-auth.guard';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
+import { MapComponent } from './pages/map/map.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
   { path: 'logout', component: LogoutPageComponent, canActivate: [authGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [noAuthGuard] },
+  { path: 'map', component: MapComponent },
   { path: 'redirect', component: RedirectPageComponent },
-  { path: '', component: PageContainerComponent, canActivate: [authGuard], children: [
-    { path: 'dashboard', component: DashboardPageComponent },
-    { path: '**', redirectTo: '/home'}
-  ]},
-  { path: '**', redirectTo: '/home'}
+  {
+    path: '', component: PageContainerComponent, canActivate: [authGuard], children: [
+      { path: 'dashboard', component: DashboardPageComponent },
+      { path: '**', redirectTo: '/home' }
+    ]
+  },
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
