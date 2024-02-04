@@ -8,8 +8,6 @@ import { ToastMessageService } from '../../services/toast-message/toast-message.
 import { CloudinaryServiceService } from '../../services/cloudinary/cloudinary-service.service'
 
 
-
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -17,8 +15,6 @@ import { CloudinaryServiceService } from '../../services/cloudinary/cloudinary-s
 })
 export class SignupComponent implements OnInit {
 
-  restaurantLatitude!: number;
-  restaurantLongitude!: number;
 
   loading = false;
   avatarUrl?: string;
@@ -141,7 +137,6 @@ export class SignupComponent implements OnInit {
 
   secondForm = new FormGroup({
     restaurantName: new FormControl('', Validators.required),
-    location: new FormControl('', Validators.required),
     country: new FormControl({ countryCode: '', countryName: '', zoneName: '', gmtOffset: 0, timestamp: 0, }, Validators.required),
     halal: new FormControl('', Validators.required),
     billPerClient: new FormControl('', Validators.required),
@@ -165,6 +160,9 @@ export class SignupComponent implements OnInit {
     currency: new FormControl('', Validators.required),
     restaurantDetails: new FormControl('', Validators.required),
 
+
+    restaurantLatitude: new FormControl(0, Validators.required),
+    restaurantLongitude: new FormControl(0, Validators.required),
 
     // --------------------------
 
@@ -365,7 +363,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  nextStep(): void {
+  /* nextStep(): void {
     if (this.currentStep < 3) {
 
       this.currentStep++
@@ -411,8 +409,25 @@ export class SignupComponent implements OnInit {
 
 
     }
-  }
+  } */
+  nextStep(): void {
+    if (this.currentStep < 3) {
+      this.currentStep++;
 
+      if (this.currentStep === 2 && this.operationThirdForm.valid) {
+        const formControlNames = ['operationOpeningTime', 'operationClosingTime', 'breakfastStart', 'breakfastEnd',
+          'lunchStart', 'lunchEnd', 'dinnerStart', 'dinnerEnd', 'deliveryTimeStart', 'deliveryTimeEnd'];
+
+        formControlNames.forEach(controlName => {
+          const control = this.operationThirdForm.get(controlName);
+          if (control) {
+            const utcDate = this.convertToUTCDate(control.value);
+            control.setValue(utcDate);
+          }
+        });
+      }
+    }
+  }
 
   prevStep(): void {
     if (this.currentStep > 0) {
@@ -429,8 +444,10 @@ export class SignupComponent implements OnInit {
   // Eventhandler for Map component data
   handleLatLongChanged(eventData: { lat: number, long: number }) {
     const { lat, long } = eventData;
-    this.restaurantLatitude = lat;
-    this.restaurantLongitude = long;
+    // Setting values in form control
+    this.secondForm.get('restaurantLatitude')?.setValue(lat)
+    this.secondForm.get('restaurantLongitude')?.setValue(long)
+
   }
 
 

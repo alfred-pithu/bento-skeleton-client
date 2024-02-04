@@ -20,7 +20,6 @@ export class SignupService {
   sendRegistrationInfoToBackend(data: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // Add any other headers as needed
     });
     return this.http.post<any>(`${this.rootUrl}/skeleton/restaurant-register`, data, { headers })
   }
