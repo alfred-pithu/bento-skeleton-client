@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import 'mapbox-gl/dist/mapbox-gl.css'
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+// import 'mapbox-gl/dist/mapbox-gl.css'
+// import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import * as mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
