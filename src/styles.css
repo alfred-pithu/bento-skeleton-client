@@ -1720,6 +1720,10 @@ pre {
     width: auto;
 }
 
+.w-fit {
+    width: fit-content;
+}
+
 .w-full {
     width: 100%;
 }
@@ -1803,6 +1807,17 @@ pre {
 .w-80 {
     width: 20rem;
 }
+
+
+.w-81 {
+    width: 21rem;
+}
+
+
+.w-82 {
+    width: 22rem;
+}
+
 
 .w-96 {
     width: 24rem;

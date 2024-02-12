@@ -28,12 +28,13 @@
   <h2 class="font-semibold ml-32 mb-8">FEATURES TO HELP YOU THRIVE</h2>
 
   <div class="grid grid-cols-3 gap-y-10 wp-90 mx-auto">
-    <app-service-card [bgColor]="'#05CC79'"></app-service-card>
-    <app-service-card [bgColor]="'#ffb6ca'"></app-service-card>
-    <app-service-card [bgColor]="'#ffb905'"></app-service-card>
-    <app-service-card [bgColor]="'#ff5f3b'"></app-service-card>
-    <app-service-card [bgColor]="'#b6b6ff'"></app-service-card>
-    <app-service-card [bgColor]="'#e0ffb6'"></app-service-card>
+    <app-service-card [info]="this.cardData[0]" [bgColor]="'#05CC79'"></app-service-card>
+    <app-service-card [info]="this.cardData[1]" [bgColor]="'#ffb6ca'"></app-service-card>
+    <app-service-card [info]="this.cardData[2]" [bgColor]="'#ffb905'"></app-service-card>
+    <app-service-card [info]="this.cardData[3]" [bgColor]="'#ff5f3b'"></app-service-card>
+    <app-service-card [info]="this.cardData[4]" [bgColor]="'#b6b6ff'"></app-service-card>
+    <app-service-card [info]="this.cardData[5]" [bgColor]="'#e0ffb6'"></app-service-card>
+    <app-service-card [info]="this.cardData[6]" [bgColor]="'#ffd966'"></app-service-card>
   </div>
 </div>
 

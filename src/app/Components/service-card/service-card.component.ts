@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ServiceCardComponent {
   @Input() bgColor?: string;
+  @Input() info?: { serviceName: string, serviceTagLine: string, serviceDescription: string, serviceImage: string }
 
   hovered?: boolean = false;
   mouseOverHandler(): any {

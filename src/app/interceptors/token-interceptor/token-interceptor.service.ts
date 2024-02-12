@@ -12,14 +12,11 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap((event) => {
         if (event instanceof HttpResponse) {
-          const bearerToken = event.headers.get('Authorization');
+          const bearerToken = event.headers.get('authorization');
           // console.log('bearerToken', bearerToken);
           if (bearerToken) {
             const token = bearerToken.split(' ')[1];
