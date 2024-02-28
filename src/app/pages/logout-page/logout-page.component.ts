@@ -13,6 +13,7 @@ export class LogoutPageComponent implements OnInit {
   ngOnInit(): void {
     // localStorage.clear();
     localStorage.removeItem('accessToken')
+    localStorage.removeItem('restaurantId')
     setTimeout(() => this.router.navigateByUrl('/home'), 2000);
   }
 }

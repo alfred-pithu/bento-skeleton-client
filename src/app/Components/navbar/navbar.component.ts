@@ -25,7 +25,10 @@ export class NavbarComponent implements OnInit {
       // Get the User Info from JWTToken
       this.api.getUserFromToken().subscribe((data) => {
         this.user = data.user
-        console.log(this.user?.employeeInformation.position.position)
+        if (!localStorage.getItem('restaurantId')) {
+          localStorage.setItem('restaurantId', data.user.employeeInformation.restaurantId)
+        }
+        console.log(data.user.employeeInformation.restaurantId)
       });
 
       // Check if the loggedin employee is checked in or not

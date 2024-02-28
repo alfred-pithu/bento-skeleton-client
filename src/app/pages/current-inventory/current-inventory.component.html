@@ -1,0 +1,53 @@
+<div *ngIf="!hasDataReached" class="h-screen flex justify-center items-center">
+    <nz-spin [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'large'"></nz-spin>
+</div>
+
+<!-- <nz-spin [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'large'"></nz-spin> -->
+
+
+<div *ngIf="hasDataReached" class=" grid grid-cols-4 gap-x-5 ">
+
+    <div class="col-span-3 ">
+        <nz-table class=" wp-75 mx-auto   " #headerTable [nzData]="currentInventoryData" [nzPageSize]="12">
+            <thead>
+                <tr>
+                    <th class="font-bold">Id</th>
+                    <th class="text-red">Name</th>
+                    <th>Current Stock</th>
+                    <th>Cost Per Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="font-size: 12px; " *ngFor="let data of headerTable.data">
+                    <td class="text-gray">{{ data.id }}</td>
+                    <td>{{ data.ingredientName }}</td>
+                    <td>{{ data.currentStockQuantity + ' '+ data.unitOfStock}}</td>
+                    <td>{{ data.costPerUnit.toFixed(2) + ' pence'}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+
+    <div class="   mt-2   ">
+        <div>
+            <input [(ngModel)]="searchedInputValue" class=" border border-gray rounded w-48 px-3" type="text"
+                placeholder="Search ingredient">
+            <button (click)="searchIngredient()"
+                class="bg-light-green cursor-pointer ml-2 font-bold rounded px-2 border-0 text-white">Search</button>
+        </div>
+        <br>
+
+        <div class=" w-72 custom-scrollbar">
+            <div *ngFor="let data of searchedIngredientDetails; let i = index"
+                class="  bg-white w-56  py-2 px-2 text-xxs my-2 flex flex-col gap-y-1 shadow  ">
+                <p class="font-bold "><span
+                        class="border-0 bg-light-green text-white px-1 rounded">{{data.ingredientName}}</span></p>
+                <p>{{ data.currentStockQuantity + ' '+ data.unitOfStock}} in stock</p>
+                <p>{{ (data.costPerUnit.toFixed(2)) + ' pence'}} CPU</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

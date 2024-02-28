@@ -17,7 +17,12 @@ export class SignupService {
     return this.http.get<CountriesInterface>(this.allCountryAPI)
   }
 
+  // sendRegistrationInfoToBackend(data: any) {
+  //   console.log('signup data', data);
+  // } 
+
   sendRegistrationInfoToBackend(data: any): Observable<any> {
+    console.log('signup data', data);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });

@@ -1,0 +1,21 @@
+.custom-scrollbar {
+    overflow-y: auto;
+    max-height: 80vh;
+    /* Enable vertical scrollbar */
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+
+    background-color: #f0ebeb;
+
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #05CC79;
+
+
+
+}

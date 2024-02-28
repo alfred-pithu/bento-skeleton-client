@@ -142,6 +142,19 @@ pre {
     flex-direction: column-reverse;
 }
 
+
+.grow {
+    flex-grow: 1;
+}
+
+.sticky {
+    position: sticky;
+}
+
+.fixed {
+    position: fixed;
+}
+
 /* Justify Content Utilities */
 .justify-start {
     justify-content: flex-start;

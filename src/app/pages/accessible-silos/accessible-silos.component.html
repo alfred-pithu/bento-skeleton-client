@@ -1,0 +1,9 @@
+<nz-spin class="h-screen" [nzSpinning]="loading" nzSize="large" nzTip="Preparing your Bento...">
+    <div class="flex gap-3 justify-center">
+        <div (click)="redirectToService(service)"
+            class="border text-white border rounded mt-5 border-gray w-32 h-40 flex justify-center items-center bg-light-green border-0 cursor-pointer font-bold"
+            *ngFor="let service of services">
+            <p>{{ service }}</p>
+        </div>
+    </div>
+</nz-spin>

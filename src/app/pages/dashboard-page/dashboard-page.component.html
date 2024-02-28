@@ -1,9 +1,22 @@
-<nz-spin class="h-screen" [nzSpinning]="loading" nzSize="large" nzTip="Preparing your Bento...">
-  <div class="flex gap-3 justify-center">
-    <div (click)="redirectToService(service)"
-      class="border text-white border rounded mt-5 border-gray w-32 h-40 flex justify-center items-center bg-light-green border-0 cursor-pointer font-bold"
-      *ngFor="let service of services">
-      <p>{{ service }}</p>
-    </div>
+<div class="flex">
+
+  <ul class="w-48" nz-menu nzMode="inline">
+
+    <li nz-menu-item routerLink="accessible-silos" nzSelected="">Accessible Silos</li>
+
+    <ul class="font-semibold" nz-submenu nzTitle="Inventory" nzIcon="" nzOpen>
+      <li class="font-normal" routerLink="current-inventory" nz-menu-item>Current Inventory</li>
+      <li class="font-normal" routerLink="current-vendor-orders" nz-menu-item>Ordered Items</li>
+    </ul>
+
+    <ul class="font-semibold" nz-submenu nzTitle="Menu" nzIcon="" nzOpen>
+      <li class="font-normal" routerLink="current-menu" nz-menu-item>Current Menu</li>
+    </ul>
+
+  </ul>
+
+  <div class="grow">
+    <router-outlet></router-outlet>
   </div>
-</nz-spin>
+
+</div>

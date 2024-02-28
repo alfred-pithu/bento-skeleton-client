@@ -10,17 +10,30 @@ import { authGuard } from './guards/auth/auth.guard';
 import { noAuthGuard } from './guards/no-auth/no-auth.guard';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { MapComponent } from './pages/map/map.component';
+import { AccessibleSilosComponent } from './pages/accessible-silos/accessible-silos.component';
+import { CurrentInventoryComponent } from './pages/current-inventory/current-inventory.component';
+import { CurrentVendorOrdersComponent } from './pages/current-vendor-orders/current-vendor-orders.component';
+import { CurrentMenuComponent } from './pages/current-menu/current-menu.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
-  { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
+  { path: 'login', component: LoginComponent, },
   { path: 'logout', component: LogoutPageComponent, canActivate: [authGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [noAuthGuard] },
   { path: 'map', component: MapComponent },
+
   { path: 'redirect', component: RedirectPageComponent },
   {
     path: '', component: PageContainerComponent, canActivate: [authGuard], children: [
-      { path: 'dashboard', component: DashboardPageComponent },
+      {
+        path: 'dashboard', component: DashboardPageComponent, children: [
+          { path: '', redirectTo: 'accessible-silos', pathMatch: 'full' }, // Redirect /dashboard to /dashboard/accessible-silos
+          { path: 'accessible-silos', component: AccessibleSilosComponent },
+          { path: 'current-inventory', component: CurrentInventoryComponent },
+          { path: 'current-vendor-orders', component: CurrentVendorOrdersComponent },
+          { path: 'current-menu', component: CurrentMenuComponent },
+        ]
+      },
       { path: '**', redirectTo: '/home' }
     ]
   },

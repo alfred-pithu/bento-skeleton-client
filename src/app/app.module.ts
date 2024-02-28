@@ -11,6 +11,8 @@ import axios from 'axios';
 
 
 // zorro imports
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -46,6 +48,10 @@ import { SplashLogoComponent } from './Components/splash-logo/splash-logo.compon
 import { PageContainerComponent } from './pages/page-container/page-container.component';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { MapComponent } from './pages/map/map.component';
+import { AccessibleSilosComponent } from './pages/accessible-silos/accessible-silos.component';
+import { CurrentInventoryComponent } from './pages/current-inventory/current-inventory.component';
+import { CurrentVendorOrdersComponent } from './pages/current-vendor-orders/current-vendor-orders.component';
+import { CurrentMenuComponent } from './pages/current-menu/current-menu.component';
 
 // Formly
 
@@ -66,6 +72,10 @@ registerLocaleData(en);
     PageContainerComponent,
     LogoutPageComponent,
     MapComponent,
+    AccessibleSilosComponent,
+    CurrentInventoryComponent,
+    CurrentVendorOrdersComponent,
+    CurrentMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +98,8 @@ registerLocaleData(en);
     NzTimePickerModule,
     NzRadioModule,
     NzUploadModule,
+    NzMenuModule,
+    NzTableModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
