@@ -1,0 +1,49 @@
+<div style="width: 350px;" class=" shadow-md   h-64 p-3 rounded-lg bg-white ">
+
+
+    <h4 class="mb-2 font-extrabold text-light-green">Current Inventory</h4>
+
+    <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
+
+    <nz-table *ngIf="hasDataReached" class="mx-auto" #headerTable [nzData]="listOfDisplayData" [nzSize]="'small'"
+        [nzPageSize]="5">
+
+        <thead>
+            <tr style="font-size: 10px; ">
+                <th class="font-bold">Id</th>
+                <th nzCustomFilter class="text-red">Name
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                        [nzDropdownMenu]="menu">
+                        <span class="font-bolder text-green" nz-icon nzType="search"></span>
+                    </nz-filter-trigger>
+                </th>
+                <th>Current Stock</th>
+                <th>Cost Per Unit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr style="font-size: 10px; " *ngFor="let data of headerTable.data">
+                <td class="text-gray">{{ data.id }}</td>
+                <td>{{ data.ingredientName }}</td>
+                <td>{{ data.currentStockQuantity + ' '+ data.unitOfStock}}</td>
+                <td>{{ data.costPerUnit.toFixed(2) + ' pence'}}</td>
+            </tr>
+        </tbody>
+
+    </nz-table>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown w-64  absolute left-10 top-0 px-2 py-2 ">
+
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+
+            <div class="mt-2 flex gap-x-4">
+                <button nz-button nzSize="small" nzType="primary" (click)="search()"
+                    class="search-button">Search</button>
+                <button nz-button nzSize="small" (click)="reset()">Reset</button>
+            </div>
+
+        </div>
+    </nz-dropdown-menu>
+</div>

@@ -18,6 +18,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
@@ -28,6 +30,10 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+
+
 
 
 // Components
@@ -49,9 +55,11 @@ import { PageContainerComponent } from './pages/page-container/page-container.co
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { MapComponent } from './pages/map/map.component';
 import { AccessibleSilosComponent } from './pages/accessible-silos/accessible-silos.component';
-import { CurrentInventoryComponent } from './pages/current-inventory/current-inventory.component';
-import { CurrentVendorOrdersComponent } from './pages/current-vendor-orders/current-vendor-orders.component';
 import { CurrentMenuComponent } from './pages/current-menu/current-menu.component';
+import { HrEmployeesComponent } from './pages/hr-employees/hr-employees.component';
+import { InventoryContainerComponent } from './pages/inventory-container/inventory-container.component';
+import { CurrentInventoryComponent } from './Components/Inventory/current-inventory/current-inventory.component';
+import { CurrentVendorOrdersComponent } from './Components/Inventory/current-vendor-orders/current-vendor-orders.component';
 
 // Formly
 
@@ -64,6 +72,7 @@ registerLocaleData(en);
     NavbarComponent,
     GetStartedBtnComponent,
     ServiceCardComponent,
+    CurrentVendorOrdersComponent,
     LoginComponent,
     SignupComponent,
     DashboardPageComponent,
@@ -74,8 +83,9 @@ registerLocaleData(en);
     MapComponent,
     AccessibleSilosComponent,
     CurrentInventoryComponent,
-    CurrentVendorOrdersComponent,
-    CurrentMenuComponent
+    CurrentMenuComponent,
+    HrEmployeesComponent,
+    InventoryContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +109,10 @@ registerLocaleData(en);
     NzRadioModule,
     NzUploadModule,
     NzMenuModule,
-    NzTableModule
+    NzDropDownModule,
+    NzPopoverModule,
+    NzTableModule,
+    NzAvatarModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

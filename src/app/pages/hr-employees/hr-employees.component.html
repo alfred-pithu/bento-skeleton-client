@@ -1,0 +1,65 @@
+<div *ngIf="!hasDataReached" class="h-screen flex justify-center items-center">
+    <nz-spin [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'large'"></nz-spin>
+</div>
+
+<!-- <nz-spin [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'large'"></nz-spin> -->
+
+
+<div *ngIf="hasDataReached" class=" grid grid-cols-4 gap-x-5 ">
+
+    <div class="col-span-3 ">
+        <nz-table class=" wp-75 mx-auto   " #headerTable [nzData]="allEmployeeInfos" [nzPageSize]="12">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="font-bold">Employee Id</th>
+                    <th class="text-red">Name</th>
+                    <th>Email</th>
+                    <th>Hourly Rate</th>
+                    <th>Position</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="font-size: 12px; " *ngFor="let data of headerTable.data">
+                    <td><nz-avatar nzIcon="user" [nzSrc]="data.imageUrl && data.imageUrl"></nz-avatar>
+                    </td>
+                    <td>{{ data.id }}</td>
+                    <td class="font-bold">{{ data.name }} </td>
+                    <td>{{data.email}}</td>
+                    <td>{{data.hourlyRate}}£ </td>
+                    <td><span class="bg-light-green text-white px-1  font-bold rounded">{{
+                            data.position.position}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+
+    <div class="   mt-2   ">
+        <div>
+            <input [(ngModel)]="searchedInputValue" class=" border border-gray rounded w-48 px-3" type="text"
+                placeholder="Search ingredient">
+            <button (click)="searchEmployee()"
+                class="bg-light-green cursor-pointer ml-2 font-bold rounded px-2 border-0 text-white">Search</button>
+        </div>
+        <br>
+
+        <div class=" w-72 custom-scrollbar">
+            <div *ngFor="let data of searchedEmployees; let i = index"
+                class="  bg-white w-64  py-2 px-2 text-xxs my-2 flex flex-col gap-y-1 shadow  ">
+                <p class="font-bold flex items-center gap-x-3 ">
+                    <nz-avatar nzIcon="user" [nzSrc]="data.imageUrl && data.imageUrl"></nz-avatar>
+
+                    <span>{{data.name}}</span>
+                    <span
+                        class="border-0 bg-light-green text-white px-1 text-center rounded">{{data.position.position}}</span>
+                </p>
+                <p>email: {{ data.email }} </p>
+                <p>{{ (data.hourlyRate) }}£ Per Hour </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

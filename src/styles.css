@@ -52,6 +52,18 @@ pre {
     background-color: #02643B;
 }
 
+.bg-background-off-white {
+    background-color: #F8F9FA;
+}
+
+/* .bg-card-white {
+    background-color: #F8F9FA;
+} */
+
+.bg-white {
+    background-color: #FFFF;
+}
+
 .bg-green {
     background-color: #038851;
 }
@@ -64,9 +76,7 @@ pre {
     background-color: #1c1c1c;
 }
 
-.bg-white {
-    background-color: #FFFF;
-}
+
 
 .bg-dark-gray {
     background-color: #273444;
@@ -1080,6 +1090,11 @@ pre {
 .py-0 {
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.py-point5 {
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
 }
 
 .py-1 {
