@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
         if (!localStorage.getItem('restaurantId')) {
           localStorage.setItem('restaurantId', data.user.employeeInformation.restaurantId)
         }
-        console.log(data.user.employeeInformation.restaurantId)
+        // console.log(data.user.employeeInformation.restaurantId)
       });
 
       // Check if the loggedin employee is checked in or not

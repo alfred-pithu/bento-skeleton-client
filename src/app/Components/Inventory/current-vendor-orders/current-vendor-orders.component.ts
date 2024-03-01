@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class CurrentVendorOrdersComponent implements OnInit {
   fetchedOrders: any[] = []
   hasDataReached: boolean = false
+  selectedOrder: any
+
 
   constructor(private inventoryService: InventoryService) { }
 
@@ -29,7 +31,7 @@ export class CurrentVendorOrdersComponent implements OnInit {
           }
         });
         this.hasDataReached = true;
-        console.log('filtered and mapped data', this.fetchedOrders);
+        // console.log('filtered and mapped data', this.fetchedOrders);
       },
       error: (error) => {
         console.log(error);
@@ -43,6 +45,9 @@ export class CurrentVendorOrdersComponent implements OnInit {
   }
 
 
+  onClickOverOrderRow(data: any) {
+    this.selectedOrder = data
+  }
 
 
 

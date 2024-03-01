@@ -18,6 +18,7 @@ export class CurrentInventoryComponent implements OnInit {
 
 
 
+
   ngOnInit(): void {
     this.inventoryService.getCurrentInventory().subscribe((data) => {
       if (data) {

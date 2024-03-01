@@ -60,6 +60,7 @@ import { HrEmployeesComponent } from './pages/hr-employees/hr-employees.componen
 import { InventoryContainerComponent } from './pages/inventory-container/inventory-container.component';
 import { CurrentInventoryComponent } from './Components/Inventory/current-inventory/current-inventory.component';
 import { CurrentVendorOrdersComponent } from './Components/Inventory/current-vendor-orders/current-vendor-orders.component';
+import { MostUsedIngredComponent } from './Components/Inventory/most-used-ingred/most-used-ingred.component';
 
 // Formly
 
@@ -85,7 +86,8 @@ registerLocaleData(en);
     CurrentInventoryComponent,
     CurrentMenuComponent,
     HrEmployeesComponent,
-    InventoryContainerComponent
+    InventoryContainerComponent,
+    MostUsedIngredComponent
   ],
   imports: [
     BrowserModule,
