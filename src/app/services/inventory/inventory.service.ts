@@ -22,6 +22,11 @@ export class InventoryService {
     )
   }
 
+  // https://inventory-server-klzl.onrender.com/v1/wasteLog/restaurant/1/sevenMostWasted
+  getMostWastedIngreds(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/v1/wasteLog/restaurant/${this.restaurantId}/sevenMostWasted`)
+  }
+
 
 
 }

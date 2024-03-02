@@ -7,6 +7,8 @@ import en from '@angular/common/locales/en';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 import axios from 'axios';
 
 
@@ -61,6 +63,7 @@ import { InventoryContainerComponent } from './pages/inventory-container/invento
 import { CurrentInventoryComponent } from './Components/Inventory/current-inventory/current-inventory.component';
 import { CurrentVendorOrdersComponent } from './Components/Inventory/current-vendor-orders/current-vendor-orders.component';
 import { MostUsedIngredComponent } from './Components/Inventory/most-used-ingred/most-used-ingred.component';
+import { MostWastedIngredComponent } from './Components/Inventory/most-wasted-ingred/most-wasted-ingred.component';
 
 // Formly
 
@@ -87,7 +90,8 @@ registerLocaleData(en);
     CurrentMenuComponent,
     HrEmployeesComponent,
     InventoryContainerComponent,
-    MostUsedIngredComponent
+    MostUsedIngredComponent,
+    MostWastedIngredComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +118,8 @@ registerLocaleData(en);
     NzDropDownModule,
     NzPopoverModule,
     NzTableModule,
-    NzAvatarModule
+    NzAvatarModule,
+    NgApexchartsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
