@@ -44,7 +44,7 @@ export class MostWastedIngredComponent {
       if (data) {
         this.wastedData = data
         this.hasDataReached = true;
-        console.log(data);
+        // console.log(data);
 
         // Chart Options
         this.chartOptions = {

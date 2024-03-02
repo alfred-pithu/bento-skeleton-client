@@ -57,13 +57,16 @@ import { PageContainerComponent } from './pages/page-container/page-container.co
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { MapComponent } from './pages/map/map.component';
 import { AccessibleSilosComponent } from './pages/accessible-silos/accessible-silos.component';
-import { CurrentMenuComponent } from './pages/current-menu/current-menu.component';
-import { HrEmployeesComponent } from './pages/hr-employees/hr-employees.component';
 import { InventoryContainerComponent } from './pages/inventory-container/inventory-container.component';
 import { CurrentInventoryComponent } from './Components/Inventory/current-inventory/current-inventory.component';
 import { CurrentVendorOrdersComponent } from './Components/Inventory/current-vendor-orders/current-vendor-orders.component';
 import { MostUsedIngredComponent } from './Components/Inventory/most-used-ingred/most-used-ingred.component';
 import { MostWastedIngredComponent } from './Components/Inventory/most-wasted-ingred/most-wasted-ingred.component';
+import { MenuContainerComponent } from './pages/menu-container/menu-container.component';
+import { HrContainerComponent } from './pages/hr-container/hr-container.component';
+import { OrdersContainerComponent } from './pages/orders-container/orders-container.component';
+import { FullMenuComponent } from './Components/Menu/full-menu/full-menu.component';
+import { MostSoldItemComponent } from './Components/Menu/most-sold-item/most-sold-item.component';
 
 // Formly
 
@@ -87,11 +90,14 @@ registerLocaleData(en);
     MapComponent,
     AccessibleSilosComponent,
     CurrentInventoryComponent,
-    CurrentMenuComponent,
-    HrEmployeesComponent,
     InventoryContainerComponent,
     MostUsedIngredComponent,
-    MostWastedIngredComponent
+    MostWastedIngredComponent,
+    MenuContainerComponent,
+    HrContainerComponent,
+    OrdersContainerComponent,
+    FullMenuComponent,
+    MostSoldItemComponent
   ],
   imports: [
     BrowserModule,

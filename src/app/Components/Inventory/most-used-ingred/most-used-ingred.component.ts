@@ -73,7 +73,7 @@ export class MostUsedIngredComponent implements OnInit {
           ],
           chart: {
             type: "bar",
-            height: 250
+            height: 280
           },
           plotOptions: {
             bar: {

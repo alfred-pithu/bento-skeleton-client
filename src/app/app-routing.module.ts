@@ -11,9 +11,10 @@ import { noAuthGuard } from './guards/no-auth/no-auth.guard';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { MapComponent } from './pages/map/map.component';
 import { AccessibleSilosComponent } from './pages/accessible-silos/accessible-silos.component';
-import { CurrentMenuComponent } from './pages/current-menu/current-menu.component';
-import { HrEmployeesComponent } from './pages/hr-employees/hr-employees.component';
 import { InventoryContainerComponent } from './pages/inventory-container/inventory-container.component';
+import { MenuContainerComponent } from './pages/menu-container/menu-container.component';
+import { HrContainerComponent } from './pages/hr-container/hr-container.component';
+import { OrdersContainerComponent } from './pages/orders-container/orders-container.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
@@ -30,8 +31,9 @@ const routes: Routes = [
           { path: '', redirectTo: 'accessible-silos', pathMatch: 'full' }, // Redirect /dashboard to /dashboard/accessible-silos
           { path: 'accessible-silos', component: AccessibleSilosComponent },
           { path: 'inventory', component: InventoryContainerComponent },
-          { path: 'current-menu', component: CurrentMenuComponent },
-          { path: 'employees', component: HrEmployeesComponent }
+          { path: 'menu', component: MenuContainerComponent },
+          { path: 'hr', component: HrContainerComponent },
+          { path: 'orders', component: OrdersContainerComponent }
         ]
       },
       { path: '**', redirectTo: '/home' }

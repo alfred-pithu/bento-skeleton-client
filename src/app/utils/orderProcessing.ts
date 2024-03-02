@@ -135,3 +135,81 @@ export function ingredientPresentCounter(allIngredsArr: any[]) {
 
 }
 
+
+// Count how many times one item has been ordered from pos
+export function prepareDataForPosOrders(data: any[]) {
+    const resultArray: any[] = []
+    data.forEach((order: any) => {
+        order.items.forEach((item: any) => {
+
+            const itemId = item.item._id;
+
+            const itemIndex = resultArray.findIndex((i) => i.itemId === itemId)
+
+            if (itemIndex === -1) {
+                resultArray.push({
+                    itemId,
+                    itemName: item.item.itemName,
+                    itemImage: item.item.itemImage,
+                    presentInOrdersCount: 1
+                })
+            } else {
+                resultArray[itemIndex].presentInOrdersCount++
+            }
+
+        })
+    })
+    const sortedResult = resultArray.sort((a, b) => b.presentInOrdersCount - a.presentInOrdersCount)
+    return sortedResult
+}
+
+
+// Function to process data for Marketplace Orders Chart
+export function prepareDataForMarketplaceOrdersChart(orders: any[]) {
+    const resultArray: any[] = [];
+
+    orders.forEach((order) => {
+        order.cartItems.forEach((item: any) => {
+            const itemId = item._id
+            const foundIndex = resultArray.findIndex((i) => i.itemId === itemId)
+            if (foundIndex === -1) {
+                resultArray.push({
+                    itemId,
+                    itemName: item.name,
+                    itemImage: item.image,
+                    presentInOrdersCount: 1
+                })
+            }
+            else {
+                resultArray[foundIndex].presentInOrdersCount++
+            }
+        })
+    })
+    const sortedResultArray = resultArray.sort((a, b) => b.presentInOrdersCount - a.presentInOrdersCount)
+    return sortedResultArray;
+}
+
+
+export function combinePosAndMarketplaceMostSoldItemsData(posOrders: any[], marketplaceOrders: any[]) {
+    const mergedWithDuplicates = posOrders.concat(marketplaceOrders)
+    const result: any[] = [];
+
+    mergedWithDuplicates.forEach((item) => {
+        const foundIndex = result.findIndex((i) => i.itemId === item.itemId)
+        if (foundIndex === -1) {
+            result.push({
+                itemId: item.itemId,
+                itemName: item.itemName,
+                itemImage: item.itemImage,
+                presentInOrdersCount: item.presentInOrdersCount
+
+            })
+        } else {
+            result[foundIndex].presentInOrdersCount++
+        }
+    });
+
+    const sortedResult = result.sort((a, b) => b.presentInOrdersCount - a.presentInOrdersCount)
+
+    return sortedResult;
+}

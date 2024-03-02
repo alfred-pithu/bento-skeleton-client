@@ -18,4 +18,8 @@ export class PosMarketplaceOrdersService {
   getAllPosOrders(): Observable<any> {
     return this.http.get(`${this.posBaseUrl}/order/all`)
   }
+
+  getAllMarketplaceOrders(): Observable<any> {
+    return this.http.get(`${this.marketplaceBaseUrl}/orders/processing/${this.restaurantId}`)
+  }
 }
