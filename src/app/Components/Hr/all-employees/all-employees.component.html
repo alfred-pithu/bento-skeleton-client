@@ -1,0 +1,86 @@
+<div style="width: 600px;" class=" shadow-md   h-72 p-3 rounded-lg bg-white ">
+
+    <div class="flex justify-between">
+        <h4 class="mb-2 font-extrabold text-light-green">All Employees</h4>
+        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+            <span class="font-bolder text-green text-sm" nz-icon nzType="search"></span>
+        </nz-filter-trigger>
+    </div>
+
+    <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
+
+
+    <nz-table *ngIf="hasDataReached" class="mx-auto" #headerTable [nzData]="listOfDisplayData" [nzSize]="'small'"
+        [nzPageSize]="4">
+        <thead>
+            <tr style="font-size: 10px; ">
+                <th></th>
+                <th class="font-bold">Employee Id</th>
+                <th class="text-red">Name
+                </th>
+                <th>Email</th>
+                <th>Hourly Rate</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="font-size: 10px; " *ngFor="let data of headerTable.data">
+                <td><nz-avatar nzIcon="user" [nzSrc]="data.imageUrl && data.imageUrl"></nz-avatar>
+                </td>
+                <td>{{ data.id }}</td>
+                <td class="font-bold">{{ data.name }} </td>
+                <td>{{data.email}}</td>
+                <td>{{data.hourlyRate}}£ </td>
+                <td><span class="bg-light-green text-white px-1  font-bold rounded">{{
+                        data.position.position}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown w-40  absolute   right-0 px-2 py-2 ">
+
+            <input class="h-6" type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+
+            <div class="mt-2 flex gap-x-4">
+                <button nz-button nzSize="small" nzType="primary" (click)="search()"
+                    class="search-button">Search</button>
+                <button nz-button nzSize="small" (click)="reset()">Reset</button>
+            </div>
+
+        </div>
+    </nz-dropdown-menu>
+
+</div>
+
+
+
+
+<!-- <div class="   mt-2   ">
+        <div>
+            <input [(ngModel)]="searchedInputValue" class=" border border-gray rounded w-48 px-3" type="text"
+                placeholder="Search ingredient">
+            <button (click)="searchEmployee()"
+                class="bg-light-green cursor-pointer ml-2 font-bold rounded px-2 border-0 text-white">Search</button>
+        </div>
+        <br>
+
+        <div class=" w-72 custom-scrollbar">
+            <div *ngFor="let data of searchedEmployees; let i = index"
+                class="  bg-white w-64  py-2 px-2 text-xxs my-2 flex flex-col gap-y-1 shadow  ">
+                <p class="font-bold flex items-center gap-x-3 ">
+                    <nz-avatar nzIcon="user" [nzSrc]="data.imageUrl && data.imageUrl"></nz-avatar>
+
+                    <span>{{data.name}}</span>
+                    <span
+                        class="border-0 bg-light-green text-white px-1 text-center rounded">{{data.position.position}}</span>
+                </p>
+                <p>email: {{ data.email }} </p>
+                <p>{{ (data.hourlyRate) }}£ Per Hour </p>
+            </div>
+
+        </div>
+
+    </div> -->

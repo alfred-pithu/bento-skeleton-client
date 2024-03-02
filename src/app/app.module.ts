@@ -67,6 +67,8 @@ import { HrContainerComponent } from './pages/hr-container/hr-container.componen
 import { OrdersContainerComponent } from './pages/orders-container/orders-container.component';
 import { FullMenuComponent } from './Components/Menu/full-menu/full-menu.component';
 import { MostSoldItemComponent } from './Components/Menu/most-sold-item/most-sold-item.component';
+import { AllEmployeesComponent } from './Components/Hr/all-employees/all-employees.component';
+import { OrdersServedRankingComponent } from './Components/Hr/orders-served-ranking/orders-served-ranking.component';
 
 // Formly
 
@@ -97,7 +99,9 @@ registerLocaleData(en);
     HrContainerComponent,
     OrdersContainerComponent,
     FullMenuComponent,
-    MostSoldItemComponent
+    MostSoldItemComponent,
+    AllEmployeesComponent,
+    OrdersServedRankingComponent
   ],
   imports: [
     BrowserModule,

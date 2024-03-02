@@ -47,9 +47,9 @@ export class FullMenuComponent implements OnInit {
     })
   }
 
-  updateMenuPrice(data: any, index: number) {
-    console.log('data from update menu method', data);
-  }
+  // updateMenuPrice(data: any, index: number) {
+  //   console.log('data from update menu method', data);
+  // }
 
 
 
