@@ -1,9 +1,10 @@
 <div class="bg-background-off-white px-5 h-screen border pt-2">
 
-    <div class="flex justify-between">
-        <app-all-employees [allEmployeeInfosObservable]="allEmployeeInfos"></app-all-employees>
 
-        <app-orders-served-ranking [allEmployeeInfosObservable]="allEmployeeInfos"></app-orders-served-ranking>
-    </div>
+    <app-all-employees [allEmployeeInfosObservable]="allEmployeeInfos"></app-all-employees>
+
+    <br> <br>
+
+    <app-orders-served-ranking [allEmployeeInfosObservable]="allEmployeeInfos"></app-orders-served-ranking>
 
 </div>

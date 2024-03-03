@@ -1,13 +1,32 @@
-<div style="width: 450px;" class=" shadow-md   h-72 p-3 rounded-lg bg-white ">
+<div class="flex justify-between">
+    <div style="width: 450px;" class=" shadow-md   h-56 p-3 rounded-lg bg-white ">
 
-    <h4 class="mb-2 font-extrabold text-light-green"> Numbers of Orders Served - Waiter</h4>
+        <h4 class="mb-2 font-extrabold text-light-green"> Numbers of Orders Served - Waiter</h4>
 
-    <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
+        <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
 
-    <div *ngIf="hasDataReached" class="">
-        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-            [plotOptions]="chartOptions.plotOptions" [xaxis]="chartOptions.xaxis"></apx-chart>
+        <div *ngIf="hasDataReached" class="">
+            <apx-chart [series]="waiterChartOptions.series" [chart]="waiterChartOptions.chart"
+                [labels]="waiterChartOptions.labels" [responsive]="waiterChartOptions.responsive"></apx-chart>
+        </div>
+
+
+
     </div>
 
 
+    <div style="width: 450px;" class=" shadow-md   h-56 p-3 rounded-lg bg-white ">
+
+        <h4 class="mb-2 font-extrabold text-light-green"> Numbers of Orders Served - Chefs</h4>
+
+        <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
+
+
+        <div *ngIf="hasDataReached" class="">
+            <apx-chart [series]="chefChartOptions.series" [chart]="chefChartOptions.chart"
+                [labels]="chefChartOptions.labels" [responsive]="chefChartOptions.responsive"></apx-chart>
+        </div>
+
+
+    </div>
 </div>

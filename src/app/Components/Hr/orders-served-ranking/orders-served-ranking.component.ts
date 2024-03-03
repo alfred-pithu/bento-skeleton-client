@@ -1,24 +1,21 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { HrService } from '../../../services/hr/hr.service';
 import { Observable } from 'rxjs';
-import { extractWaitersFromAllEmployee } from '../../../utils/hr.utils';
+import { extractChefsFromAllEmployee, extractWaitersFromAllEmployee } from '../../../utils/hr.utils';
+import { ChartComponent } from "ng-apexcharts";
 
 
 import {
-  ApexAxisChartSeries,
+  ApexNonAxisChartSeries,
+  ApexResponsive,
   ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexXAxis,
-  ApexPlotOptions
 } from "ng-apexcharts";
 
 export type ChartOptions = {
-  series: ApexAxisChartSeries;
+  series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  xaxis: ApexXAxis;
+  responsive: ApexResponsive[];
+  labels: any;
 };
 @Component({
   selector: 'app-orders-served-ranking',
@@ -30,10 +27,12 @@ export class OrdersServedRankingComponent {
   allEmployeeInfos: any[] = []
   hasDataReached: boolean = false
   waiters!: any[]
+  chefs!: any[]
 
-  @ViewChild("chart") chart: ChartComponent | undefined;
+  @ViewChild("chart") chart!: ChartComponent;
   // public chartOptions!: Partial<ChartOptions>;
-  public chartOptions: any;
+  public waiterChartOptions: any;
+  public chefChartOptions: any
 
   constructor(private HrService: HrService) { }
 
@@ -41,13 +40,82 @@ export class OrdersServedRankingComponent {
   ngOnInit(): void {
     this.allEmployeeInfosObservable.subscribe((data: any) => {
       this.allEmployeeInfos = data.data
-      console.log('this.allEmployeeInfos', this.allEmployeeInfos);
-      this.hasDataReached = true
-      this.waiters = extractWaitersFromAllEmployee(this.allEmployeeInfos)
-      console.log(this.waiters);
+      this.hasDataReached = true;
 
-      // Chart Options
-      this.chartOptions = {
+      this.executeWaiterChartTask()
+      this.executeChefChartTask()
+    })
+
+  }
+
+  // Waiter Chart
+  executeWaiterChartTask() {
+    this.waiters = extractWaitersFromAllEmployee(this.allEmployeeInfos)
+
+    // Waiter Chart Options
+    this.waiterChartOptions = {
+      series: this.waiters.map((i) => i.servedOrders),
+      chart: {
+        width: 380,
+        type: "pie"
+      },
+      labels: this.waiters.map((i) => i.name),
+
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "top"
+            }
+          }
+        }
+      ]
+    };
+  }
+
+  // Chefs Chart
+  executeChefChartTask() {
+    this.chefs = extractChefsFromAllEmployee(this.allEmployeeInfos)
+
+    // Chef Chart Options
+    this.chefChartOptions = {
+      series: this.chefs.map((i) => i.servedOrders),
+      chart: {
+        width: 380,
+        type: "pie"
+      },
+      labels: this.chefs.map((i) => i.name),
+
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+  }
+
+
+
+
+}
+
+
+
+/* 
+
+     this.chartOptions = {
         colors: ['#4d3a96', '#4576b5'],
         series: [
           {
@@ -80,14 +148,4 @@ export class OrdersServedRankingComponent {
         }
       };
 
-
-
-
-    })
-
-
-
-  }
-
-
-}
+*/
