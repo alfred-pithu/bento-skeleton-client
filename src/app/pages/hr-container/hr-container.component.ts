@@ -18,20 +18,5 @@ export class HrContainerComponent implements OnInit {
     this.allEmployeeInfos = this.HrService.getEmployees()
   }
 
-
-
 }
 
-
-// Loading data here
-// this.HrService.getEmployees().subscribe({
-//   next: (data) => {
-//     this.allEmployeeInfos = data.data
-//     console.log('all employee', this.allEmployeeInfos);
-//     this.hasDataReached = true
-
-//   },
-//   error: (error) => {
-//     console.log(error);
-//   }
-// })

@@ -29,12 +29,15 @@ export class OrdersServedRankingComponent {
   waiters!: any[]
   chefs!: any[]
 
+  totalChefOrders!: number
+  totalWaiterOrders!: number
+
   @ViewChild("chart") chart!: ChartComponent;
   // public chartOptions!: Partial<ChartOptions>;
   public waiterChartOptions: any;
   public chefChartOptions: any
 
-  constructor(private HrService: HrService) { }
+
 
 
   ngOnInit(): void {
@@ -51,12 +54,17 @@ export class OrdersServedRankingComponent {
   // Waiter Chart
   executeWaiterChartTask() {
     this.waiters = extractWaitersFromAllEmployee(this.allEmployeeInfos)
+    const orderNumbers = this.waiters.map((w) => w.servedOrders)
+    this.totalWaiterOrders = orderNumbers.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue
+    }, 0)
+
 
     // Waiter Chart Options
     this.waiterChartOptions = {
       series: this.waiters.map((i) => i.servedOrders),
       chart: {
-        width: 380,
+        width: 360,
         type: "pie"
       },
       labels: this.waiters.map((i) => i.name),
@@ -80,6 +88,10 @@ export class OrdersServedRankingComponent {
   // Chefs Chart
   executeChefChartTask() {
     this.chefs = extractChefsFromAllEmployee(this.allEmployeeInfos)
+    const ordersArr = this.chefs.map((c) => c.servedOrders);
+    this.totalChefOrders = ordersArr.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue
+    }, 0)
 
     // Chef Chart Options
     this.chefChartOptions = {
