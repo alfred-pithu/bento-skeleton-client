@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { PosMarketplaceOrdersService } from '../../../services/pos-marketplace-orders/pos-marketplace-orders.service';
+import { InventoryService } from '../../../services/inventory/inventory.service';
 
 import {
   ApexAxisChartSeries,
@@ -8,8 +10,7 @@ import {
   ApexXAxis,
   ApexPlotOptions
 } from "ng-apexcharts";
-import { PosMarketplaceOrdersService } from '../../../services/pos-marketplace-orders/pos-marketplace-orders.service';
-import { InventoryService } from '../../../services/inventory/inventory.service';
+
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;

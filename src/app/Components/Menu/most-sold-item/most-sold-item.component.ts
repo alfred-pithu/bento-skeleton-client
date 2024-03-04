@@ -34,7 +34,7 @@ export class MostSoldItemComponent implements OnInit {
   combinedMostSoldItemsData: any[] = []
 
 
-  @ViewChild("chart") chart: ChartComponent | undefined;
+  @ViewChild("chart") chart!: ChartComponent;
   public posChartOptions: any;
   public marketplaceChartOptions: any;
   public combinedChartOptions: any;

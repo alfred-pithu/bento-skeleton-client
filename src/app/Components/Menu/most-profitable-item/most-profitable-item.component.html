@@ -1,0 +1,33 @@
+<div style="width: 650px; min-height: 18rem ;" class=" shadow-md  p-3 rounded-lg bg-white ">
+
+        <div class="flex justify-between mb-2">
+                <h4 class="mb-2 font-extrabold text-light-green">Profit Per Menu Item</h4>
+
+                <nz-select [(ngModel)]="selectedChartMode" class="w-32 ">
+                        <nz-option nzValue="GBP" nzLabel="GBP £"></nz-option>
+                        <nz-option nzValue="PERCENTAGE" nzLabel="PERCENTAGE %"></nz-option>
+
+                </nz-select>
+        </div>
+
+        <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
+
+
+        <!-- GBP -->
+        <div *ngIf="hasDataReached && selectedChartMode=== 'GBP' ">
+                <apx-chart [series]="GbpChartOptions.series" [chart]="GbpChartOptions.chart"
+                        [dataLabels]="GbpChartOptions.dataLabels" [plotOptions]="GbpChartOptions.plotOptions"
+                        [xaxis]="GbpChartOptions.xaxis" [colors]="GbpChartOptions.colors">
+                </apx-chart>
+        </div>
+
+        <!-- PERCENTAGE -->
+        <div *ngIf="hasDataReached && selectedChartMode=== 'PERCENTAGE' ">
+                <apx-chart [series]="PercentageChartOptions.series" [chart]="PercentageChartOptions.chart"
+                        [dataLabels]="PercentageChartOptions.dataLabels"
+                        [plotOptions]="PercentageChartOptions.plotOptions" [xaxis]="PercentageChartOptions.xaxis"
+                        [colors]="PercentageChartOptions.colors">
+                </apx-chart>
+        </div>
+
+</div>

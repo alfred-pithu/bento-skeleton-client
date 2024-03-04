@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
       // Get the User Info from JWTToken
       this.api.getUserFromToken().subscribe((data) => {
         this.user = data.user
+        // console.log('res id', data.user.employeeInformation.restaurantId);
         if (!localStorage.getItem('restaurantId')) {
           localStorage.setItem('restaurantId', data.user.employeeInformation.restaurantId)
         }

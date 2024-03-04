@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuBuilderService } from '../../../services/menu-builder/menu-builder.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-full-menu',
@@ -7,21 +7,23 @@ import { MenuBuilderService } from '../../../services/menu-builder/menu-builder.
   styleUrl: './full-menu.component.css'
 })
 export class FullMenuComponent implements OnInit {
-  hasDataReached: boolean = false;
+
+  @Input() menuData$ !: Observable<any[]>
+
   fullMenuData: any[] = []
+
+  hasDataReached: boolean = false;
 
   searchValue = '';
   visible = false;
   listOfDisplayData: any[] = []
 
 
-  constructor(private menuService: MenuBuilderService) { }
 
   ngOnInit(): void {
 
-    this.menuService.getOneRestaurantMenu().subscribe({
+    this.menuData$.subscribe({
       next: (data) => {
-        // console.log('menu data', data)
         this.fullMenuData = data
         this.listOfDisplayData = [...this.fullMenuData]
         this.hasDataReached = true
@@ -42,7 +44,6 @@ export class FullMenuComponent implements OnInit {
   search(): void {
     this.visible = false;
     this.listOfDisplayData = this.fullMenuData.filter((data: any) => {
-      // return data.ingredientName.toLowerCase().includes(this.searchValue.toLowerCase())
       return data.item.itemName.toLowerCase().includes(this.searchValue.toLowerCase())
     })
   }

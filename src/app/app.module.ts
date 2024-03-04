@@ -69,6 +69,7 @@ import { FullMenuComponent } from './Components/Menu/full-menu/full-menu.compone
 import { MostSoldItemComponent } from './Components/Menu/most-sold-item/most-sold-item.component';
 import { AllEmployeesComponent } from './Components/Hr/all-employees/all-employees.component';
 import { OrdersServedRankingComponent } from './Components/Hr/orders-served-ranking/orders-served-ranking.component';
+import { MostProfitableItemComponent } from './Components/Menu/most-profitable-item/most-profitable-item.component';
 
 // Formly
 
@@ -101,7 +102,8 @@ registerLocaleData(en);
     FullMenuComponent,
     MostSoldItemComponent,
     AllEmployeesComponent,
-    OrdersServedRankingComponent
+    OrdersServedRankingComponent,
+    MostProfitableItemComponent
   ],
   imports: [
     BrowserModule,

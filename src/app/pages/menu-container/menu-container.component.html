@@ -1,10 +1,17 @@
-<div class="bg-background-off-white px-5 h-screen border pt-2">
+<div style="height: auto;" class="bg-background-off-white px-5  border pt-2">
 
     <div class="flex justify-between">
-        <app-full-menu></app-full-menu>
+
+        <app-full-menu [menuData$]="menuData$"></app-full-menu>
 
         <app-most-sold-item></app-most-sold-item>
 
     </div>
+
+    <br> <br> <br>
+
+    <app-most-profitable-item [menuData$]="menuData$"></app-most-profitable-item>
+
+    <br> <br> <br> <br> <br> <br>
 
 </div>

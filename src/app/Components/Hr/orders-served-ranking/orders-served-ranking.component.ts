@@ -33,7 +33,6 @@ export class OrdersServedRankingComponent {
   totalWaiterOrders!: number
 
   @ViewChild("chart") chart!: ChartComponent;
-  // public chartOptions!: Partial<ChartOptions>;
   public waiterChartOptions: any;
   public chefChartOptions: any
 
