@@ -35,7 +35,6 @@ export class NavbarComponent implements OnInit {
       // Check if the loggedin employee is checked in or not
       this.api.getIsCheckedInData().subscribe((data) => {
         if (data) {
-          console.log('Behaviour subject data', data);
           this.isUserCheckedIn = true
 
         } else {

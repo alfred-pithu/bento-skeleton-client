@@ -15,6 +15,7 @@ import { InventoryContainerComponent } from './pages/inventory-container/invento
 import { MenuContainerComponent } from './pages/menu-container/menu-container.component';
 import { HrContainerComponent } from './pages/hr-container/hr-container.component';
 import { OrdersContainerComponent } from './pages/orders-container/orders-container.component';
+import { ControlPanelContainerComponent } from './pages/control-panel-container/control-panel-container.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
         path: 'dashboard', component: DashboardPageComponent, children: [
           { path: '', redirectTo: 'accessible-silos', pathMatch: 'full' }, // Redirect /dashboard to /dashboard/accessible-silos
           { path: 'accessible-silos', component: AccessibleSilosComponent },
+          { path: 'control-panel', component: ControlPanelContainerComponent },
           { path: 'inventory', component: InventoryContainerComponent },
           { path: 'menu', component: MenuContainerComponent },
           { path: 'hr', component: HrContainerComponent },

@@ -1,0 +1,30 @@
+.custom-scrollbar {
+    overflow: auto;
+
+}
+
+/* Set the width and color of the scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 100px;
+    /* Width of the scrollbar */
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #038851;
+    /* Color of the track (the area behind the scrollbar) */
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #038851;
+    /* Color of the scrollbar handle */
+    /* border-radius: 5px; */
+    /* Roundness of the scrollbar handle */
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #038851;
+    /* Color of the scrollbar handle on hover */
+}

@@ -1,0 +1,18 @@
+<div style="width: 350px; min-height: 4rem ;" class=" shadow-md  p-3 rounded-lg bg-white flex  items-center  ">
+
+    <nz-spin class="text-center " *ngIf="!hasDataReached" [nzSpinning]="!hasDataReached" nzSimple
+        [nzSize]="'small'"></nz-spin>
+
+    <h4 *ngIf="hasDataReached" class=" font-extrabold text-light-green ">Show Restaurant In Marketplace
+        <nz-switch (click)="showModal()" class="  ml-4" [nzControl]="true"
+            [(ngModel)]="oneRestaurantInfo.showInMarketPlace" nzSize="small"></nz-switch>
+    </h4>
+
+
+    <nz-modal [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <ng-container *nzModalContent>
+            <p>Sure To Proceed ? </p>
+        </ng-container>
+    </nz-modal>
+
+</div>

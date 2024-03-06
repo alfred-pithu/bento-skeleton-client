@@ -77,11 +77,11 @@ export class MostProfitableItemComponent implements OnInit {
             ranges: [
               {
                 from: 1,
-                to: 100,
+                to: 100000000,
                 color: "#05CC79"
               },
               {
-                from: -100,
+                from: -10000000,
                 to: 0,
                 color: '#FF6666'
               },

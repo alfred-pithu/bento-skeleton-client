@@ -16,4 +16,11 @@ export class MenuBuilderService {
     return this.http.get<any[]>(url)
   }
 
+  updateOneRestaurant(data: any, id: number | string): Observable<any> {
+    const url = `${environment.MENU_BUILDER_BACKEND}/menuItem/edit/${id}`
+    return this.http.put<any>(url, data)
+
+  }
+
 }
+

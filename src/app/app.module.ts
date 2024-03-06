@@ -21,7 +21,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
@@ -70,6 +70,9 @@ import { MostSoldItemComponent } from './Components/Menu/most-sold-item/most-sol
 import { AllEmployeesComponent } from './Components/Hr/all-employees/all-employees.component';
 import { OrdersServedRankingComponent } from './Components/Hr/orders-served-ranking/orders-served-ranking.component';
 import { MostProfitableItemComponent } from './Components/Menu/most-profitable-item/most-profitable-item.component';
+import { ControlPanelContainerComponent } from './pages/control-panel-container/control-panel-container.component';
+import { ControlMenuItemVisibilityComponent } from './Components/Control-Panel/control-menu-item-visibility/control-menu-item-visibility.component';
+import { RestaurantVisibilityInMarketplaceComponent } from './Components/Control-Panel/restaurant-visibility-in-marketplace/restaurant-visibility-in-marketplace.component';
 
 // Formly
 
@@ -103,7 +106,10 @@ registerLocaleData(en);
     MostSoldItemComponent,
     AllEmployeesComponent,
     OrdersServedRankingComponent,
-    MostProfitableItemComponent
+    MostProfitableItemComponent,
+    ControlPanelContainerComponent,
+    ControlMenuItemVisibilityComponent,
+    RestaurantVisibilityInMarketplaceComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +137,8 @@ registerLocaleData(en);
     NzPopoverModule,
     NzTableModule,
     NzAvatarModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NzModalModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
