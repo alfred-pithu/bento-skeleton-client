@@ -48,6 +48,10 @@ pre {
 
 
 /* Background Color Classes */
+.bg-red {
+    background-color: #FF6666;
+}
+
 .bg-dark-green {
     background-color: #02643B;
 }
@@ -96,7 +100,7 @@ pre {
 }
 
 .text-red {
-    color: red;
+    color: #FF6666;
 }
 
 .text-green {

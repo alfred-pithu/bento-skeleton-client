@@ -73,6 +73,7 @@ import { MostProfitableItemComponent } from './Components/Menu/most-profitable-i
 import { ControlPanelContainerComponent } from './pages/control-panel-container/control-panel-container.component';
 import { ControlMenuItemVisibilityComponent } from './Components/Control-Panel/control-menu-item-visibility/control-menu-item-visibility.component';
 import { RestaurantVisibilityInMarketplaceComponent } from './Components/Control-Panel/restaurant-visibility-in-marketplace/restaurant-visibility-in-marketplace.component';
+import { SetDiscountComponent } from './Components/Control-Panel/set-discount/set-discount.component';
 
 // Formly
 
@@ -109,7 +110,8 @@ registerLocaleData(en);
     MostProfitableItemComponent,
     ControlPanelContainerComponent,
     ControlMenuItemVisibilityComponent,
-    RestaurantVisibilityInMarketplaceComponent
+    RestaurantVisibilityInMarketplaceComponent,
+    SetDiscountComponent
   ],
   imports: [
     BrowserModule,

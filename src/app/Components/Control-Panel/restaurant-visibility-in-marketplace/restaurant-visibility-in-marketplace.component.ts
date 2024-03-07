@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RestaurantInfoService } from '../../../services/restaurant-info/restaurant-info.service';
 import { ToastMessageService } from '../../../services/toast-message/toast-message.service';
+import { IRestaurant } from '../../../Interfaces/RestaurantInfo.interface';
 
 @Component({
   selector: 'app-restaurant-visibility-in-marketplace',
@@ -13,16 +14,16 @@ export class RestaurantVisibilityInMarketplaceComponent implements OnInit {
   constructor(private restaurantInfoService: RestaurantInfoService, private toast: ToastMessageService) { }
 
 
-  @Input() restaurantInfo$!: Observable<any>
-  oneRestaurantInfo: any;
+  @Input() restaurantInfo$!: Observable<IRestaurant>
+  oneRestaurantInfo!: IRestaurant;
   hasDataReached: boolean = false;
   isModalVisible: boolean = false;
 
   ngOnInit(): void {
     this.restaurantInfo$.subscribe({
-      next: (data) => {
+      next: (data: IRestaurant) => {
         this.oneRestaurantInfo = data
-        console.log('OnInit showInMarketPlace', this.oneRestaurantInfo);
+        // console.log('OnInit showInMarketPlace', this.oneRestaurantInfo);
         this.hasDataReached = true
       },
       error: (error) => [

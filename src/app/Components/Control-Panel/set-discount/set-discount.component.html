@@ -1,0 +1,75 @@
+<div>
+
+    <div style="width: 400px; min-height: 4rem ;" class=" shadow-md  p-3 rounded-lg bg-white   flex items-center  ">
+
+        <div *ngIf="hasDataReached" class=" flex items-center w-full  justify-between border">
+            <h4 class=" font-extrabold text-light-green   ">Discount In Marketplace : </h4>
+
+            <div>
+                <span *ngIf="!this.showInputFieldMarketplace"
+                    class="text-red font-bold text-base">{{this.restaurantInfo.marketplaceDiscountPercentage}} </span>
+
+                <input min="0" *ngIf="this.showInputFieldMarketplace" class="w-12 h-6 mr-2" nz-input placeholder="" def
+                    nzSize="default" type="number" [(ngModel)]="discountInputValueMarketplace">
+
+                <span>%</span>
+            </div>
+
+            <span *ngIf="!this.showInputFieldMarketplace" (click)="handleEditMarketplaceDiscount()"
+                class="text-black   cursor-pointer  " nz-icon nzType="edit" nzTheme="outline"></span>
+
+            <div *ngIf="this.showInputFieldMarketplace">
+                <span (click)="handleSubmitNewMarketplaceDiscount()"
+                    class="cursor-pointer text-white font-bolder bg-light-green rounded shadow  px-2 py-1" nz-icon
+                    nzType="check" nzTheme="outline"></span>
+
+                <span (click)="cancelMarketplaceDiscountEdit()"
+                    class="cursor-pointer text-white font-bolder  rounded shadow  px-2 py-1 ml-3 bg-red" nz-icon
+                    nzType="close" nzTheme="outline"></span>
+            </div>
+        </div>
+
+        <nz-spin class="text-center " *ngIf="!hasDataReached" [nzSpinning]="!hasDataReached" nzSimple
+            [nzSize]="'small'"></nz-spin>
+
+
+    </div>
+
+    <br> <br>
+
+    <!-- Discount In Marketplace -->
+    <div style="width: 400px; min-height: 4rem ;" class=" shadow-md  p-3 rounded-lg bg-white   flex items-center  ">
+
+        <div *ngIf="hasDataReached" class=" flex items-center w-full  grid grid-cols-3 border">
+            <h4 class=" font-extrabold text-light-green   ">Discount In POS : </h4>
+
+            <div>
+                <span *ngIf="!this.showInputFieldPos"
+                    class="text-red font-bold text-base">{{this.restaurantInfo.posDiscountPercentage}} </span>
+
+                <input *ngIf="this.showInputFieldPos" class="w-12 h-6 mr-2" nz-input placeholder="" def nzSize="default"
+                    type="number" [(ngModel)]="discountInputValuePos">
+
+                <span>%</span>
+            </div>
+
+            <span *ngIf="!this.showInputFieldPos" (click)="handleEditPosDiscount()"
+                class="text-black   cursor-pointer  " nz-icon nzType="edit" nzTheme="outline"></span>
+
+            <div *ngIf="this.showInputFieldPos">
+                <span (click)="handleSubmitNewPosDiscount()"
+                    class="cursor-pointer text-white font-bolder bg-light-green rounded shadow  px-2 py-1" nz-icon
+                    nzType="check" nzTheme="outline"></span>
+
+                <span (click)="cancelPosDiscountEdit()"
+                    class="cursor-pointer text-white font-bolder  rounded shadow  px-2 py-1 ml-3 bg-red" nz-icon
+                    nzType="close" nzTheme="outline"></span>
+            </div>
+        </div>
+
+
+        <nz-spin class="text-center " *ngIf="!hasDataReached" [nzSpinning]="!hasDataReached" nzSimple
+            [nzSize]="'small'"></nz-spin>
+    </div>
+
+</div>

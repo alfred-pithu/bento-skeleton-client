@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { RestaurantInfoService } from './../../services/restaurant-info/restaurant-info.service';
 import { Component, OnInit } from '@angular/core';
+import { IRestaurant } from '../../Interfaces/RestaurantInfo.interface';
 
 @Component({
   selector: 'app-control-panel-container',

@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { HrService } from '../../../services/hr/hr.service';
 import { Observable } from 'rxjs';
 import { extractChefsFromAllEmployee, extractWaitersFromAllEmployee } from '../../../utils/hr.utils';
 import { ChartComponent } from "ng-apexcharts";

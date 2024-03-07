@@ -1,10 +1,12 @@
-<div class="bg-background-off-white px-5 h-screen border pt-2">
+<div style="min-height: 100vh; height: auto;" class="bg-background-off-white px-5  pt-4 pb-10">
 
-
-    <app-all-employees [allEmployeeInfosObservable]="allEmployeeInfos"></app-all-employees>
+    <app-orders-served-ranking [allEmployeeInfosObservable]="allEmployeeInfos"></app-orders-served-ranking>
 
     <br> <br>
 
-    <app-orders-served-ranking [allEmployeeInfosObservable]="allEmployeeInfos"></app-orders-served-ranking>
+    <app-all-employees [allEmployeeInfosObservable]="allEmployeeInfos"></app-all-employees>
+
+
+
 
 </div>

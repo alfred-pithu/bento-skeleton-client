@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { IRestaurant } from '../../Interfaces/RestaurantInfo.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class RestaurantInfoService {
   private baseUrl = environment.API_URL;
   private restaurantId = localStorage.getItem("restaurantId")
 
-  getOneRestaurantInfo(): Observable<any> {
+  getOneRestaurantInfo(): Observable<IRestaurant> {
     const url = this.baseUrl + "/marketplace/restaurant-details/" + this.restaurantId
-    return this.http.get<any>(url)
+    return this.http.get<IRestaurant>(url)
   }
 
   updateOneRestaurantInfo(data: any): Observable<any> {
