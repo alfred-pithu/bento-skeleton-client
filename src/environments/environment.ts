@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   // API_URL: 'http://localhost:5000',
+  MAPBOX_URL: 'pk.eyJ1Ijoibm9lbGFsYW0iLCJhIjoiY2xwNXptZWh0MWo4cTJpczRnOTR2emxxZSJ9.2ysg9xmzMsMmBzuFmiO80A',
   API_URL: 'https://sak-skeleton-samiya-kazi.koyeb.app',
 
   INVENTORY_BACKEND: 'https://inventory-server-klzl.onrender.com',

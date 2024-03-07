@@ -1,3 +1,4 @@
+import { ToastMessageService } from './../../../services/toast-message/toast-message.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MenuBuilderService } from '../../../services/menu-builder/menu-builder.service';
@@ -9,7 +10,7 @@ import { MenuBuilderService } from '../../../services/menu-builder/menu-builder.
 })
 export class ControlMenuItemVisibilityComponent implements OnInit {
 
-  constructor(private menuService: MenuBuilderService) { }
+  constructor(private menuService: MenuBuilderService, private toast: ToastMessageService) { }
 
   isModalVisible = false;
   changingMenuItemIndex!: number;
@@ -52,49 +53,6 @@ export class ControlMenuItemVisibilityComponent implements OnInit {
     })
   }
 
-  // POS Switch Handler
-  handlePosSwitch() {
-    this.fullMenuData[this.changingMenuItemIndex].item.availableInPos = !this.fullMenuData[this.changingMenuItemIndex].item.availableInPos
-    // console.log(this.fullMenuData[this.changingMenuItemIndex].item);
-
-    const dataForBackend = {
-      item: {
-        ...this.fullMenuData[this.changingMenuItemIndex].item,
-        availableInPos: this.fullMenuData[this.changingMenuItemIndex].item.availableInPos
-      }
-    }
-    // console.log('data for backend', dataForBackend);
-
-    const _id = this.fullMenuData[this.changingMenuItemIndex]._id
-
-    this.menuService.updateOneRestaurant(dataForBackend, _id).subscribe((data) => {
-      if (data) {
-        // console.log('data after PUT req', data);
-      }
-    })
-  }
-
-  // Marketplace Switch Handler
-  handleMarketplaceSwitch() {
-    this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace = !this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace
-    // console.log(this.fullMenuData[this.changingMenuItemIndex].item);
-
-    const dataForBackend = {
-      item: {
-        ...this.fullMenuData[this.changingMenuItemIndex].item,
-        availableInMarketPlace: this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace
-      }
-    }
-    // console.log('data for backend', dataForBackend);
-
-    const _id = this.fullMenuData[this.changingMenuItemIndex]._id
-
-    this.menuService.updateOneRestaurant(dataForBackend, _id).subscribe((data) => {
-      if (data) {
-        // console.log('data after PUT req', data);
-      }
-    })
-  }
 
 
   showModal(index: number, switchName: string): void {
@@ -105,15 +63,52 @@ export class ControlMenuItemVisibilityComponent implements OnInit {
 
   handleOk(): void {
     this.isModalVisible = false;
-
     this.changingSwitchName === 'pos' ? this.handlePosSwitch() : this.handleMarketplaceSwitch();
-
-
-
   }
 
   handleCancel(): void {
     this.isModalVisible = false;
+  }
+
+
+  // POS Switch Handler
+  handlePosSwitch() {
+    this.fullMenuData[this.changingMenuItemIndex].item.availableInPos = !this.fullMenuData[this.changingMenuItemIndex].item.availableInPos
+
+    const dataForBackend = {
+      item: {
+        ...this.fullMenuData[this.changingMenuItemIndex].item,
+        availableInPos: this.fullMenuData[this.changingMenuItemIndex].item.availableInPos
+      }
+    }
+
+    const _id = this.fullMenuData[this.changingMenuItemIndex]._id
+
+    this.menuService.updateOneRestaurant(dataForBackend, _id).subscribe((data) => {
+      if (data) {
+        this.toast.setMessage('Updated Successfully', 'success')
+      }
+    })
+  }
+
+  // Marketplace Switch Handler
+  handleMarketplaceSwitch() {
+    this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace = !this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace
+
+    const dataForBackend = {
+      item: {
+        ...this.fullMenuData[this.changingMenuItemIndex].item,
+        availableInMarketPlace: this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace
+      }
+    }
+
+    const _id = this.fullMenuData[this.changingMenuItemIndex]._id
+
+    this.menuService.updateOneRestaurant(dataForBackend, _id).subscribe((data) => {
+      if (data) {
+        this.toast.setMessage('Updated Successfully', 'success')
+      }
+    })
   }
 
 

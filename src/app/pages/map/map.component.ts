@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular
 // import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import * as mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class MapComponent implements OnInit {
   map!: mapboxgl.Map;
   marker!: mapboxgl.Marker;
   style = 'mapbox://styles/mapbox/streets-v12'
-  accessToken = 'pk.eyJ1IjoiemFoaWR0d3QiLCJhIjoiY2xnaWV0YXB1MHVzNDNwbXk4NmdjZDBzZiJ9.7yB9lTwtcki0wvg2BQHNaw'
+  accessToken = environment.MAPBOX_URL
 
   selectedLatitude: number = 0
   selectedLongitude: number = 0
