@@ -82,7 +82,7 @@ export class SetDiscountComponent implements OnInit {
       const dataForBackend = { posDiscountPercentage: this.discountInputValuePos }
       this.restaurantInfoService.updateOneRestaurantInfo(dataForBackend).subscribe({
         next: (data) => {
-          console.log('data from backend', data);
+          // console.log('data from backend', data);
           this.restaurantInfo.posDiscountPercentage = this.discountInputValuePos;
           this.showInputFieldPos = false
           this.toast.setMessage('Updated Successfully', 'success')
