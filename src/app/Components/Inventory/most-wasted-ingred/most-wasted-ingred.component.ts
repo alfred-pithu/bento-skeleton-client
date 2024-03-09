@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PosMarketplaceOrdersService } from '../../../services/pos-marketplace-orders/pos-marketplace-orders.service';
 import { InventoryService } from '../../../services/inventory/inventory.service';
 
 import {
@@ -25,7 +24,7 @@ export type ChartOptions = {
   templateUrl: './most-wasted-ingred.component.html',
   styleUrl: './most-wasted-ingred.component.css'
 })
-export class MostWastedIngredComponent {
+export class MostWastedIngredComponent implements OnInit {
   hasDataReached: boolean = false
   wastedData: any[] = []
 
@@ -65,8 +64,9 @@ export class MostWastedIngredComponent {
           },
           plotOptions: {
             bar: {
-              horizontal: false,
-              columnWidth: 20,
+              horizontal: true,
+              // columnWidth: 10,
+              barHeight: 10
 
             }
           },

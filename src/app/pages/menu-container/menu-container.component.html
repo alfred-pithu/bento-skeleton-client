@@ -1,8 +1,9 @@
-<div style="height: auto;" class="bg-background-off-white px-5  border pt-2">
+<div style="height: auto;" class="bg-background-off-white px-5   pt-2">
 
-    <div class="flex justify-between">
+    <div class="flex gap-x-10">
 
-        <app-full-menu [menuData$]="menuData$"></app-full-menu>
+        <app-most-profitable-item [menuData$]="menuData$"></app-most-profitable-item>
+
 
         <app-most-sold-item></app-most-sold-item>
 
@@ -10,8 +11,8 @@
 
     <br> <br> <br>
 
-    <app-most-profitable-item [menuData$]="menuData$"></app-most-profitable-item>
+    <app-full-menu [menuData$]="menuData$"></app-full-menu>
 
-    <br> <br> <br> <br> <br> <br>
+    <br> <br> <br> <br>
 
 </div>

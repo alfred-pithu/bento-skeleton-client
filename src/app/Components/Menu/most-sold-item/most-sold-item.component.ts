@@ -180,7 +180,7 @@ export class MostSoldItemComponent implements OnInit {
         plotOptions: {
           bar: {
             horizontal: true,
-            barHeight: 5
+            barHeight: 10
             // columnWidth: 5,
             // rowWidth: 20
 

@@ -1,4 +1,4 @@
-<div>
+<div class="flex justify-between gap-x-16">
 
     <div style="width: 400px; min-height: 4rem ;" class=" shadow-md  p-3 rounded-lg bg-white   flex items-center  ">
 
@@ -16,7 +16,7 @@
             </div>
 
             <span *ngIf="!this.showInputFieldMarketplace" (click)="handleEditMarketplaceDiscount()"
-                class="text-black   cursor-pointer  " nz-icon nzType="edit" nzTheme="outline"></span>
+                class="text-black  my-auto  cursor-pointer  " nz-icon nzType="edit" nzTheme="outline"></span>
 
             <div *ngIf="this.showInputFieldMarketplace">
                 <span (click)="handleSubmitNewMarketplaceDiscount()"
@@ -35,7 +35,6 @@
 
     </div>
 
-    <br> <br>
 
     <!-- Discount In POS -->
     <div style="width: 400px; min-height: 4rem ;" class=" shadow-md  p-3 rounded-lg bg-white   flex items-center  ">
@@ -54,7 +53,7 @@
             </div>
 
             <span *ngIf="!this.showInputFieldPos" (click)="handleEditPosDiscount()"
-                class="text-black   cursor-pointer  " nz-icon nzType="edit" nzTheme="outline"></span>
+                class="text-black my-auto  cursor-pointer" nz-icon nzType="edit" nzTheme="outline"></span>
 
             <div *ngIf="this.showInputFieldPos">
                 <span (click)="handleSubmitNewPosDiscount()"

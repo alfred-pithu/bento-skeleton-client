@@ -78,6 +78,8 @@ export class MostUsedIngredComponent implements OnInit {
           plotOptions: {
             bar: {
               horizontal: true,
+              barHeight: 10
+
 
             }
           },

@@ -1,4 +1,4 @@
-<div style="width: 650px; min-height: 20rem ;" class=" shadow-md    p-3 rounded-lg bg-white ">
+<div style="min-height: 20rem ;" class=" shadow-md w-full   p-3 rounded-lg bg-white ">
 
     <h4 class="mb-4 font-extrabold text-light-green">Control Menu Item Availability in POS & Marketplace </h4>
 
@@ -35,7 +35,7 @@
         </thead>
 
         <tbody>
-            <tr style="font-size: 10px; " *ngFor="let data of headerTable.data; let i = index">
+            <tr style="font-size: 12px; " *ngFor="let data of headerTable.data; let i = index">
 
                 <td>
                     <nz-avatar nzIcon="user" [nzSrc]="data.item.itemImage"></nz-avatar>
@@ -51,10 +51,10 @@
 
 
                 <td>
-                    <nz-switch [nzControl]="true" [(ngModel)]="data.item.availableInPos"
+                    <nz-switch nzSize="small" [nzControl]="true" [(ngModel)]="data.item.availableInPos"
                         (click)="showModal(i , 'pos')"></nz-switch>
                 </td>
-                <td> <nz-switch [nzControl]="true" [(ngModel)]="data.item.availableInMarketPlace"
+                <td> <nz-switch nzSize="small" [nzControl]="true" [(ngModel)]="data.item.availableInMarketPlace"
                         (click)="showModal(i , 'marketplace')"></nz-switch></td>
 
 

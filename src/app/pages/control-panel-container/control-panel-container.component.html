@@ -1,17 +1,14 @@
 <div style="height: 100vh;" class="bg-background-off-white px-5   pt-2 ">
 
     <div class="flex justify-between">
-        <app-control-menu-item-visibility></app-control-menu-item-visibility>
+        <app-restaurant-visibility-in-marketplace
+            [restaurantInfo$]="restaurantInfo$"></app-restaurant-visibility-in-marketplace>
 
-        <div>
-            <app-restaurant-visibility-in-marketplace
-                [restaurantInfo$]="restaurantInfo$"></app-restaurant-visibility-in-marketplace>
-
-            <br> <br>
-
-            <app-set-discount [restaurantInfo$]="restaurantInfo$"></app-set-discount>
-        </div>
-
+        <app-set-discount [restaurantInfo$]="restaurantInfo$"></app-set-discount>
     </div>
+    <br> <br>
+
+    <app-control-menu-item-visibility></app-control-menu-item-visibility>
+
 
 </div>

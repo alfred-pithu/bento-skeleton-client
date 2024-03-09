@@ -68,11 +68,12 @@ export class MostProfitableItemComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 350
+        height: 250
       },
       plotOptions: {
         bar: {
           horizontal: true,
+          barHeight: 10,
           colors: {
             ranges: [
               {
@@ -114,11 +115,12 @@ export class MostProfitableItemComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 350
+        height: 250
       },
       plotOptions: {
         bar: {
           horizontal: true,
+          barHeight: 10,
           colors: {
             ranges: [
               {
