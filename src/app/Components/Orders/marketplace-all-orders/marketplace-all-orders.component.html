@@ -1,0 +1,66 @@
+<div style=" min-height: 16rem ;" class=" shadow-md wp-80 mx-auto p-3 rounded-lg bg-white ">
+    <div class="flex justify-between mb-2">
+        <h4 class="mb-2 font-extrabold text-light-green">Marketplace Orders</h4>
+
+        <div class="flex gap-x-5 ">
+            <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                <span class="font-bolder text-green text-base my-auto  " nz-icon nzType="search"></span>
+            </nz-filter-trigger>
+
+            <nz-select [(ngModel)]="seletedTimeSpan" class="w-32 ">
+                <nz-option nzValue="30" nzLabel="Last 30 Days"></nz-option>
+                <nz-option nzValue="7" nzLabel="Last 7 Days"></nz-option>
+
+            </nz-select>
+        </div>
+    </div>
+
+    <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
+
+
+    <nz-table *ngIf="hasDataReached" class="mx-auto" #headerTable [nzData]="this.listOfDisplayData" [nzSize]="'small'"
+        [nzPageSize]="20">
+
+        <thead>
+            <tr style="font-size: 12px; ">
+                <th class="font-bold">Order Id</th>
+                <!-- <th nzCustomFilter class="text-red">
+                </th> -->
+                <th>Items</th>
+                <th>Subtotal</th>
+                <th>Mode</th>
+                <th>Status</th>
+                <th>Order Time</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr style="font-size: 12px; " *ngFor="let data of headerTable.data">
+                <td class="text-gray">{{ data._id }}</td>
+                <td>{{this.conertTtemNamesToStringFromArray(data)}}</td>
+                <td> <span class="bg-light-green px-2 rounded text-white font-bold"> {{ data.subtotal + ' £'}}</span>
+                </td>
+                <td>{{ data.pickup === true ? 'Pickup': 'Delivery' }}</td>
+                <td>{{data.orderStatus}}</td>
+                <td>{{convertDateTimeToReadableFormat(data.createdAt)}}</td>
+            </tr>
+        </tbody>
+
+    </nz-table>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown w-64  absolute right-10 top-0 px-2 py-2 ">
+
+            <input type="text" nz-input placeholder="Search  With Order Id" [(ngModel)]="searchValue" />
+
+            <div class="mt-2 flex gap-x-4">
+                <button nz-button nzSize="small" nzType="primary" (click)="search()"
+                    class="search-button">Search</button>
+                <button nz-button nzSize="small" (click)="reset()">Reset</button>
+            </div>
+
+        </div>
+    </nz-dropdown-menu>
+
+
+</div>

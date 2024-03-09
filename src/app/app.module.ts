@@ -74,6 +74,8 @@ import { ControlPanelContainerComponent } from './pages/control-panel-container/
 import { ControlMenuItemVisibilityComponent } from './Components/Control-Panel/control-menu-item-visibility/control-menu-item-visibility.component';
 import { RestaurantVisibilityInMarketplaceComponent } from './Components/Control-Panel/restaurant-visibility-in-marketplace/restaurant-visibility-in-marketplace.component';
 import { SetDiscountComponent } from './Components/Control-Panel/set-discount/set-discount.component';
+import { MarketplaceAllOrdersComponent } from './Components/Orders/marketplace-all-orders/marketplace-all-orders.component';
+import { PosAllOrdersComponent } from './Components/Orders/pos-all-orders/pos-all-orders.component';
 
 // Formly
 
@@ -111,7 +113,9 @@ registerLocaleData(en);
     ControlPanelContainerComponent,
     ControlMenuItemVisibilityComponent,
     RestaurantVisibilityInMarketplaceComponent,
-    SetDiscountComponent
+    SetDiscountComponent,
+    MarketplaceAllOrdersComponent,
+    PosAllOrdersComponent
   ],
   imports: [
     BrowserModule,
