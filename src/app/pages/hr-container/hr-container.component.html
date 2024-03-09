@@ -1,5 +1,8 @@
 <div style="min-height: 100vh; height: auto;" class="bg-background-off-white px-5  pt-4 pb-10">
-
+    <div class="flex justify-end mt-2 mb-4">
+        <button (click)="navigateToInventory()" class="bg-black border-0 " nz-button nzType="primary">Go To HR
+            <span nz-icon nzType="arrow-right" nzTheme="outline"></span></button>
+    </div>
     <app-orders-served-ranking [allEmployeeInfosObservable]="allEmployeeInfos"></app-orders-served-ranking>
 
     <br> <br>

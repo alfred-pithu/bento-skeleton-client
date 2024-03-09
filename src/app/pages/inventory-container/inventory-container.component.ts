@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inventory-container',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './inventory-container.component.css'
 })
 export class InventoryContainerComponent {
-
+  constructor(private router: Router) { }
+  navigateToInventory() {
+    this.router.navigateByUrl('/redirect?service=inventory')
+  }
 }

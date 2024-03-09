@@ -1,5 +1,8 @@
 <div style="height: auto;" class="bg-background-off-white px-5   pt-2">
-
+    <div class="flex justify-end mt-2 mb-4">
+        <button (click)="navigateToInventory()" class="bg-black border-0 " nz-button nzType="primary">Go To Menu
+            <span nz-icon nzType="arrow-right" nzTheme="outline"></span></button>
+    </div>
     <div class="flex gap-x-10">
 
         <app-most-profitable-item [menuData$]="menuData$"></app-most-profitable-item>

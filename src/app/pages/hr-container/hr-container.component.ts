@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HrService } from '../../services/hr/hr.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hr-container',
@@ -9,13 +10,18 @@ import { Observable } from 'rxjs';
 })
 export class HrContainerComponent implements OnInit {
 
+
   hasDataReached: boolean = false
   allEmployeeInfos!: Observable<any[]>
 
-  constructor(private HrService: HrService) { }
+  constructor(private HrService: HrService, private router: Router) { }
 
   ngOnInit(): void {
     this.allEmployeeInfos = this.HrService.getEmployees()
+  }
+
+  navigateToInventory() {
+    this.router.navigateByUrl('/redirect?service=hr')
   }
 
 }
