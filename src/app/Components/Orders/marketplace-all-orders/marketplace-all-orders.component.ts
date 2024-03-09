@@ -11,8 +11,9 @@ export class MarketplaceAllOrdersComponent implements OnInit {
   hasDataReached: Boolean = false;
   visible: boolean = false;
   marketplaceOrderData!: any
-  listOfDisplayData: any[] = []
-  seletedTimeSpan = '30'
+  listOfDisplayDataForLast30Days: any[] = []
+  listOfDisplayDataForLast7Days: any[] = []
+  selectedTimeSpan = '30'
 
   searchValue: string = ''
 
@@ -21,8 +22,9 @@ export class MarketplaceAllOrdersComponent implements OnInit {
     this.allMarketplaceOrders$.subscribe({
       next: (data) => {
         this.marketplaceOrderData = data.orders
-        console.log(this.marketplaceOrderData);
-        this.listOfDisplayData = [...this.marketplaceOrderData]
+        // console.log(this.marketplaceOrderData);
+        this.listOfDisplayDataForLast30Days = [...this.marketplaceOrderData]
+        this.getOrderOfLast7Days()
         this.hasDataReached = true
       },
       error: (error) => {
@@ -30,6 +32,17 @@ export class MarketplaceAllOrdersComponent implements OnInit {
       }
     })
 
+  }
+
+  getOrderOfLast7Days() {
+    const filteredArray = this.marketplaceOrderData.filter((order: any) => {
+      const createdDate = new Date(order.createdAt)
+      let sevenDaysAgoDate = new Date();
+      sevenDaysAgoDate.setDate(sevenDaysAgoDate.getDate() - 8);
+      return createdDate >= sevenDaysAgoDate
+    })
+
+    this.listOfDisplayDataForLast7Days = filteredArray;
   }
 
   conertTtemNamesToStringFromArray(data: any) {
@@ -45,12 +58,27 @@ export class MarketplaceAllOrdersComponent implements OnInit {
 
   reset(): void {
     this.searchValue = '';
-    this.search();
+    if (this.selectedTimeSpan === '30') {
+      this.listOfDisplayDataForLast30Days = [...this.marketplaceOrderData]
+    } else if (this.selectedTimeSpan === '7') {
+      this.getOrderOfLast7Days()
+    }
+    this.visible = false;
+
   }
 
   search(): void {
-    this.listOfDisplayData = this.marketplaceOrderData.filter((data: any) => data._id === (this.searchValue).trim())
-    this.visible = false;
+    if (this.searchValue) {
+
+      if (this.selectedTimeSpan === '30') {
+        this.listOfDisplayDataForLast30Days = this.marketplaceOrderData.filter((data: any) => data._id === (this.searchValue).trim())
+        this.visible = false;
+      } else if (this.selectedTimeSpan === '7') {
+        this.listOfDisplayDataForLast7Days = this.marketplaceOrderData.filter((data: any) => data._id === (this.searchValue).trim())
+        this.visible = false;
+      }
+    }
+
   }
 
 

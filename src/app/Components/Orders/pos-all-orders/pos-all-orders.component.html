@@ -19,8 +19,9 @@
     <nz-spin class="text-center " [nzSpinning]="!hasDataReached" nzSimple [nzSize]="'small'"></nz-spin>
 
 
-    <nz-table *ngIf="hasDataReached" class="mx-auto" #headerTable [nzData]="this.listOfDisplayData" [nzSize]="'small'"
-        [nzPageSize]="20">
+    <nz-table *ngIf="hasDataReached" class="mx-auto" #headerTable
+        [nzData]="this.selectedTimeSpan === '30'? this.listOfDisplayDataForLast30Days: this.listOfDisplayDataForLast7Days"
+        [nzSize]="'small'" [nzPageSize]="20">
 
         <thead>
             <tr style="font-size: 12px; ">
