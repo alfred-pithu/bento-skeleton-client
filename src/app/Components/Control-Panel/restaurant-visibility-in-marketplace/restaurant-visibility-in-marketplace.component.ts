@@ -23,7 +23,7 @@ export class RestaurantVisibilityInMarketplaceComponent implements OnInit {
     this.restaurantInfo$.subscribe({
       next: (data: IRestaurant) => {
         this.oneRestaurantInfo = data
-        // console.log('OnInit showInMarketPlace', this.oneRestaurantInfo);
+        console.log('OnInit showInMarketPlace', this.oneRestaurantInfo);
         this.hasDataReached = true
       },
       error: (error) => [

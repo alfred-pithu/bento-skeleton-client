@@ -16,6 +16,7 @@ import { MenuContainerComponent } from './pages/menu-container/menu-container.co
 import { HrContainerComponent } from './pages/hr-container/hr-container.component';
 import { OrdersContainerComponent } from './pages/orders-container/orders-container.component';
 import { ControlPanelContainerComponent } from './pages/control-panel-container/control-panel-container.component';
+import { ownerGuardGuard } from './guards/owner/owner-guard.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
@@ -31,11 +32,12 @@ const routes: Routes = [
         path: 'dashboard', component: DashboardPageComponent, children: [
           { path: '', redirectTo: 'accessible-silos', pathMatch: 'full' }, // Redirect /dashboard to /dashboard/accessible-silos
           { path: 'accessible-silos', component: AccessibleSilosComponent },
-          { path: 'control-panel', component: ControlPanelContainerComponent },
-          { path: 'inventory', component: InventoryContainerComponent },
-          { path: 'menu', component: MenuContainerComponent },
-          { path: 'hr', component: HrContainerComponent },
-          { path: 'orders', component: OrdersContainerComponent }
+          { path: 'control-panel', component: ControlPanelContainerComponent, canActivate: [ownerGuardGuard] },
+          // { path: 'control-panel', component: ControlPanelContainerComponent },
+          { path: 'inventory', component: InventoryContainerComponent, canActivate: [ownerGuardGuard] },
+          { path: 'menu', component: MenuContainerComponent, canActivate: [ownerGuardGuard] },
+          { path: 'hr', component: HrContainerComponent, canActivate: [ownerGuardGuard] },
+          { path: 'orders', component: OrdersContainerComponent, canActivate: [ownerGuardGuard] }
         ]
       },
       { path: '**', redirectTo: '/home' }
