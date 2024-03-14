@@ -9,6 +9,7 @@ import {
   ApexResponsive,
   ApexChart,
 } from "ng-apexcharts";
+import { Chef, Employee, Waiter } from '../../../Interfaces/employee.interface';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -22,11 +23,11 @@ export type ChartOptions = {
   styleUrl: './orders-served-ranking.component.css'
 })
 export class OrdersServedRankingComponent {
-  @Input() allEmployeeInfosObservable!: Observable<any[]>
-  allEmployeeInfos: any[] = []
+  @Input() allEmployeeInfosObservable!: Observable<{ data: Employee[] }>
+  allEmployeeInfos: Employee[] = []
   hasDataReached: boolean = false
-  waiters!: any[]
-  chefs!: any[]
+  waiters!: Waiter[]
+  chefs!: Chef[]
 
   totalChefOrders!: number
   totalWaiterOrders!: number
@@ -39,7 +40,7 @@ export class OrdersServedRankingComponent {
 
 
   ngOnInit(): void {
-    this.allEmployeeInfosObservable.subscribe((data: any) => {
+    this.allEmployeeInfosObservable.subscribe((data: { data: Employee[] }) => {
       this.allEmployeeInfos = data.data
       this.hasDataReached = true;
 
@@ -52,7 +53,7 @@ export class OrdersServedRankingComponent {
   // Waiter Chart
   executeWaiterChartTask() {
     this.waiters = extractWaitersFromAllEmployee(this.allEmployeeInfos)
-    const orderNumbers = this.waiters.map((w) => w.servedOrders)
+    const orderNumbers = this.waiters.map((waiter) => waiter.servedOrders)
     this.totalWaiterOrders = orderNumbers.reduce((accumulator, currentValue) => {
       return accumulator + currentValue
     }, 0)
@@ -60,12 +61,12 @@ export class OrdersServedRankingComponent {
 
     // Waiter Chart Options
     this.waiterChartOptions = {
-      series: this.waiters.map((i) => i.servedOrders),
+      series: this.waiters.map((waiter) => waiter.servedOrders),
       chart: {
         width: 360,
         type: "pie"
       },
-      labels: this.waiters.map((i) => i.name),
+      labels: this.waiters.map((waiter) => waiter.name),
 
       responsive: [
         {
@@ -86,6 +87,8 @@ export class OrdersServedRankingComponent {
   // Chefs Chart
   executeChefChartTask() {
     this.chefs = extractChefsFromAllEmployee(this.allEmployeeInfos)
+    console.log('chefs', this.chefs);
+
     const ordersArr = this.chefs.map((c) => c.servedOrders);
     this.totalChefOrders = ordersArr.reduce((accumulator, currentValue) => {
       return accumulator + currentValue
@@ -93,12 +96,12 @@ export class OrdersServedRankingComponent {
 
     // Chef Chart Options
     this.chefChartOptions = {
-      series: this.chefs.map((i) => i.servedOrders),
+      series: this.chefs.map((chef) => chef.servedOrders),
       chart: {
         width: 380,
         type: "pie"
       },
-      labels: this.chefs.map((i) => i.name),
+      labels: this.chefs.map((chef) => chef.name),
 
       responsive: [
         {
@@ -123,39 +126,7 @@ export class OrdersServedRankingComponent {
 
 
 
-/* 
 
-     this.chartOptions = {
-        colors: ['#4d3a96', '#4576b5'],
-        series: [
-          {
-            name: "Total Orders Served",
-            data: this.waiters.map((i) => i.servedOrders),
-            color: "#05CC79",
 
-          }
-        ],
-        chart: {
-          type: "bar",
-          height: 280
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: 10
 
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        xaxis: {
-          categories: this.waiters.map((i) => i.name)
 
-        },
-        yaxis: {
-
-        }
-      };
-
-*/

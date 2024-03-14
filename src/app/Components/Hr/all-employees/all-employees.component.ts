@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { HrService } from '../../../services/hr/hr.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Employee } from '../../../Interfaces/employee.interface';
 
 @Component({
   selector: 'app-all-employees',
@@ -10,8 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class AllEmployeesComponent implements OnInit {
 
-  @Input() allEmployeeInfosObservable!: Observable<any[]>
-  allEmployeeInfos!: any[]
+  @Input() allEmployeeInfosObservable!: Observable<{ data: Employee[] }>
+  allEmployeeInfos!: Employee[]
   hasDataReached: boolean = false
 
   searchValue = '';
@@ -25,7 +26,7 @@ export class AllEmployeesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.allEmployeeInfosObservable.subscribe((data: any) => {
+    this.allEmployeeInfosObservable.subscribe((data: { data: Employee[] }) => {
       this.allEmployeeInfos = data.data
 
       this.listOfDisplayData = [...this.allEmployeeInfos]

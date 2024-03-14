@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HrService } from '../../services/hr/hr.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Employee } from '../../Interfaces/employee.interface';
 
 @Component({
   selector: 'app-hr-container',
@@ -12,7 +13,7 @@ export class HrContainerComponent implements OnInit {
 
 
   hasDataReached: boolean = false
-  allEmployeeInfos!: Observable<any[]>
+  allEmployeeInfos!: Observable<{ data: Employee[] }>
 
   constructor(private HrService: HrService, private router: Router) { }
 

@@ -1,3 +1,5 @@
+import { OrderToSupplier } from './../../../Interfaces/inventory.interface';
+import { OrderToSupplierHttpData } from '../../../Interfaces/inventory.interface';
 import { InventoryService } from './../../../services/inventory/inventory.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,12 +19,14 @@ export class CurrentVendorOrdersComponent implements OnInit {
   ngOnInit(): void {
 
     this.inventoryService.getCurrentOrders().subscribe({
-      next: (data) => {
+      next: (data: OrderToSupplierHttpData) => {
+        console.log(data);
         const currentDateTime = new Date()
 
-        const filtered = data.orders.filter((order: any) => { return new Date(order.deliveryDate) > currentDateTime })
+        const filtered = data.orders.filter((order) => { return new Date(order.deliveryDate) > currentDateTime })
+        console.log(filtered);
 
-        this.fetchedOrders = filtered.map((order: any) => {
+        this.fetchedOrders = filtered.map((order) => {
           return {
             ...order,
             status: 'Preparing',
@@ -30,8 +34,9 @@ export class CurrentVendorOrdersComponent implements OnInit {
 
           }
         });
+
+        console.log('fetchedOrders', this.fetchedOrders);
         this.hasDataReached = true;
-        // console.log('filtered and mapped data', this.fetchedOrders);
       },
       error: (error) => {
         console.log(error);
@@ -40,7 +45,7 @@ export class CurrentVendorOrdersComponent implements OnInit {
 
   }
 
-  prettifyDate(date: any) {
+  prettifyDate(date: Date) {
     return new Date(date).toLocaleString()
   }
 

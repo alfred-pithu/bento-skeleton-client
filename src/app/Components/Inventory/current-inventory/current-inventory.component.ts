@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../../../services/inventory/inventory.service';
+import { Ingredient } from '../../../Interfaces/inventory.interface';
 
 @Component({
   selector: 'app-current-inventory',
@@ -12,9 +13,9 @@ export class CurrentInventoryComponent implements OnInit {
   searchValue = '';
   visible = false;
 
-  currentInventoryData!: any;
+  currentInventoryData!: Ingredient[];
   hasDataReached: boolean = false;
-  listOfDisplayData: any[] = []
+  listOfDisplayData: Ingredient[] = []
 
 
 

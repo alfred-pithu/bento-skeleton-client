@@ -1,4 +1,4 @@
-import { extractIngredsFromOrder, ingredientPresentCounter, removeDuplicateIngredsAndAddQuantity } from '../../../utils/orderProcessing';
+import { extractIngredsFromOrder, ingredientPresentCounter } from '../../../utils/orderProcessing';
 import { PosMarketplaceOrdersService } from './../../../services/pos-marketplace-orders/pos-marketplace-orders.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -43,7 +43,6 @@ export class MostUsedIngredComponent implements OnInit {
 
     this.orderService.getAllPosOrders().subscribe((data) => {
       if (data) {
-        // console.log('data.data', data);
         let allIngredsArr: any[] = []
 
         data.forEach((data: any) => {
@@ -54,9 +53,7 @@ export class MostUsedIngredComponent implements OnInit {
         const counterArr = ingredientPresentCounter(allIngredsArr)
 
         this.ingredientPresentInOrdersArray = counterArr.sort((a, b) => b.presenceInOrders - a.presenceInOrders);
-        // console.log('counter array', this.ingredientPresentInOrdersArray);
         this.hasDataReached = true
-        // console.log('names', this.ingredientPresentInOrdersArray.map((i) => i.ingredientName).slice(0, 7));
 
 
 
@@ -67,7 +64,7 @@ export class MostUsedIngredComponent implements OnInit {
             {
               name: "Ingredient Used In Number Of Orders",
               data: this.ingredientPresentInOrdersArray.map((i) => i.presenceInOrders).slice(0, 10),
-              color: "#05CC79",
+              color: "#05CC79"
 
             }
           ],

@@ -9,7 +9,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
-import axios from 'axios';
 
 
 // zorro imports
@@ -77,7 +76,6 @@ import { SetDiscountComponent } from './Components/Control-Panel/set-discount/se
 import { MarketplaceAllOrdersComponent } from './Components/Orders/marketplace-all-orders/marketplace-all-orders.component';
 import { PosAllOrdersComponent } from './Components/Orders/pos-all-orders/pos-all-orders.component';
 
-// Formly
 
 registerLocaleData(en);
 
