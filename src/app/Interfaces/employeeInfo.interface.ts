@@ -16,3 +16,9 @@ export interface IEmployeeInfo {
   applicantId: number | null;
   position: IPosition
 }
+
+
+export interface IUser {
+  positionId: number;
+  employeeInformation: IEmployeeInfo;
+}

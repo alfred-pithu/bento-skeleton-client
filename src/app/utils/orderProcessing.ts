@@ -1,8 +1,11 @@
-import { IIngredient, IOrder, IPacking, IRecipe } from "../Interfaces/OrderProcessing.interface";
+import { IIngredient, IOrder, IPacking, IRecipe } from "../Interfaces/orderProcessing.interface";
+import { IMostUsedIngredient, IMostUsedIngredientChartData } from "../Interfaces/inventory.interface";
+import { IMarketplaceChartData, IMarketplaceOrder } from "../Interfaces/marketplace.interface";
+import { IPosMostSoldItemChartData } from "../Interfaces/menu.interface";
 
 
 // Prepare and Restructure Order data for sending to Inventory
-export function extractIngredsFromOrder(fullOrder: IOrder) {
+export function extractIngredientsFromOrder(fullOrder: IOrder) {
 
     const itemsArray = fullOrder.items;
 
@@ -115,19 +118,44 @@ export function removeDuplicatePackaging(packagingArray: IPacking[]) {
 
     return resultingArray;
 }
+/* 
+export function ingredientPresentCounter(allIngredsArr: IMostUsedIngredientsChartData[]): IMostUsedIngredientsChartData[] {
+    let counterArr: IMostUsedIngredientsChartData[] = []
 
-export function ingredientPresentCounter(allIngredsArr: any[]) {
-    const counterArr: any[] = []
+    allIngredsArr.forEach((ingred) => {
+        const index = counterArr.findIndex((d) => d.id === ingred.id)
+        if (index == -1) {
+            counterArr.push({
+                ...ingred,
+                presenceInOrders: 0,
+
+            })
+        } else {
+            counterArr[index].presenceInOrders++
+
+        }
+    })
+
+    return counterArr
+
+} */
+
+
+export function ingredientPresentCounter(allIngredsArr: IMostUsedIngredient[]): IMostUsedIngredientChartData[] {
+    let counterArr: IMostUsedIngredientChartData[] = []
+
     allIngredsArr.forEach((ingred) => {
         const index = counterArr.findIndex((d) => d.id === ingred.id)
         if (index == -1) {
             counterArr.push({
                 ingredientName: ingred.ingredientName,
+                id: ingred.id,
                 presenceInOrders: 0,
-                id: ingred.id
+
             })
         } else {
             counterArr[index].presenceInOrders++
+
         }
     })
 
@@ -137,9 +165,9 @@ export function ingredientPresentCounter(allIngredsArr: any[]) {
 
 
 // Count how many times one item has been ordered from pos
-export function prepareDataForPosOrders(data: any[]) {
-    const resultArray: any[] = []
-    data.forEach((order: any) => {
+export function prepareDataForPosOrders(data: IOrder[]): IPosMostSoldItemChartData[] {
+    const resultArray: IPosMostSoldItemChartData[] = []
+    data.forEach((order) => {
         order.items.forEach((item: any) => {
 
             const itemId = item.item._id;
@@ -165,8 +193,8 @@ export function prepareDataForPosOrders(data: any[]) {
 
 
 // Function to process data for Marketplace Orders Chart
-export function prepareDataForMarketplaceOrdersChart(orders: any[]) {
-    const resultArray: any[] = [];
+export function prepareDataForMarketplaceOrdersChart(orders: IMarketplaceOrder[]): IMarketplaceChartData[] {
+    const resultArray: IMarketplaceChartData[] = [];
 
     orders.forEach((order) => {
         order.cartItems.forEach((item: any) => {

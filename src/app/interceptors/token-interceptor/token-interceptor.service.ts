@@ -17,7 +17,6 @@ export class TokenInterceptor implements HttpInterceptor {
       tap((event) => {
         if (event instanceof HttpResponse) {
           const bearerToken = event.headers.get('authorization');
-          // console.log('bearerToken', bearerToken);
           if (bearerToken) {
             const token = bearerToken.split(' ')[1];
             localStorage.setItem('accessToken', token);

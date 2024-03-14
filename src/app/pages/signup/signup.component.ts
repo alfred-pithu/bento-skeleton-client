@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from '../../services/signup/signup.service'
-import { SingleCountryInterface } from '../../Interfaces/Country.interface'
+import { SingleCountryInterface } from '../../Interfaces/country.interface'
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
 import { Router } from '@angular/router';
 import { ToastMessageService } from '../../services/toast-message/toast-message.service'
@@ -234,9 +234,6 @@ export class SignupComponent implements OnInit {
       if (file) {
         this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
           this.secondForm.get('ambianceImage4')?.setValue(res.secure_url)
-          console.log('is second form valid ?', this.secondForm.valid);
-          console.log('current form state', this.secondForm.value);
-          // console.log('4', this.secondForm.value.ambianceImage4);
         })
       }
     }
@@ -251,7 +248,6 @@ export class SignupComponent implements OnInit {
       if (file) {
         this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
           this.secondForm.get('ambianceImage3')?.setValue(res.secure_url)
-          console.log('3', this.secondForm.value.ambianceImage3);
         })
       }
     }
@@ -267,7 +263,6 @@ export class SignupComponent implements OnInit {
       if (file) {
         this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
           this.secondForm.get('ambianceImage2')?.setValue(res.secure_url)
-          // console.log('2  ', this.secondForm.value.ambianceImage2);
         })
       }
     }
@@ -282,7 +277,6 @@ export class SignupComponent implements OnInit {
       if (file) {
         this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
           this.secondForm.get('ambianceImage1')?.setValue(res.secure_url)
-          // console.log('1', this.secondForm.value.ambianceImage1);
         })
       }
     }
@@ -300,7 +294,6 @@ export class SignupComponent implements OnInit {
       if (file) {
         this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
           this.secondForm.get('restaurantLogo')?.setValue(res.secure_url)
-          // console.log('cover photo', this.secondForm.value.restaurantLogo);
         })
       }
     }
@@ -320,7 +313,6 @@ export class SignupComponent implements OnInit {
       if (file) {
         this.cloudinaryService.cloudUpload(file, 'user123').subscribe(res => {
           this.secondForm.get('restaurantCoverPhoto')?.setValue(res.secure_url)
-          // console.log('cover photo', this.secondForm.value.restaurantCoverPhoto);
         })
       }
     }
@@ -363,53 +355,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  /* nextStep(): void {
-    if (this.currentStep < 3) {
 
-      this.currentStep++
-
-      if (this.currentStep == 2 && this.operationThirdForm.value.operationOpeningTime && this.operationThirdForm.value.operationClosingTime
-        && this.operationThirdForm.value.breakfastStart && this.operationThirdForm.value.breakfastEnd
-        && this.operationThirdForm.value.lunchStart && this.operationThirdForm.value.lunchEnd
-        && this.operationThirdForm.value.dinnerStart && this.operationThirdForm.value.dinnerEnd
-        && this.operationThirdForm.value.deliveryTimeStart && this.operationThirdForm.value.deliveryTimeEnd) {
-
-        const operationOpeningUTCDate = this.convertToUTCDate(this.operationThirdForm.value.operationOpeningTime)
-        this.operationThirdForm.get('operationOpeningTime')?.setValue(operationOpeningUTCDate)
-
-        const operationClosingUTCDate = this.convertToUTCDate(this.operationThirdForm.value.operationClosingTime)
-        this.operationThirdForm.get('operationClosingTime')?.setValue(operationClosingUTCDate)
-
-        const breakfastStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.breakfastStart)
-        this.operationThirdForm.get('breakfastStart')?.setValue(breakfastStartUTCDate)
-
-        const breakfastEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.breakfastEnd)
-        this.operationThirdForm.get('breakfastEnd')?.setValue(breakfastEndUTCDate)
-
-        const lunchStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.lunchStart)
-        this.operationThirdForm.get('lunchStart')?.setValue(lunchStartUTCDate)
-
-        const lunchEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.lunchEnd)
-        this.operationThirdForm.get('lunchEnd')?.setValue(lunchEndUTCDate)
-
-        const dinnerStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.dinnerStart)
-        this.operationThirdForm.get('dinnerStart')?.setValue(dinnerStartUTCDate)
-
-        const dinnerEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.dinnerEnd)
-        this.operationThirdForm.get('dinnerEnd')?.setValue(dinnerEndUTCDate)
-
-        const deliveryStartUTCDate = this.convertToUTCDate(this.operationThirdForm.value.deliveryTimeStart)
-        this.operationThirdForm.get('deliveryTimeStart')?.setValue(deliveryStartUTCDate)
-
-
-        const deliveryEndUTCDate = this.convertToUTCDate(this.operationThirdForm.value.deliveryTimeEnd)
-        this.operationThirdForm.get('deliveryTimeEnd')?.setValue(deliveryEndUTCDate)
-
-      }
-
-
-    }
-  } */
   nextStep(): void {
     if (this.currentStep < 3) {
       this.currentStep++;
@@ -491,7 +437,6 @@ export class SignupComponent implements OnInit {
       delete formData.restaurantInfo.ambianceImage2
       delete formData.restaurantInfo.ambianceImage3
       delete formData.restaurantInfo.ambianceImage4
-      console.log("formData", formData);
       this.SignupService.sendRegistrationInfoToBackend(formData).subscribe((res) => {
         if (res) {
           this.toast.setMessage('Sign Up Successful. Please Login', 'success')

@@ -39,9 +39,9 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 // Components
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
-import { GetStartedBtnComponent } from './Components/get-started-btn/get-started-btn.component';
-import { ServiceCardComponent } from './Components/service-card/service-card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { GetStartedBtnComponent } from './components/get-started-btn/get-started-btn.component';
+import { ServiceCardComponent } from './components/service-card/service-card.component';
 import { LoginComponent } from './pages/login/login.component';
 
 // Interceptors
@@ -51,30 +51,30 @@ import { TokenInterceptor } from './interceptors/token-interceptor/token-interce
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { RedirectPageComponent } from './pages/redirect-page/redirect-page.component';
-import { SplashLogoComponent } from './Components/splash-logo/splash-logo.component';
+import { SplashLogoComponent } from './components/splash-logo/splash-logo.component';
 import { PageContainerComponent } from './pages/page-container/page-container.component';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { MapComponent } from './pages/map/map.component';
 import { AccessibleSilosComponent } from './pages/accessible-silos/accessible-silos.component';
 import { InventoryContainerComponent } from './pages/inventory-container/inventory-container.component';
-import { CurrentInventoryComponent } from './Components/Inventory/current-inventory/current-inventory.component';
-import { CurrentVendorOrdersComponent } from './Components/Inventory/current-vendor-orders/current-vendor-orders.component';
-import { MostUsedIngredComponent } from './Components/Inventory/most-used-ingred/most-used-ingred.component';
-import { MostWastedIngredComponent } from './Components/Inventory/most-wasted-ingred/most-wasted-ingred.component';
+import { CurrentInventoryComponent } from './components/inventory/current-inventory/current-inventory.component';
+import { CurrentVendorOrdersComponent } from './components/inventory/current-vendor-orders/current-vendor-orders.component';
+import { MostUsedIngredComponent } from './components/inventory/most-used-ingred/most-used-ingred.component';
+import { MostWastedIngredComponent } from './components/inventory/most-wasted-ingred/most-wasted-ingred.component';
 import { MenuContainerComponent } from './pages/menu-container/menu-container.component';
 import { HrContainerComponent } from './pages/hr-container/hr-container.component';
 import { OrdersContainerComponent } from './pages/orders-container/orders-container.component';
-import { FullMenuComponent } from './Components/Menu/full-menu/full-menu.component';
-import { MostSoldItemComponent } from './Components/Menu/most-sold-item/most-sold-item.component';
-import { AllEmployeesComponent } from './Components/Hr/all-employees/all-employees.component';
-import { OrdersServedRankingComponent } from './Components/Hr/orders-served-ranking/orders-served-ranking.component';
-import { MostProfitableItemComponent } from './Components/Menu/most-profitable-item/most-profitable-item.component';
+import { FullMenuComponent } from './components/menu/full-menu/full-menu.component';
+import { MostSoldItemComponent } from './components/menu/most-sold-item/most-sold-item.component';
+import { AllEmployeesComponent } from './components/hr/all-employees/all-employees.component';
+import { OrdersServedRankingComponent } from './components/hr/orders-served-ranking/orders-served-ranking.component';
+import { MostProfitableItemComponent } from './components/menu/most-profitable-item/most-profitable-item.component';
 import { ControlPanelContainerComponent } from './pages/control-panel-container/control-panel-container.component';
-import { ControlMenuItemVisibilityComponent } from './Components/Control-Panel/control-menu-item-visibility/control-menu-item-visibility.component';
-import { RestaurantVisibilityInMarketplaceComponent } from './Components/Control-Panel/restaurant-visibility-in-marketplace/restaurant-visibility-in-marketplace.component';
-import { SetDiscountComponent } from './Components/Control-Panel/set-discount/set-discount.component';
-import { MarketplaceAllOrdersComponent } from './Components/Orders/marketplace-all-orders/marketplace-all-orders.component';
-import { PosAllOrdersComponent } from './Components/Orders/pos-all-orders/pos-all-orders.component';
+import { ControlMenuItemVisibilityComponent } from './components/control-panel/control-menu-item-visibility/control-menu-item-visibility.component';
+import { RestaurantVisibilityInMarketplaceComponent } from './components/control-panel/restaurant-visibility-in-marketplace/restaurant-visibility-in-marketplace.component';
+import { SetDiscountComponent } from './components/control-panel/set-discount/set-discount.component';
+import { MarketplaceAllOrdersComponent } from './components/orders/marketplace-all-orders/marketplace-all-orders.component';
+import { PosAllOrdersComponent } from './components/orders/pos-all-orders/pos-all-orders.component';
 
 
 registerLocaleData(en);

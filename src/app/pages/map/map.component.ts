@@ -45,7 +45,7 @@ export class MapComponent implements OnInit {
 
 
       }, (error) => {
-        console.log('Permission dey nai');
+        console.log(error);
       });
     }
 

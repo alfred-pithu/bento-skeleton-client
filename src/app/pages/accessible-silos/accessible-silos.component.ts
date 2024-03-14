@@ -22,7 +22,6 @@ export class AccessibleSilosComponent {
         if (data.message[0] == 'all') {
           this.services = ["INVENTORY", "MENU-BUILDER", "KDS", "POS", "HR"]
         }
-        // console.log(this.services);
       },
     });
   }

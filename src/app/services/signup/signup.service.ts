@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
 import { Observable } from 'rxjs'
-import { CountriesInterface } from '../../Interfaces/Country.interface'
+import { CountriesInterface } from '../../Interfaces/country.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -17,15 +17,12 @@ export class SignupService {
     return this.http.get<CountriesInterface>(this.allCountryAPI)
   }
 
-  // sendRegistrationInfoToBackend(data: any) {
-  //   console.log('signup data', data);
-  // } 
-
   sendRegistrationInfoToBackend(data: any): Observable<any> {
-    console.log('signup data', data);
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
+
     return this.http.post<any>(`${this.rootUrl}/skeleton/restaurant-register`, data, { headers })
   }
 }

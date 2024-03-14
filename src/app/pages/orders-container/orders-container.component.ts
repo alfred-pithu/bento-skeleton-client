@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PosMarketplaceOrdersService } from '../../services/pos-marketplace-orders/pos-marketplace-orders.service';
 import { Observable } from 'rxjs';
+import { IMarketplaceOrderHttpData } from '../../Interfaces/marketplace.interface';
+import { IOrder } from '../../Interfaces/orderProcessing.interface';
 
 @Component({
   selector: 'app-orders-container',
@@ -9,8 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class OrdersContainerComponent implements OnInit {
 
-  allPosOrders$!: Observable<any>
-  allMarketplaceOrders$!: Observable<any>
+  allPosOrders$!: Observable<IOrder[]>
+  allMarketplaceOrders$!: Observable<IMarketplaceOrderHttpData>
 
   constructor(private posMarketplaceOrders: PosMarketplaceOrdersService) { }
 

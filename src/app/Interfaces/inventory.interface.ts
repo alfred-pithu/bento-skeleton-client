@@ -79,3 +79,18 @@ interface Supplier {
 export interface OrderToSupplierHttpData {
     orders: OrderToSupplier[]
 }
+
+export interface IMostUsedIngredient {
+    id: number,
+    ingredientName: string,
+    unit: string,
+    quantity: number,
+    costPerUnit: number,
+    caloriePerUnit: number,
+}
+
+export interface IMostUsedIngredientChartData {
+    id: number,
+    ingredientName: string,
+    presenceInOrders: number
+}
