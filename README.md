@@ -1,27 +1,115 @@
-# Client
+# Bento Skeleton Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+## Features
+- Restaurant Registration
+- Employee login and check-in check-out
+- Navigation panel for navigating to other services
+- Control panel for discount setting, availability in Bento Marketplace control, and menu item availability control in POS and Marketplace
+- Analytics and Information panels for Orders of POS and Marketplace, Employee performance, Inventory status, Vendor orders and Menu for different timespans
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Deployed Link
+``` https://getbento.vercel.app ```
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Prerequisites
 
-## Build
+- Node.js (version >= 10)
+- npm 
+- Angular CLI 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Installation
+1. Clone the repository or download the source code: ```  git clone https://github.com/alfred-pithu/bento-skeleton-client.git ```
 
-## Running unit tests
+2. Navigate into the project directory:  ``` cd bento-skeleton-client ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Install dependencies using npm: ``` npm install ```
 
-## Running end-to-end tests
+4. Start the server: ``` ng serve ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Folder Structure
+
+```
+└── 📁src
+    └── 📁app
+    |    └── 📁Interfaces
+    |    └── app-routing.module.ts
+    |    └── app.component.css
+    |    └── app.component.html
+    |    └── app.component.spec.ts
+    |    └── app.component.ts
+    |    └── app.module.ts
+    |    └── 📁components
+    |    |    └── 📁control-panel
+    |    |    |    └── 📁control-menu-item-visibility
+    |    |    |    └── 📁restaurant-visibility-in-marketplace
+    |    |    |    └── 📁set-discount
+    |    |    ├──  📁get-started-btn
+    |    |    ├──  📁hr
+    |    |    |    └── 📁all-employees
+    |    |    |    └── 📁orders-served-ranking
+    |    |    ├──  📁inventory
+    |    |    |    └── 📁current-inventory
+    |    |    |    └── 📁current-vendor-orders
+    |    |    |    └── 📁most-used-ingred
+    |    |    |    └── 📁most-wasted-ingred
+    |    |    ├──  📁menu
+    |    |    |    └── 📁full-menu
+    |    |    |    └── 📁most-profitable-item
+    |    |    |    └── 📁most-sold-item
+    |    |    ├──  📁navbar
+    |    |    ├──  📁orders
+    |    |    |     └── 📁marketplace-all-orders
+    |    |    |     └── 📁pos-all-orders
+    |    |    └── 📁service-card
+    |    |    └── 📁splash-logo
+    |    ├──  📁guards
+    |    |    └── 📁auth
+    |    |    └── 📁no-auth
+    |    |    └── 📁owner
+    |    ├── 📁interceptors
+    |    |    └── 📁auth-interceptor
+    |    |    └── 📁error-interceptor
+    |    |    └── 📁token-interceptor
+    |    ├── 📁pages
+    |    |    └── 📁accessible-silos
+    |    |    └── 📁control-panel-container
+    |    |    └── 📁dashboard-page
+    |    |    └── 📁homepage
+    |    |    └── 📁hr-container
+    |    |    └── 📁inventory-container
+    |    |    └── 📁login
+    |    |    └── 📁logout-page
+    |    |    └── 📁map
+    |    |    └── 📁menu-container
+    |    |    └── 📁orders-container
+    |    |    └── 📁page-container
+    |    |    └── 📁redirect-page
+    |    |    └── 📁signup
+    |    ├── 📁services
+    |    |    └── 📁cloudinary
+    |    |    └── 📁hr
+    |    |    └── 📁inventory
+    |    |    └── 📁menu-builder
+    |    |    └── 📁pos-marketplace-orders
+    |    |    └── 📁restaurant-info
+    |    |    └── 📁signup
+    |    |    └── 📁skeleton-api
+    |    |    └── 📁toast-message
+    |    ├── 📁utils
+    ├── 📁assets
+    |    ├──  .gitkeep
+    |    ├──  favicon.png
+    |    ├──  📁fonts
+    |    ├──  📁photos and logos
+    ├── 📁environments
+    ├── index.html
+    ├── main.ts
+    ├── styles.css
+    └── theme.less
+
+```
