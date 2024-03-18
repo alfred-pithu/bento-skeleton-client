@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from '../../services/signup/signup.service'
 import { SingleCountryInterface } from '../../Interfaces/country.interface'
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload'
@@ -71,7 +71,7 @@ export class SignupComponent implements OnInit {
   ]
 
 
-  constructor(private fb: FormBuilder, private SignupService: SignupService, private router: Router, private toast: ToastMessageService, private cloudinaryService: CloudinaryServiceService) { }
+  constructor(private SignupService: SignupService, private router: Router, private toast: ToastMessageService, private cloudinaryService: CloudinaryServiceService) { }
 
   defaultDate = new Date();
 
