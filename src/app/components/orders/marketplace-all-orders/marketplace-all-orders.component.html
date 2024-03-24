@@ -39,7 +39,8 @@
             <tr style="font-size: 12px; " *ngFor="let data of headerTable.data">
                 <td class="text-gray">{{ data._id }}</td>
                 <td>{{this.conertTtemNamesToStringFromArray(data)}}</td>
-                <td> <span class="bg-light-green px-2 rounded text-white font-bold"> {{ data.subtotal + ' £'}}</span>
+                <td> <span class="bg-light-green px-2 rounded text-white font-bold"> {{ (data.subtotal).toFixed(2) + '
+                        £'}}</span>
                 </td>
                 <td>{{ data.pickup === true ? 'Pickup': 'Delivery' }}</td>
                 <td>{{data.orderStatus}}</td>
