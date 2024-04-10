@@ -6,7 +6,7 @@ export const environment = {
   API_URL: 'https://sak-skeleton-samiya-kazi.koyeb.app',
 
 
-  MAPBOX_URL: 'pk.eyJ1Ijoibm9lbGFsYW0iLCJhIjoiY2xwNXptZWh0MWo4cTJpczRnOTR2emxxZSJ9.2ysg9xmzMsMmBzuFmiO80A',
+  MAPBOX_URL: 'pk.eyJ1Ijoibm9lbGFsYW05OTk5IiwiYSI6ImNsbzEyZHd5MTAzM3kydHBtamE3djluN28ifQ.KPPVnkZ0mpaF5D0AIU635A',
 
   INVENTORY_BACKEND: 'https://inventory-server-klzl.onrender.com',
   HR_BACKEND: 'https://bento-hr.fly.dev',
