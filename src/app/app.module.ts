@@ -33,6 +33,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 
 
@@ -78,6 +79,8 @@ import { PosAllOrdersComponent } from './components/orders/pos-all-orders/pos-al
 
 
 registerLocaleData(en);
+
+
 
 @NgModule({
   declarations: [

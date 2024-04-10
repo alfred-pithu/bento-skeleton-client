@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit {
+
+  constructor(private notification: NzNotificationService) { }
+
+  ngOnInit(): void {
+    if (!this.isAuth) {
+      this.createBasicNotification();
+    }
+  }
 
   isAuth: boolean = !!localStorage.getItem('accessToken');
 
@@ -54,5 +63,24 @@ export class HomepageComponent {
     }
   ];
 
+
+
+  createBasicNotification(): void {
+    this.notification
+      .blank(
+        "Don't have much time to signup and set up everything ?",
+        "If you just want to get a tour of the product log in using  Email: admin@gmail.com , Password: password",
+        // { nzPlacement: 'top' },
+        {
+          nzDuration: 0, nzPlacement: 'top', nzStyle: {
+            fontWeight: '500',
+            fontSize: '20px'
+          },
+        }
+      )
+      .onClick.subscribe(() => {
+        // console.log('notification clicked!');
+      });
+  }
 
 }
