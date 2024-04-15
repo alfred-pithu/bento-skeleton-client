@@ -80,10 +80,11 @@ export interface IItem {
     categoryId: string;
     categoryName?: string;
     mealTimeId: number;
-    availableInPos?: boolean,
-    availableInMarketPlace?: boolean,
+    // availableInPos?: boolean,
+    // availableInMarketPlace?: boolean,
 
     item: {
+
         _id: string;
         itemId: number;
         itemName: string;
@@ -107,6 +108,8 @@ export interface IItem {
         typeOfFoods: string[];
         servingTemperature: number;
         itemDietaryRestrictions: string[];
+        availableInPos?: boolean,
+        availableInMarketPlace?: boolean,
     };
 }
 

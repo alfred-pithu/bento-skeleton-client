@@ -51,10 +51,13 @@
 
 
                 <td>
-                    <nz-switch nzSize="small" [nzControl]="true" [(ngModel)]="data.availableInPos"
+                    <!-- <nz-switch nzSize="small" [nzControl]="true" [(ngModel)]="data.availableInPos"
+                        (click)="showModal(i , 'pos')"></nz-switch> -->
+
+                    <nz-switch nzSize="small" [nzControl]="true" [(ngModel)]="data.item.availableInPos"
                         (click)="showModal(i , 'pos')"></nz-switch>
                 </td>
-                <td> <nz-switch nzSize="small" [nzControl]="true" [(ngModel)]="data.availableInMarketPlace"
+                <td> <nz-switch nzSize="small" [nzControl]="true" [(ngModel)]="data.item.availableInMarketPlace"
                         (click)="showModal(i , 'marketplace')"></nz-switch></td>
 
 

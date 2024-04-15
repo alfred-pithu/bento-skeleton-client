@@ -28,7 +28,16 @@ export class ControlMenuItemVisibilityComponent implements OnInit {
 
     this.menuService.getOneRestaurantMenu().subscribe({
       next: (data) => {
-        this.fullMenuData = data
+        this.fullMenuData = data;
+
+        console.log('Full menu data', this.fullMenuData.map((m) => {
+          return {
+            name: m.item.itemName,
+            pos: m.item.availableInPos,
+            marketplace: m.item.availableInMarketPlace
+          }
+        }));
+
         this.listOfDisplayData = [...this.fullMenuData]
         this.hasDataReached = true
       },
@@ -72,12 +81,12 @@ export class ControlMenuItemVisibilityComponent implements OnInit {
 
   // POS Switch Handler
   handlePosSwitch() {
-    this.fullMenuData[this.changingMenuItemIndex].availableInPos = !this.fullMenuData[this.changingMenuItemIndex].availableInPos
+    this.fullMenuData[this.changingMenuItemIndex].item.availableInPos = !this.fullMenuData[this.changingMenuItemIndex].item.availableInPos
 
     const dataForBackend = {
       item: {
         ...this.fullMenuData[this.changingMenuItemIndex].item,
-        availableInPos: this.fullMenuData[this.changingMenuItemIndex].availableInPos
+        availableInPos: this.fullMenuData[this.changingMenuItemIndex].item.availableInPos
         // availableInPos: this.fullMenuData[this.changingMenuItemIndex].item.
       }
     }
@@ -93,12 +102,12 @@ export class ControlMenuItemVisibilityComponent implements OnInit {
 
   // Marketplace Switch Handler
   handleMarketplaceSwitch() {
-    this.fullMenuData[this.changingMenuItemIndex].availableInMarketPlace = !this.fullMenuData[this.changingMenuItemIndex].availableInMarketPlace
+    this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace = !this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace
 
     const dataForBackend = {
       item: {
         ...this.fullMenuData[this.changingMenuItemIndex].item,
-        availableInMarketPlace: this.fullMenuData[this.changingMenuItemIndex].availableInMarketPlace
+        availableInMarketPlace: this.fullMenuData[this.changingMenuItemIndex].item.availableInMarketPlace
       }
     }
 
