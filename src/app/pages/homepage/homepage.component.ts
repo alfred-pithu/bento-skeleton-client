@@ -70,7 +70,7 @@ export class HomepageComponent implements OnInit {
       .blank(
         "Don't have much time to signup and set up everything ?",
         "If you just want to get a tour of the product log in using  Email: admin@gmail.com , Password: password",
-        // { nzPlacement: 'top' },
+
         {
           nzDuration: 0, nzPlacement: 'top', nzStyle: {
             fontWeight: '500',

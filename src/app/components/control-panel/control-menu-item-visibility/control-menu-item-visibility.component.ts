@@ -30,14 +30,6 @@ export class ControlMenuItemVisibilityComponent implements OnInit {
       next: (data) => {
         this.fullMenuData = data;
 
-        console.log('Full menu data', this.fullMenuData.map((m) => {
-          return {
-            name: m.item.itemName,
-            pos: m.item.availableInPos,
-            marketplace: m.item.availableInMarketPlace
-          }
-        }));
-
         this.listOfDisplayData = [...this.fullMenuData]
         this.hasDataReached = true
       },
